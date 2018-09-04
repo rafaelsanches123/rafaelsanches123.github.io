@@ -51,9 +51,47 @@ __Formulação do problema__:
 
 * Variáveis de Decisão: $C_{i}$ tal que, $ (i = 1,...,D) $ onde, $D$ representa o número de cidades do problema do CV;
 
+* Exemplo de Instância do CV com 5 cidades:
+
+| Cidade ($C_{i}$) | Coordenada x | Coordenada y |
+|:--------------:|:------------:|:------------:|
+|        1       |      37      |      52      |
+|        2       |      49      |      49      |
+|        3       |      52      |      64      |
+|        4       |      20      |      26      |
+|        5       |      40      |      30      |
+
 * Uma vez que você tenha as coordenadas das cidades, você precisa aplicar algum método para calcular as distâncias entre elas e um dos métodos mais conhecido na literatura é a __distância euclidiana__;
 
-* 
+* __Distância Euclidiana__: $ \sqrt{(p_{x}-q_{x})^2)+(p_{y}-q_{y})^2} $
+
+* Tabela com o cálculo da distância entre as cidades pós aplicação da distância eucliana entre elas:
+
+Tabela TD
+
+| Cidade |  1 |  2 |  3 |  4 |  5 |
+|:------------:|:--:|:--:|:--:|:--:|:--:|
+|       1      |  0 |  9 | 27 | 43 | 19 |
+|       2      |  9 |  0 | 18 | 52 | 28 |
+|       3      | 27 | 18 |  0 | 70 | 46 |
+|       4      | 43 | 52 | 70 |  0 | 24 |
+|       5      | 19 | 28 | 46 | 24 |  0 |
+
+* Para exemplificar a ideia de minimizar o custo do trajeto do CV imagine os dois roteiros a seguir:
+1. Solução/Roteiro 1: [1, 2, 3, 4, 5, 1]
+2. Solução/Roteiro 2: [4, 2, 5, 3, 1, 4]
+
+* Para mensurar a qualidade de cada um dos roteiros acima é necessário o uso de uma função de custo assim como a apresentada a seguir:
+
+* __Função de Custo__: $\left (  \sum_{i=1}^{D}TD[C_{i},C_{i+1}]) \right ) + TD[C_{D},C_{1}]$.  Imagine que o TD representa a Tabela com o cálculo da distância entre as cidades. Na primeira parte da equação repare que D é igual a 5 então o calculo entre as cidades vai da posição 1 da solução até a 5. A segunda parte representa o calcula da cidade que é armazenada na 5ª posição indo para a cidade armazenada na 1ª posição;
+
+* Passando a solução 1 e a solução 2 para a função de custo temos os seguintes resultados:
+1. Distância Gasta no pelo roteiro 1: ((1,2) = 9) + ((2,3) = 18) + ((3,4) = 70) + ((4,5) = 24) + ((5,1) = 19)  = 140; 
+2. Distância Gasta no pelo roteiro 2: ((4,2) = 52) + ((2,5) = 28) + ((5,3) = 46) + ((3,1) = 27) + ((1,4) = 43)  = 196;
+
+* No exemplo acima foi visto que o roteiro 1 é melhor que o roteiro 2 isso, porque a distância do primeiro é menor que a do segundo de forma bastante clara. A ideia então desse problema é alterar a ordem das cidades até encontrar o roteiro que apresente a melhor distância possível só que para problemas com um número de cidades maior esse problema torna bastante complexo e não é algo trivial de se tratar como foi apresentado acima e para isso algumas abordagens são encontradas na literatura como uma boa forma de tratar esse tipo de problema e isso será assunto para próximos artigos aqui no blog.
+
+Se achou que faltou falar de algo ou gostaria de ver algum tipo de assunto publicado no blog que seja sobre computação e inteligência artificial e assuntos relacionados fique a vontade para deixar uma mensagem e também comentar sobre esse artigo.
 
 ### Referências
 
@@ -62,3 +100,5 @@ DEB, K. Multi-objective optimization using evolutionary algorithms. John Wiley &
 RINGUEST, J. L. Multiobjective optimization: behavioral and computational considerations. Springer Science & Business Media, 2012.
 
 COLLETTE, Y.; SIARRY, P. Multiobjective optimization: principles and case studies. Springer Science & Business Media, 2013.
+
+
