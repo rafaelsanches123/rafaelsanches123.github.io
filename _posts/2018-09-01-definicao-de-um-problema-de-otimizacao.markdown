@@ -13,7 +13,7 @@ Problemas de ótimização também podem ser mono-objetivo (i.e., possui apenas 
 
 Segundo Deb (2001), Ringuest (2012), Collette e Siarry (2013), um problema de otimização multi-objetivo pode ser formulado da seguinte forma:
 
-* Tem-se $ f_{i}(X) $ onde, $ (i=1, 2, 3, ..., q) $ e $f$ representa um conjunto de __funções objetivo__ a serem otimizadas e $ X $ representa os parâmetros a serem otimizados dessa função (i.e., variaveis de decisão do problema a ser otimizado). Além disso, $ q $ representa a __quantidade de funções objetivo__ a serem otimizadas;
+* Tem-se $ f_{i}(X) $ onde, $ (i=1, 2, 3, ..., q) $ e $f$ representa um conjunto de __funções objetivo__ a serem otimizadas e $ X $ representa os parâmetros a serem otimizados dessa função (i.e., variáveis de decisão do problema a ser otimizado). Além disso, $ q $ representa a __quantidade de funções objetivo__ a serem otimizadas;
 
 * Para um problema __mono-objetivo__ apenas seria fixado que o mesmo trabalha apenas com uma função objetivo e expressão seria desse modo $ f_{1}(X) $ diferente da apresentada no item acima;
 
