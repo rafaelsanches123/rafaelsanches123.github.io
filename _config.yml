@@ -19,7 +19,7 @@ description: >- # this means to ignore newlines until "baseurl:"
   Esse blog foi desenvolvido com o intuito que eu possa compartilhar um pouco do meu conhecimento sobre a área de informática com todos. 
   Eu irei compartilhar informação sobre diversos tópicos da computação mas, com foco em especial em assuntos referentes a Inteligência Artificial.
 baseurl: "" # the subpath of your site, e.g. /blog
-url: "https://rafaelsanches123.github.io/" # the base hostname & protocol for your site, e.g. http://example.com
+url: "https://rafaelsanches123.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: RafaelFVSanches
 github_username:  rafaelsanches123
 linkedin_username: rafael-sanches-24a2b034
