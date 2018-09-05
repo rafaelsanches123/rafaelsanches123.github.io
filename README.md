@@ -4,3 +4,5 @@ banco de imagens:
 https://pixabay.com
 Para geração automatica do sitemap.xml:
 Jekyll Sitemap Generator Plugin
+Compartilhar os artigos nas midias sociais
+https://superdevresources.com/share-buttons-jekyll/

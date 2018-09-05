@@ -19,7 +19,7 @@ comments: true
   <div class="post-content e-content" itemprop="articleBody">
     {{ content }}
   </div>
-  
+  {%- include socialshare.html -%}
   {%- include disqus_comments.html -%}
 
   <a class="u-url" href="{{ page.url | relative_url }}" hidden></a>
