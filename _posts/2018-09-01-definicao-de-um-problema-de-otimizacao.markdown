@@ -15,7 +15,7 @@ Segundo Deb (2001), Ringuest (2012), Collette e Siarry (2013), um problema de ot
 
 * Tem-se $ f_{i}(X) $ onde, $ (i=1, 2, 3, ..., q) $ e $f$ representa um conjunto de __funções objetivo__ a serem otimizadas e $ X $ representa os parâmetros a serem otimizados dessa função (i.e., variáveis de decisão do problema a ser otimizado). Além disso, $ q $ representa a __quantidade de funções objetivo__ a serem otimizadas;
 
-* Para um problema __mono-objetivo__ apenas seria fixado que o mesmo trabalha apenas com uma função objetivo e expressão seria desse modo $ f_{1}(X) $ diferente da apresentada no item acima;
+* Para um problema __mono-objetivo__ apenas seria fixado que o mesmo trabalha apenas com uma função objetivo e a expressão seria desse modo $ f_{1}(X) $ diferente da apresentada no item acima;
 
 * Sabe-se que $X$ é formado por $(x1, x2, x3, ..., xD)$ __variáveis de decisão__ onde, $ D $ representa a quantidade de variáveis a serem otimizadas;
 
@@ -83,7 +83,7 @@ Tabela TDist
 
 * Para mensurar a qualidade de cada um dos roteiros acima é necessário o uso de uma função de custo assim como a apresentada a seguir:
 
-* __Função de Custo__: $\left (  \sum_{i=1}^{D}TDist[C_{i},C_{i+1}]) \right ) + TDist[C_{D},C_{1}]$.  Imagine que o TDist representa a Tabela com o cálculo da distância entre as cidades. Na primeira parte da equação repare que D é igual a 5 então o calculo entre as cidades vai da posição 1 da solução até a 5. A segunda parte representa o calcula da cidade que é armazenada na 5ª posição indo para a cidade armazenada na 1ª posição;
+* __Função de Custo__: $\left (  \sum_{i=1}^{5}TDist[C_{i},C_{i+1}]) \right ) + TDist[C_{5},C_{1}]$.  Imagine que o TDist representa a Tabela com o cálculo da distância entre as cidades. Na primeira parte da equação repare que D é igual a 5 então o calculo entre as cidades vai da posição 1 da solução até a 5. A segunda parte representa o calcula da cidade que é armazenada na 5ª posição indo para a cidade armazenada na 1ª posição;
 
 * Passando a solução 1 e a solução 2 para a função de custo temos os seguintes resultados:
 1. Distância Gasta no pelo roteiro 1: ((1,2) = 9) + ((2,3) = 18) + ((3,4) = 70) + ((4,5) = 24) + ((5,1) = 19)  = 140; 
