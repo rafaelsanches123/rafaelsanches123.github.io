@@ -7,9 +7,9 @@ categories: otimização
 
 ![otimização]({{ site.url }}/assets/otimizacao.jpg)
 
-Um problema de ótimização pode ser tanto de minimização (i.e., tentar reduzir algo) ou de máximização (i.e., tentar aumentar algo). Além disso, um problema de otimização pode ter dados discretos ou contínuos.
+Um problema de otimização pode ser tanto de minimização (i.e., tentar reduzir algo) ou de máximização (i.e., tentar aumentar algo). Além disso, um problema de otimização pode ter dados discretos ou contínuos.
 
-Problemas de ótimização também podem ser mono-objetivo (i.e., possui apenas uma função objetivo) ou multi-objetivos (possui mais de uma função objetivo).
+Problemas de otimização também podem ser mono-objetivo (i.e., possui apenas uma função objetivo) ou multi-objetivos (possui mais de uma função objetivo).
 
 Segundo Deb (2001), Ringuest (2012), Collette e Siarry (2013), um problema de otimização multi-objetivo pode ser formulado da seguinte forma:
 
