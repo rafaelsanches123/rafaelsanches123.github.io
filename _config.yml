@@ -31,14 +31,13 @@ google_analytics: "UA-125154845-1"
 
 # Build settings
 markdown: kramdown
+highlighter: rouge
 permalink: /:title
 theme: minima
 plugins:
   - jekyll-feed
-
-gems:
   - jekyll-sitemap
-  
+
 # Exclude from processing.
 # The following items will not be processed, by default. Create a custom list
 # to override the default setting.

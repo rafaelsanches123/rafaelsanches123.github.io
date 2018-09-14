@@ -5,7 +5,7 @@ date:   2018-09-01 17:33:03 -0300
 categories: otimização
 ---
 
-![otimização]({{ site.url }}/assets/otimizacao.jpg)
+![otimização]({{ site.url }}/assets/otimizacao.jpg){:style="width: 100%" }
 
 Um problema de otimização pode ser tanto de minimização (i.e., tentar reduzir algo) ou de máximização (i.e., tentar aumentar algo). Além disso, um problema de otimização pode ter dados discretos ou contínuos.
 
