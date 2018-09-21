@@ -6,3 +6,6 @@ Para geração automatica do sitemap.xml:
 Jekyll Sitemap Generator Plugin
 Compartilhar os artigos nas midias sociais
 https://superdevresources.com/share-buttons-jekyll/
+
+executar Jekyll localmente para testes
+bundle exec jekyll serve

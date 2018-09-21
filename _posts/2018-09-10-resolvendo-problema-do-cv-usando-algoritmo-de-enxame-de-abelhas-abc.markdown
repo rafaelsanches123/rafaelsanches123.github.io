@@ -6,19 +6,28 @@ categories: otimização inteligência-artificial
 ---
 
 ![abelhas produtoras de mel]({{ site.url }}/assets/enxame-de-abelhas.jpg){:style="width: 100%" }
+## Algoritmo de Enxame de abelhas ideia princípal
 
+Inspirado pelo comportamento inteligente de forrageamento (i.e., busca por alimento) dos enxames de abelhas produtoras de mel, o algoritmo de colônia de abelhas (ABC)(do inglês, Artificial Bee Colony Algorithm) é uma meta-heurística baseada em população (KARABOGA et al. ,2014). O ABC, foi proposto inicialmente por Karaboga (2005) para solucionar problemas de otimização contínua ( KARABOGA , 2005; KARABOGA; BASTURK , 2007, 2008; KARABOGA ,2009; KARABOGA; AKAY , 2009; KARABOGA et al. , 2014).
+
+O ABC é composto por três tipos de abelhas, sendo elas: empregadas, espectadoras e a exploradora. A função da abelha empregada, é a de explorar fontes de alimentos em sua vizinhança. A abelha que fica na colmeia esperando para tomar a decisão de qual fonte de alimento escolher para explorar é conhecida como espectadora. A abelha que sai a procura de novas fontes de alimentos de forma aleatória é a exploradora.
+
+## Aplicando os conceitos do algoritmo ABC no problema do CV
 O problema do Caixeiro Viajante (CV) representa a ideia de um CV que tem de visitar um conjunto de cidades sem repetir nenhuma delas de modo que ele retorne a cidade inicial por meio da menor distância possível.
 
-O primeiro passo para trabalhar com o problema CV é realizar a leitura das coordenadas das cidades e gerar a tabela de distâncias referente a essas cidades.
+O primeiro passo para trabalhar com o problema do CV é realizar a leitura das coordenadas das cidades e gerar a tabela de distâncias referente a essas cidades.
 
-Antes de começar o passo a passo, é importante salienter que será utilizado no decorrer do artigo a linguagem de programação python na versão 3 e será necessário instalar algumas bibliotecas caso você não as tenha instaladas no seu computador a seguir será ilustrado os comandos necessários para realizar essas ações.
+Antes de começar o passo a passo, é importante salienter que será utilizado no decorrer do artigo a linguagem de programação __python__ na versão __3__ e será necessário instalar algumas bibliotecas sendo elas a __numpy__ e a __matplotlib__. Caso você não as tenha instaladas no seu computador a seguir é ilustrado um exemplo dos comandos necessários para instalar as bibliotecas mencionadas.
 
 ```
     Abra seu terminal e digite os comandos:
     pip install numpy
     pip install matplotlib
 ```
-* Abra seu editor de texto favorito e crie o seguinte arquivo rafael5.txt
+
+Depois de instalar as bibliotecas utilizadas faça o seguinte:
+
+* Abra seu editor de texto favorito e crie o seguinte arquivo rafael5.txt;
 * Em seguida salve o seguinte conteudo dentro do arquivo criado:
 
 ```
@@ -29,11 +38,19 @@ Antes de começar o passo a passo, é importante salienter que será utilizado n
 5 40 30
 ```
 
-* No bloco acima, a primeira coluna representa a cidade, a segunda coluna a coordenada x da cidade e a terceira coluna a coordenada y da cidade.
+* No bloco acima, a primeira coluna representa __a cidade__, a segunda coluna __a coordenada x da cidade__ e a terceira coluna __a coordenada y da cidade__;
 
-* No meu caso, eu criei um diretório chamado "tsp-instancias" e dentro dele eu coloquei o arquivo rafael5.txt
+* No meu caso, eu criei um diretório (i.e., uma pasta) chamado "tsp-instancias" e dentro dele eu coloquei o arquivo rafael5.txt;
 
-* No mesmo nível do diretório "tsp-instancias" crie um arquivo python chamado abc.py e nesse arquivo você irá inserir os seguintes comandos apresentados no decorrer do artigo 
+* No mesmo nível do diretório "tsp-instancias" crie um arquivo python chamado abc.py.
+
+```
+├── abc.py
+└── tsp-instancias
+    └── rafael5.txt
+```
+
+No arquivo abc.py você irá inserir os códigos apresentados no decorrer do artigo para implementar o algoritmo ABC.
 
 Para realizar a leitura dos dados por meio de um arquivo externo (i.e., nosso arquivo rafael5.txt que tem os dados do problema do cv), utiliza-se a seguinte forma a baixo:
 
@@ -63,26 +80,34 @@ Para realizar a leitura dos dados por meio de um arquivo externo (i.e., nosso ar
     plt.show()
 {% endhighlight %}
 
-Para gerar essa tabela de distâncias utiliza-se a função a seguir:
+Para gerar a tabela de que representa a distância gasta entre as cidades utiliza-se a função a seguir:
 
 {% highlight python linenos %}
-    #com os dados armazenados em uma matriz, aplicar a formula que calcula a distância (e.g., distância eucliana) entre as cidades!
+    #com os dados das coordenadas das cidades, aplicar a formula que calcula a distância (e.g., distância eucliana) entre as cidades para todas as cidades da cidade 1 até a cidade D!
     def distancia_euclidiana(x,y):
         distancias = np.zeros([numero_cidades,numero_cidades])
         for i in range(len(x)):
             for j in range(len(y)):
-                distancias[i][j] = math.sqrt( math.pow( (x[i]-x[j]+y[i]-y[j]), 2) ) #aplicando a distancia eucliana nas cidades i e j nas suas respectivas coordenadas x e y
+                #aplicando a distancia eucliana nas cidades i e j nas suas respectivas coordenadas x e y
+                distancias[i][j] = math.sqrt( math.pow( (x[i]-x[j]+y[i]-y[j]), 2) ) #calcula a distância da cidade i para a cidade j
         return distancias
-    #aqui ficaram as distâncias que o cv vai gastar de uma cidade para outra depois de aplicar a distância euclidiana
+    #aqui ficaram armazenadas as distâncias que o cv vai gastar de uma cidade para outra depois de aplicar a distância euclidiana
     distancias = distancia_euclidiana(coordenadas_x,coordenadas_y)
 
-print(distancias)
+print(distancias) #imprimindo na tela a matriz gerada com as distâncias da cidade 1 até a cidade D
 {% endhighlight %}
 
-Com os dados básicos do problema do cv agora já podemos começar a pensar no algoritmo ABC a ser utilizado para otimizar o problema.
+Com os dados básicos do problema do CV, agora já é possível começar a pensar no algoritmo ABC de fato para realizar a otimização do problema.
+
+## Fluxograma do algoritmo ABC
+
+![abelhas produtoras de mel]({{ site.url }}/assets/algoritmo-abc-fluxograma.png){:style="width: 100%" }
+
+## Modelagem da Solução (i.e., representação das variáveis de decisão do problema estudado)
 
 {% highlight python linenos %}
 
+### SETAR PARÂMENTROS INICIO ###
 #Configuração/Parametrização do algoritmo ABC
 tamanhoDaColonia = 10 # tamanho total da colônia de abelhas (empregadas e espectadoras)
 metadeDaColonia = tamanhoDaColonia/2 #referente ao tamanho da metade da colônia de abelhas
@@ -101,6 +126,7 @@ melhorFitness = 0 #valor de fitness da melhor solução atual
 
 melhoresSolucoes = np.zeros([numeroDeExecucoes,D], dtype=int) #matriz com as melhores soluções encontradas em cada execução do ABC
 melhoresFitness  = np.zeros([numeroDeExecucoes]) #array referente as melhores soluções
+### SETAR PARÂMENTROS FIM ###
 {% endhighlight %}
 
 
