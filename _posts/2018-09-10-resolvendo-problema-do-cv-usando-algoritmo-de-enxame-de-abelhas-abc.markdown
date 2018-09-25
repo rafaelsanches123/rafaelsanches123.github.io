@@ -6,11 +6,14 @@ categories: otimização inteligência-artificial
 ---
 
 ![abelhas produtoras de mel]({{ site.url }}/assets/enxame-de-abelhas.jpg){:style="width: 100%" }
+
+## Em construção... ##
+
 ## Algoritmo de Enxame de abelhas ideia princípal
 
 Inspirado pelo comportamento inteligente de forrageamento (i.e., busca por alimento) dos enxames de abelhas produtoras de mel, o algoritmo de colônia de abelhas (ABC)(do inglês, Artificial Bee Colony Algorithm) é uma meta-heurística baseada em população (KARABOGA et al. ,2014). O ABC, foi proposto inicialmente por Karaboga (2005) para solucionar problemas de otimização contínua ( KARABOGA , 2005; KARABOGA; BASTURK , 2007, 2008; KARABOGA ,2009; KARABOGA; AKAY , 2009; KARABOGA et al. , 2014).
 
-O ABC é composto por três tipos de abelhas, sendo elas: empregadas, espectadoras e a exploradora. A função da abelha empregada, é a de explorar fontes de alimentos em sua vizinhança. A abelha que fica na colmeia esperando para tomar a decisão de qual fonte de alimento escolher para explorar é conhecida como espectadora. A abelha que sai a procura de novas fontes de alimentos de forma aleatória é a exploradora.
+O ABC é composto por três tipos de abelhas, sendo elas: empregadas, espectadoras e a exploradora. A função da abelha empregada, é a de explorar fontes de alimentos em sua vizinhança (i.e., busca local). A abelha que fica na colmeia esperando para tomar a decisão de qual fonte de alimento escolher para explorar é conhecida como espectadora (i.e., busca local). A abelha que sai a procura de novas fontes de alimentos de forma aleatória é a exploradora (i.e., busca global).
 
 ## Aplicando os conceitos do algoritmo ABC no problema do CV
 O problema do Caixeiro Viajante (CV) representa a ideia de um CV que tem de visitar um conjunto de cidades sem repetir nenhuma delas de modo que ele retorne a cidade inicial por meio da menor distância possível.
@@ -256,3 +259,6 @@ plt.show()
 print("Roteiro de cidades percorridas pelo CV = %s" % str(melhorSolucao+1))
 print("Distancia percorrida pelo CV = %f" % melhorFitness)
 {% endhighlight %}
+
+
+Se achou algum erro no artigo ou que faltou falar de algo ou gostaria de ver algum tipo de assunto publicado no blog que seja sobre computação em geral ou algo específico sobre inteligência artificial e assuntos relacionados fique a vontade para deixar uma mensagem e também comentar sobre esse artigo. Colabore, [CLIQUE AQUI!](https://goo.gl/forms/woRBGtLKW7Dpospi1){:target="_blank"}

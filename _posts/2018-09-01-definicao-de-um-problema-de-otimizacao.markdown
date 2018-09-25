@@ -91,7 +91,7 @@ Tabela TDist
 
 * No exemplo acima foi visto que o roteiro 1 é melhor que o roteiro 2 isso, porque a distância do primeiro é menor que a do segundo de forma bastante clara. A ideia então desse problema é alterar a ordem das cidades até encontrar o roteiro que apresente a melhor distância possível só que para problemas com um número de cidades maior esse problema torna bastante complexo e não é algo trivial de se tratar como foi apresentado acima e para isso algumas abordagens são encontradas na literatura como uma boa forma de tratar esse tipo de problema e isso será assunto para próximos artigos aqui no blog.
 
-Se achou que faltou falar de algo ou gostaria de ver algum tipo de assunto publicado no blog que seja sobre computação e inteligência artificial e assuntos relacionados fique a vontade para deixar uma mensagem e também comentar sobre esse artigo.
+Se achou algum erro no artigo ou que faltou falar de algo ou gostaria de ver algum tipo de assunto publicado no blog que seja sobre computação em geral ou algo específico sobre inteligência artificial e assuntos relacionados fique a vontade para deixar uma mensagem e também comentar sobre esse artigo. Colabore, [CLIQUE AQUI!](https://goo.gl/forms/woRBGtLKW7Dpospi1){:target="_blank"}
 
 ### Referências
 
