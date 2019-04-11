@@ -2,25 +2,29 @@
 layout: post
 title:  "Resolvendo o problema do Caixeiro Viajante utilizando o algoritmo de enxame de abelhas ABC"
 date:   2018-09-10 15:28:03 -0300
-categories: otimização inteligência-artificial
+categories: otimização inteligência-artificial python
 ---
 
 ![abelhas produtoras de mel]({{ site.url }}/assets/enxame-de-abelhas.jpg){:style="width: 100%" }
 
-## Em construção... ##
-
 ## Algoritmo de Enxame de abelhas ideia princípal
 
-Inspirado pelo comportamento inteligente de forrageamento (i.e., busca por alimento) dos enxames de abelhas produtoras de mel, o algoritmo de colônia de abelhas (ABC)(do inglês, Artificial Bee Colony Algorithm) é uma meta-heurística baseada em população (KARABOGA et al. ,2014). O ABC, foi proposto inicialmente por Karaboga (2005) para solucionar problemas de otimização contínua ( KARABOGA , 2005; KARABOGA; BASTURK , 2007, 2008; KARABOGA ,2009; KARABOGA; AKAY , 2009; KARABOGA et al. , 2014).
+Inspirado pelo comportamento inteligente de forrageamento (i.e., busca por alimento) dos enxames de abelhas produtoras de mel, o algoritmo de colônia de abelhas (ABC)(do inglês, Artificial Bee Colony Algorithm) é uma meta-heurística baseada em população (KARABOGA et al. ,2014). O ABC foi proposto inicialmente por Karaboga (2005) para solucionar problemas de otimização contínua e posteriormente também foi adaptado para problemas de domínio discreto ( KARABOGA , 2005; KARABOGA; BASTURK , 2007, 2008; KARABOGA ,2009; KARABOGA; AKAY , 2009; KARABOGA et al. , 2014).
 
-O ABC é composto por três tipos de abelhas, sendo elas: empregadas, espectadoras e a exploradora. A função da abelha empregada, é a de explorar fontes de alimentos em sua vizinhança (i.e., busca local). A abelha que fica na colmeia esperando para tomar a decisão de qual fonte de alimento escolher para explorar é conhecida como espectadora (i.e., busca local). A abelha que sai a procura de novas fontes de alimentos de forma aleatória é a exploradora (i.e., busca global).
+Karaboga (2005) descreve em seu trabalho que o algoritmo ABC é composto por três tipos de abelhas, sendo elas: empregadas, espectadoras e a exploradora. A função da abelha empregada é a de explorar fontes de alimentos em sua vizinhança (i.e., busca local). A abelha que fica na colmeia esperando para tomar a decisão de qual fonte de alimento escolher para explorar é conhecida como espectadora (i.e., busca local). A abelha que sai a procura de novas fontes de alimentos de forma aleatória é a exploradora (i.e., busca global).
+
+A colmeia de abelhas do algoritmo ABC é composta por 50% de abelhas empregadas e espectadoras e 1 abelha exploradora. No processo de forrageamento do ABC inicialmente as abelhas empregadas são enviadas para as fontes de alimento para a coleta de néctar. Depois de recolher o alimento ela volta para a colmeia e compartilha as informações da localização dessa fonte de alimento para a abelha espectadora. Esse processo de comunicação entre essas abelhas é conhecido como dança do requebrado (do inglês, wiggle dance). Então, após uma fonte de alimento se esvaziar a abelha espectadora que era designada aquela fonte de alimento se torna uma abelha exploradora e sai para fora da colmeia em busca de novas fontes de alimento.
+
+Como base no contexto supracitado, Karaboga (2005) desenvolveu a ideia do algoritmo ABC. Para mais detalhes eu sugiro que você faça a leitura do artigo do profº Karaboga de 2005.
+
+Antes de iniciar os processos apresentados a seguir, se você desejar, seria interessante o uso de um ambiente virtual fechado. Para isso pode consultar esse [link para o artigo]({% post_url 2019-04-11-criacao-de-um-ambiente-virtual-em-python %}) para ver como utilizar um amabiente virtual fechado em projetos python. Se não, pode continuar a leitura.
 
 ## Aplicando os conceitos do algoritmo ABC no problema do CV
 O problema do Caixeiro Viajante (CV) representa a ideia de um CV que tem de visitar um conjunto de cidades sem repetir nenhuma delas de modo que ele retorne a cidade inicial por meio da menor distância possível.
 
 O primeiro passo para trabalhar com o problema do CV é realizar a leitura das coordenadas das cidades e gerar a tabela de distâncias referente a essas cidades.
 
-Antes de começar o passo a passo, é importante salienter que será utilizado no decorrer do artigo a linguagem de programação __python__ na versão __3__ e será necessário instalar algumas bibliotecas sendo elas a __numpy__ e a __matplotlib__. Caso você não as tenha instaladas no seu computador a seguir é ilustrado um exemplo dos comandos necessários para instalar as bibliotecas mencionadas.
+Antes de começar o passo a passo, é importante salientar que será utilizado no decorrer do artigo a linguagem de programação __python__ na versão __3__ e será necessário instalar algumas bibliotecas sendo elas a __numpy__ e a __matplotlib__. Caso você não as tenha instaladas no seu computador a seguir é ilustrado um exemplo dos comandos necessários para instalar as bibliotecas mencionadas.
 
 ```
     Abra seu terminal e digite os comandos:
@@ -108,6 +112,12 @@ Com os dados básicos do problema do CV, agora já é possível começar a pensa
 
 ## Modelagem da Solução (i.e., representação das variáveis de decisão do problema estudado)
 
+A modelagem da solução é a forma com a qual seu algoritmo ABC representa as variáveis de decisão do problema de otimização em questão. No caso do CV a representação utilizada será a seguinte:
+
+Cada abelha terá como solução uma sequência de cidades e.g., (1, 2, 3, ..., até N) sendo que N representa a quantidade de cidades do nosso problema/exemplo e nesse caso, N=5 de modo que elas não se repitam. O fato delas não se repetirem é considerado como uma restrição do problema em questão.
+
+### SETAR OS PARÂMENTROS DO ABC
+
 {% highlight python linenos %}
 
 ### SETAR PARÂMENTROS INICIO ###
@@ -132,7 +142,9 @@ melhoresFitness  = np.zeros([numeroDeExecucoes]) #array referente as melhores so
 ### SETAR PARÂMENTROS FIM ###
 {% endhighlight %}
 
+### FUNÇÃO DE APTIDÃO/FITNESS UTILIZADA PARA AVALIAR AS SOLUÇÕES DO ABC NO PROBLEMA DO CV
 
+No problema do CV a função de fitness avalia a sequência das cidades representada por cada solução gerenciadas por cada abelha.
 
 {% highlight python linenos %}
 
@@ -146,12 +158,20 @@ def fitness(solucao,distancias):
 
 {% endhighlight %}
 
+### CRIAÇÃO DA POPULAÇÃO INICIAL DE ABELHAS DO ENXAME NO ABC PARA O PROBLEMA DO CV
+
+Assim que as soluções iniciais são geradas elas são avaliadas para que se possa saber a qualidade da fonte de alimentos de cada abelha.
+
 {% highlight python linenos %}
 #gerar população inicial de abelhas
 for i in range(metadeDaColonia):
     colonia[i,:] = np.random.permutation(D) #para cada abelha gerar um roteiro de cidades/variaveis de decisão
     fitnessDaColonia[i] = fitness(colonia[i],distancias) #calcular a aptidão/fitness de cada Abelha i
 {% endhighlight %}
+
+### MÉTODO DE SELEÇÃO UTILIZADO NO ABC
+
+Depois que todas as abelhas empregadas trabalham nas suas respectivas fontes de alimentos, um método de seleção é utilizado para selecionar uma abelha espectadora para melhorar cada solução de cada abelha empregada. Para isso, pode-se utilizar o método de Roleta Probabilística. Não existe apenas esse método e se você quiser pode pesquisar por outros e utilizá-los em seu lugar para ver o que acontece com o resultado gerado pelo ABC.
 
 {% highlight python linenos %}
 def selecaoPorRoleta(fitness): #Roleta probabilista refente as aptidoes/fitness da colonia de abelhas
@@ -163,6 +183,8 @@ def selecaoPorRoleta(fitness): #Roleta probabilista refente as aptidoes/fitness 
     return -1
 {% endhighlight %}
 
+### A TROCA SWAP É APENAS UM MÉTODO QUE ALTERA AS SOLUÇÕES/FONTES DE ALIMENTOS DAS ABELHAS DO ABC
+
 {% highlight python linenos %}
 def trocaSwap(novaSolucao):
     posicaoDeTrocas = np.random.randint(D, size=(2)) #gerando 2 posições aleatórias
@@ -173,6 +195,8 @@ def trocaSwap(novaSolucao):
     novaSolucao[posicaoDeTrocas[1]] = aux
     return novaSolucao
 {% endhighlight %}
+
+A seguir é apresentado o fluxo do ABC do mesmo modo que no fluxograma supracitado nesse artigo:
 
 {% highlight python linenos %}
 #definir quem é a abelha com melhor fonte de alimento
@@ -241,6 +265,8 @@ for i in range(numeroDeExecucoes):
     print("-----------------------------")
 {% endhighlight %}
 
+Essa parte final serve para plotar em um gráfico o resultado gerado por meio do ABC:
+
 {% highlight python linenos %}
 #Plotando o resultado gerado pelo ABC
 fig2, ax2 = plt.subplots()
@@ -260,5 +286,4 @@ print("Roteiro de cidades percorridas pelo CV = %s" % str(melhorSolucao+1))
 print("Distancia percorrida pelo CV = %f" % melhorFitness)
 {% endhighlight %}
 
-
-Se achou algum erro no artigo ou que faltou falar de algo ou gostaria de ver algum tipo de assunto publicado no blog que seja sobre computação em geral ou algo específico sobre inteligência artificial e assuntos relacionados fique a vontade para deixar uma mensagem e também comentar sobre esse artigo. Colabore, [CLIQUE AQUI!](https://goo.gl/forms/woRBGtLKW7Dpospi1){:target="_blank"}
+__Se tiver alguma dúvida pode deixar ela nos comentários que responderei assim que puder!__
