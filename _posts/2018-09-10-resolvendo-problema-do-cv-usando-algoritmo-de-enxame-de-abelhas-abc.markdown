@@ -116,11 +116,11 @@ A modelagem da solução é a forma com a qual seu algoritmo ABC representa as v
 
 Cada abelha terá como solução uma sequência de cidades e.g., (1, 2, 3, ..., até N) sendo que N representa a quantidade de cidades do nosso problema/exemplo e nesse caso, N=5 de modo que elas não se repitam. O fato delas não se repetirem é considerado como uma restrição do problema em questão.
 
-### SETAR OS PARÂMENTROS DO ABC
+### SETAR OS PARÂMETROS DO ABC
 
 {% highlight python linenos %}
 
-### SETAR PARÂMENTROS INICIO ###
+### SETAR PARÂMETROS INICIO ###
 #Configuração/Parametrização do algoritmo ABC
 tamanhoDaColonia = 10 # tamanho total da colônia de abelhas (empregadas e espectadoras)
 metadeDaColonia = tamanhoDaColonia/2 #referente ao tamanho da metade da colônia de abelhas
@@ -139,7 +139,7 @@ melhorFitness = 0 #valor de fitness da melhor solução atual
 
 melhoresSolucoes = np.zeros([numeroDeExecucoes,D], dtype=int) #matriz com as melhores soluções encontradas em cada execução do ABC
 melhoresFitness  = np.zeros([numeroDeExecucoes]) #array referente as melhores soluções
-### SETAR PARÂMENTROS FIM ###
+### SETAR PARÂMETROS FIM ###
 {% endhighlight %}
 
 ### FUNÇÃO DE APTIDÃO/FITNESS UTILIZADA PARA AVALIAR AS SOLUÇÕES DO ABC NO PROBLEMA DO CV
