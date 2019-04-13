@@ -13,7 +13,7 @@ Fala pessoal blz? Nesse post, vou mostrar para vocês o funcionamento do incrív
 
 O [link oficial](https://jupyter.org/) do jupyter notebook para quem quiser dar uma olhada. O jupyter notebook tem sido muito utilizado no ensino da programação. O professor/instrutor pode montar sua aula diretamente no notebook criado pelo jupyter e nele colocar textos usando a linguagem de marcação de texto markdown de modo muito simples e rápido. Se você não desejar instalar essa ferramenta localmente na sua máquina, você pode utilizar ela na sua versão web diretamente pelo seu browser acessando o link [try jupyter](https://jupyter.org/try) e clicando sobre a linguagem que desejar utilizar.
 
-O jupyter notebook tem sido bastante utilizado com a linguagem python por cientistas de dados. Isso facilita a geração de relatórios e agiliza o processo de aprensentar/atualizar resultados em tempo real dependendo do que sua aplicação faça. 
+O jupyter notebook tem sido bastante utilizado com a linguagem python por cientistas de dados. Isso facilita a geração de relatórios e agiliza o processo de apresentar/atualizar resultados em tempo real dependendo do que sua aplicação faça. 
 
 A seguir, vou apresentar como configurar e utilizar essa ferramenta com a linguagem python para que você caro leitor, possa começar a se divertir e aprender uma nova linguagem de programação.
 
