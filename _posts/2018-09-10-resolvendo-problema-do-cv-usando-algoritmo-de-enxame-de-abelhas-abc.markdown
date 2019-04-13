@@ -15,9 +15,9 @@ Karaboga (2005) descreve em seu trabalho que o algoritmo ABC é composto por tr�
 
 A colmeia de abelhas do algoritmo ABC é composta por 50% de abelhas empregadas e espectadoras e 1 abelha exploradora. No processo de forrageamento do ABC inicialmente as abelhas empregadas são enviadas para as fontes de alimento para a coleta de néctar. Depois de recolher o alimento ela volta para a colmeia e compartilha as informações da localização dessa fonte de alimento para a abelha espectadora. Esse processo de comunicação entre essas abelhas é conhecido como dança do requebrado (do inglês, wiggle dance). Então, após uma fonte de alimento se esvaziar a abelha espectadora que era designada aquela fonte de alimento se torna uma abelha exploradora e sai para fora da colmeia em busca de novas fontes de alimento.
 
-Como base no contexto supracitado, Karaboga (2005) desenvolveu a ideia do algoritmo ABC. Para mais detalhes eu sugiro que você faça a leitura do artigo do profº Karaboga de 2005.
+Com base no contexto supracitado, Karaboga (2005) desenvolveu a ideia do algoritmo ABC. Para mais detalhes eu sugiro que você faça a leitura do artigo do profº Karaboga de 2005.
 
-Antes de iniciar os processos apresentados a seguir, se você desejar, seria interessante o uso de um ambiente virtual fechado. Para isso pode consultar esse [link para o artigo]({% post_url 2019-04-11-criacao-de-um-ambiente-virtual-em-python %}) para ver como utilizar um amabiente virtual fechado em projetos python. Se não, pode continuar a leitura.
+Antes de iniciar os processos a serem apresentados a seguir, se você desejar, seria interessante o uso de um ambiente virtual fechado. Para isso você pode consultar esse [link para o artigo]({% post_url 2019-04-11-criacao-de-um-ambiente-virtual-em-python %}) para ver como utilizar um ambiente virtual fechado em projetos python. Se não, pode continuar a leitura.
 
 ## Aplicando os conceitos do algoritmo ABC no problema do CV
 O problema do Caixeiro Viajante (CV) representa a ideia de um CV que tem de visitar um conjunto de cidades sem repetir nenhuma delas de modo que ele retorne a cidade inicial por meio da menor distância possível.
