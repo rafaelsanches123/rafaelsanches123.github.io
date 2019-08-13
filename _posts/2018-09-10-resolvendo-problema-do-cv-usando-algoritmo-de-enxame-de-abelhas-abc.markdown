@@ -203,7 +203,7 @@ A seguir é apresentado o fluxo do ABC do mesmo modo que no fluxograma supracita
 melhorSolucao[:] = colonia[fitnessDaColonia.argmin()]
 melhorFitness = fitnessDaColonia[fitnessDaColonia.argmin()]
 
-for r in range(numeroDeExecucoes): 
+for r in range(numeroDeExecucoes):
     #print("Execucao numero: %d" % (r))
     for iteracao in range(numeroDeCiclosDeForrageamento): #criterio de parada é quantidade de ciclos de forrageamento
         #print("Iteracao: %d" % (iteracao))
@@ -220,7 +220,7 @@ for r in range(numeroDeExecucoes):
                 tentativas[i] = 0 # se a solução foi melhorada reseta o numero de tentativas dessa fonte de alimento
             else:
                 tentativas[i] += 1 # se a solução da abelha i não melhorou o array de tentativas na posição i deve ser incrementado representando que a solução i não pode ser melhorada
-        
+
         #iniciar fase das abelhas espectadoras
         for j in range(metadeDaColonia):   
             abelhaEmpregadaEscolhida = selecaoPorRoleta(fitnessDaColonia)
@@ -237,7 +237,7 @@ for r in range(numeroDeExecucoes):
                 tentativas[i] = 0 # se a solução foi melhorada reseta o numero de tentativas dessa fonte de alimento
             else:
                 tentativas[i] += 1 # se a solução da abelha i não melhorou o array de tentativas na posição i deve ser incrementado representando que a solução i não pode ser melhorada
-        
+
         #iniciar fase da abelha exploradora - só existe uma abelha exploradora na colmeia então ela so realiza uma ação no final de cada ciclo de forrageamento
         #primeiro deve se salvar a melhor abelha do ciclo de forrageamento
         if fitnessDaColonia[fitnessDaColonia.argmin()] < melhorFitness:
@@ -249,11 +249,11 @@ for r in range(numeroDeExecucoes):
             colonia[tentativas.argmax()] = np.random.permutation(D) #gera a nova solução
             fitnessDaColonia[tentativas.argmax()] = fitness(colonia[tentativas.argmax()],distancias) #gera o fitness dessa nova solução
             tentativas[tentativas.argmax()] = 0 #reseta o número de tentativas para a nova fonte de alimentos dessa abelha
-        
+
         #print("Melhor Solucao e Melhor Fitness Atual")
         #print(melhorSolucao)
         #print(melhorFitness)
-    
+
     melhoresSolucoes[r,:] = melhorSolucao
     melhoresFitness[r] = melhorFitness
 
