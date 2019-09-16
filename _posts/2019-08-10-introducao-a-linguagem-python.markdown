@@ -93,9 +93,6 @@ Type "help", "copyright", "credits" or "license" for more information.
 >>>
 ```
 
-
-
-
 ## Operadores Lógicos
 
 Em construção...
