@@ -32,12 +32,12 @@ sudo apt-get install tesseract-ocr tesseract-ocr-por
 
 Antes de começar a instalar as bibliotecas, recomendo fortemente que leia o artigo sobre ambientes virtuais. Essa leitura é recomendada porque vai te ajudar bastante em questão de organização de projetos [link para o artigo]({% post_url 2019-04-11-criacao-de-um-ambiente-virtual-em-python %}). Obs: se você estiver seguindo esse post sem utilizar um ambiente virtual, será importante trocar os comandos __pip__ por __pip3__.
 
-Instalação do __biblioteca Pillow__. Abra o terminal e digite o seguinte comando:
+Instalação da __biblioteca Pillow__. Abra o terminal e digite o seguinte comando:
 
 ```
 pip install pillow
 ```
-Instalação do __biblioteca Pytesseract__. Abra o terminal e digite o seguinte comando:
+Instalação da __biblioteca Pytesseract__. Abra o terminal e digite o seguinte comando:
 
 ```
 pip install pytesseract
@@ -64,7 +64,7 @@ Agora, abra seu terminal dentro do diretório onde se encontra seu código .py e
 Se estiver dentro do ambiente virtual use:
 python python-ocr.py
 
-Se ambiente virtual use:
+Se não estiver utilizando ambiente virtual use:
 python3 python-ocr.py
 ```
 
