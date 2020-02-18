@@ -147,7 +147,7 @@ Exercícios para praticar o que aprendeu:
 
 ## Operadores Lógicos, Aritméticos e Relacionais
 
-Operadores Lógicos:
+__Operadores Lógicos__:
 As linguagens de programação, utilizam os conectivos lógicos da lógica formal, ou melhor da lógica Aristotélica, na construção de expressões lógicas. Existem 2 conectivos lógicos e, mesmo que não os conheçamos com o nome de conectivos lógicos, utilizamo-os constantemente ao conversarmos ou então, para explicarmos qualquer disciplina a outra pessoa.
 
 Os dois conectivos lógicos são:
@@ -195,7 +195,51 @@ True
 >>> ((x < 1) or (x < 5))
 False
 ```
-Operadores Aritméticos:
+Outros dois operadores lógicos ainda não mencionados mas, muito utilizados no python são: __not__ e o __in__. O operador not é geralmente utilizado para negar uma expressão booleana por exemplo:
+
+```bash
+>>> A = True
+>>> not A
+False
+>>> A
+True
+>>> B = False
+>>> B
+False
+>>> not B
+True
+>>>
+
+```
+
+Muito simples não é mesmo?
+
+O operador in ele é uma ferramenta muito interessante quando temos que verificar se algo existe ou não dentro de alguma variável de tipo heterogênea como strings, listas, etc...
+
+Vamos ver ele na prática como funciona e ver como ele é simples:
+
+```bash
+>>> lista_frutas = ['uva','maçã','limão','jaca']
+>>> 'uva' in lista_frutas
+True
+>>> 'laranja' in lista_frutas
+False
+>>> frase = "eu trabalho na empresa serasa e gosto de computadores"
+>>> 'empresa' in frase
+True
+>>> 'valor' in frase
+False
+>>> 'Rafael' in frase
+False
+>>> 'computador' in frase
+True
+>>> 'computaçao' in frase
+False
+>>>
+
+```
+
+__Operadores Aritméticos__:
 O python é uma ferramenta tão poderosa pode ser utilizado como uma calculadora matemática avançada. Praticamente, todos os operadores aritméticos funcionam da mesma forma como os conhecemos da matemática elementar. Por exemplo, para trabalharmos com as 4 principais funções matemáticas, a soma, subtração, multiplicação e divisão, temos os operadores conforme tabela a seguir.
 
 Operação | Operador
@@ -263,7 +307,7 @@ Módulo:
 
 ```
 
-Operador Relacional:
+__Operador Relacionais__:
 É todo operador que obtém a relação do membro a esquerda com o membro a sua direita. Na tabela abaixo, temos os operadores relacionais disponibilizados pelo python.
 
 Descrição |	Operador
@@ -303,15 +347,238 @@ Exercícios para praticar o que aprendeu:
 
 4. Usando o operador __menor que__ verificar se o valor de __maior_valor__ é menor que o conteúdo da variável __menor_valor__.
 
-Em construção...
+5. Usando o operador __subtração__ calcular o resultado entre  __maior_valor__ e __menor_valor__.
 
+6. Usando o operador __multiplicação__ calcular o resultado entre  __maior_valor__ e __menor_valor__.
+
+7. Usando o operador __divisão__ calcular o resultado entre  __maior_valor__ e __menor_valor__.
+
+8. Usando o operador __parte inteira__ calcular o resultado entre  __maior_valor__ e __menor_valor__.
+
+9. Usando o operador __módulo__ calcular o resultado entre  __maior_valor__ e o número 2 e verificar se o resultado gerado é diferente de zero. (Se o resultado gerado for zero significado que __maior_valor__ é par).
+
+10. Usando o operador __módulo__ calcular o resultado entre  __menor_valor__ e o número 2 e verificar se o resultado gerado é diferente de zero. (Se o resultado gerado for zero significado que __menor_valor__ é par).
+
+11. Crie um lista de comprar e nela adicione 5 produtos que você costuma comprar no mercado. Usando o operador __in__ use 3 produtos que você não adicionou na sua lista e depois faça a mesma coisa para 2 produtos que você colocou na sua lista.
+
+12. Utilizando o operador __not__ aplique ele para o valor 1 e depois para o valor zero e veja o que ele retorna para cada um desses valores.
 
 ## Estruturas condicionais
 
-Em construção...
+Durante o fluxo de algum raciocínio humano ocorre-se a necessidade de tomar uma decisão se, certa condição ocorrer e de tomar outra decisão se alguma outra coisa ocorrer. Na linguagem python quando você tem essas mesmas necessidades costuma-se utilizar a palavra __if__ e __else__ dependendo do que se deseja alcançar e também a casos em que você queira ter mais de uma condição seguida dependendo que deseja analisar.
+
+
+
+Para deixar isso mais claro vamos ver como isso ocorre na pratica:
+
+Imagine a seguinte situação: você é uma caixa de supermercado e uma pessoa compra um produto que custa 35,00 reais e ela te dá 55,00 reais __Se__ o valor pago for __maior que__ o valor de custo do produto, você terá que fornecer troco correto? Isso mesmo, esse é um exemplo simples de condição.
+
+Passando isso para um problema computacional teremos o seguinte, abra seu terminal e faça:
+
+```bash
+>>> produto = 33.00
+>>> produto
+33.0
+>>> pago = 55.00
+>>> pago
+55.0
+>>> pago - produto
+22.0
+>>> if( produto < pago ):
+...     print('seu cliente precisa de troco!')
+...
+precisa de troco!
+>>>
+
+```
+
+Acima podemos ver 2 comandos novos a estrutura de condição simples __if__ que nos ajuda a analisar uma expressão e se essa expressão resulta em verdade ela será realizada se não, não acontecerá nada no caso acima é claro. Ainda no exemplo acima foi possível observar o comando __print__. O comando print ele tem a função de imprimir o algo na tela do seu computador seja um texto simples, composto ou mesmo o conteúdo de alguma variável. Não se preocupe pois, vamos utilizar ele bastante no decorrer desse post para visualizar nossas ações ou apresentar respostas na tela do computador.
+
+Existem certas ocasiões que se algo não acontecer outra decisão precisa ser tomada. Seguindo ainda o mesmo exemplo do troco imagine que agora o cliente pagou o valor exato do produto no caixa e ele não vai precisar receber troco nesse caso podemos expressar isso utilizando estruturas condicionais utilizando o termo __else__ junto com o comando __if__.
+
+```bash
+>>> produto = 33.00
+>>> produto
+33.0
+>>> pago = 33.00
+>>> pago
+33.0
+>>> pago - produto
+0.0
+>>> if( produto < pago ):
+...     print('precisa de troco!')
+... else:
+...     print('não precisa de troco!')
+...
+não precisa de troco!
+>>>
+
+```
+
+No bloco acima o comando __ELSE__ (i.e., SE NÃO) ele representa a contradição de algo acontecer ou que a expressão validada no comando __IF__ seja __FALSA__. No exemplo acima nos alteramos o valor de pago para a mesma quantia do valor do produto comprado por um cliente. No exemplo estudado, o que fizemos foi avaliar se o cliente iria precisar de troco e no exemplo acima ele não precisaria devido ao valor pago ser extamente igual ao do produto. No comando "if" a expressão gera um resultado FALSO logo, o comando "else" é acionado pois é a única coisa que pode acontecer na sequência. Muito simples não é mesmo?
+
+Agora, vamos deixar as coisas mais quentes e aumentar a complexidade das condições mas, ainda sim tentar ver como isso ainda continua simples. Vamos imaginar uma brincadeira onde nos vamos guardar um número de 0 a 10 em uma variável e utilizando expressões if e else descobrir qual é esse número.
+
+```bash
+>>> numero = 7
+>>> if(numero == 0):
+...     print("o número informado foi o zero")
+... elif (numero == 1):
+...     print("o número informado foi o um")
+... elif (numero == 2):
+...     print("o número informado foi o dois")
+... elif (numero == 3):
+...     print("o número informado foi o três")
+... elif (numero == 4):
+...     print("o número informado foi o quatro")
+... elif (numero == 5):
+...     print("o número informado foi o cinco")
+... elif (numero == 6):
+...     print("o número informado foi o seis")
+... elif (numero == 7):
+...     print("o número informado foi o sete")
+... elif (numero == 8):
+...     print("o número informado foi o oito")
+... elif (numero == 9):
+...     print("o número informado foi o nove")
+... else:
+...     print("o número informado foi o dez")
+...
+o número informado foi o sete
+
+```
+
+No exemplo acima estamos usando um novo comando o elif. Esse comando ele serve para realizar a condição de __SE NÃO, SE__ de forma que sempre que não não aconteceu, o seguinte pode acontecer. Viu como foi fácil e simples entender estruturas condicionais.
+
+Exercícios para praticar o que aprendeu:
+
+1. Crie uma variável chamada __numero__ e informe um valor numérico para ela sendo que esse valor deve estar dentro do intervalo de 0 a 10. Verifique se o valor que você definiu é menor ou maior que 5.
+
+2. Crie uma lista de nomes que contenha estes 6 nomes: Rafael, Joelson, Matheus, Ligia, Glenda e Mauricio. Verifique se os seguintes nomes Gabriel, Lucas, Matheus, Rafael, Glenda e Maria estão na lista criada. Se o nome existir na lista, utilizando o comando print imprimir na tela a seguinte frase "Nome esta na lista".
+
+3. Crie duas variaveis que contenham dois números e imprima o maior deles.
+
+4. Crie uma variável que contenha um valor (positivo ou negativo) e imprima na tela se o valor é positivo ou negativo.
+
+5. Crie uma variável que contenha o caracter "F" ou "M". Conforme a letra informada verifique se: "F" imprima Feminino, "M" imprima Masculino e se algum outro caractere for informado imprima "Sexo Inválido".
+
+6. Crie três variáveis: peso, altura e imc. você deve preencher a variável peso com o seu peso atual e a altura com a sua altura atual. A váriavel imc vai receber a seguinte expressão matemática:
+```bash
+>>> imc = peso / (altura ** 2)
+```
+Com o imc em mãos você vai construir condições para saber em que estado você se encontra atualmente. Para criar as condições você irá se basear com base na Tabela a seguir:
+
+IMC |	Classificação
+:------:|:------:
+abaixo de 18,5 | abaixo do peso
+entre 18,6 e 24.9 | peso ideal (parabéns)
+entre 25,0 e 29.9 | levemente acima do peso
+entre 30,0 e 34.9 | obesidade grau I
+entre 35,0 e 39.9 | obesidade grau II (severa)
+acima de 40 | obesidade III (mórbida)
 
 ## Laços de repetição
 
+Os lações de repetição são utilizados na maioria das vezes para realizar repetições que podem ser previamente conhecidas ou não dependendo que você deseja realizar. Uma aplicação bastante realizada por meio de repetições por exemplo ocorre quando eu tenho uma lista de itens e eu desejo saber todos esse itens. Ou enquanto algo não ocorrer eu continuo repetindo algum bloco de comando até que tal condição seja satisfeita.
+
+No python nos temos os seguintes comandos de laço de repetição sendo eles o: __for__ e o __while__.
+
+o __for__: ele é geralmente utilizado quando eu sei a quantidade de repetições a serem realizadas.
+
+o __while__: ele é geralmente utilizado quando eu não sei o número de repetições a serem realizadas.
+
+Vamos entender isso um pouco mais. Vamos imaginar que o professor Rafael te passou uma lição para casa e você não a fez. Como castigo o professor Rafael lhe pediu para que escrever na losa o seu nome dele 10 vezes para que você não esqueça mais de fazer a lição de casa. Poxa vida mas que coisa chata, é verdade eu também pensei o mesmo.
+
+No mundo digital isso não precisa ser chato basta, utilizar o laço __for__ para nos ajudar nessa tarefa. Ok mas o que eu faço? vamos lá:
+
+```bash
+>>> for i in range(0,10):
+...     print("Rafael")
+...
+Rafael
+Rafael
+Rafael
+Rafael
+Rafael
+Rafael
+Rafael
+Rafael
+Rafael
+Rafael
+>>>
+```
+Vamos entender o código acima e também o que o comando novo que surgiu faz. A estrutura do comando for é bastante simples de forma falada o que ele faz é: "Para" cada valor "i" iniciando a partir de "0" até "10" faça. De forma bastante sucinta é exatamente isso que ele faz. O comando range nada mais é do que uma __função__ algo que será visto mais a frente que cria para você uma lista de números que vai de 0 até 9 exatamente. A variável i após o comando for para cada iteração ela recebe o conteudo gerado pela função range.
+
+Agora, vamos replicar a mesma ideia acima só que uma pitada a mais de conhecimento utilizando o comando __enumerate__ e pega uma lista ou outro tipo de coleção de dados e lhe retorna o indice e o valor referente aquele indice. Vamos por a mão na massa para entender isso melhor:
+
+```bash
+>>> numeros = range(0,10)
+>>> numeros
+range(0, 10)
+>>> for indice, valor in enumerate(numeros):
+...     print("indice:",indice,"valor:",valor)
+...
+indice: 0 valor: 0
+indice: 1 valor: 1
+indice: 2 valor: 2
+indice: 3 valor: 3
+indice: 4 valor: 4
+indice: 5 valor: 5
+indice: 6 valor: 6
+indice: 7 valor: 7
+indice: 8 valor: 8
+indice: 9 valor: 9
+
+>>> for indice, valor in enumerate(numeros):
+...     print("indice:",indice,"valor:",valor,"Rafael")
+...
+indice: 0 valor: 0 Rafael
+indice: 1 valor: 1 Rafael
+indice: 2 valor: 2 Rafael
+indice: 3 valor: 3 Rafael
+indice: 4 valor: 4 Rafael
+indice: 5 valor: 5 Rafael
+indice: 6 valor: 6 Rafael
+indice: 7 valor: 7 Rafael
+indice: 8 valor: 8 Rafael
+indice: 9 valor: 9 Rafael
+>>>
+
+```
+
+No exemplo acima como ainda estamos utilizando sequência numérica o indice tem o mesmo valor que o seu conteudo. Para deixar isso mais claro vamos ver um exemplo com uma lista de frutas e exibir cada fruta e seus respectivo indice referente a sua posição na lista.
+
+```bash
+>>> lista_frutas = ['maça','pera','morango','limão','banana','uva']
+>>> for fruta in lista_frutas:
+...     print("Nome fruta:", fruta)
+...
+Nome fruta: maça
+Nome fruta: pera
+Nome fruta: morango
+Nome fruta: limão
+Nome fruta: banana
+Nome fruta: uva
+>>>
+```
+
+```bash
+>>> for indice,valor in enumerate(lista_frutas):
+...     print("posicao da fruta na lista:", indice, "Nomde da fruta:", valor)
+...
+posicao da fruta na lista: 0 Nomde da fruta: maça
+posicao da fruta na lista: 1 Nomde da fruta: pera
+posicao da fruta na lista: 2 Nomde da fruta: morango
+posicao da fruta na lista: 3 Nomde da fruta: limão
+posicao da fruta na lista: 4 Nomde da fruta: banana
+posicao da fruta na lista: 5 Nomde da fruta: uva
+>>>
+
+```
+
+Simples não é mesmo?
+
+Agora vamos entender melhor o laço de repetição __while__.
 Em construção...
 
 ## Estruturas de dados
