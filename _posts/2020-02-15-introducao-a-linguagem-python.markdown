@@ -145,6 +145,67 @@ Exercícios para praticar o que aprendeu:
 
 6. Criar uma variável chamada funcionário e atribuir um dicionário a ela com suas informações tais como: nome, idade, email e telefone.
 
+## Entrada e Saída de Dados
+
+A entrada de dados refere-se a entrada de dados do mundo externo para o meio digital (e.g., de você para o seu computador, celular ou tablet). É dessa forma que enviamos informações para dentro das nossas aplicações. A saída de dados por outro lado refere-se a apresentação dos dados armazenados para o usuário.
+
+No python a entrada de dados funciona por meio da função __input__.  Apartir da versão 3 do python, a função __input()__, tem por objetivo informar um texto para o usuário e em seguida, ativar o modo de digitação, isto é, colocar o seu __terminal__  de uma determinada forma em que seja possível a digitação (entrada de dados). A seguir um exemplo da utilização dessa função.
+
+```bash
+>>> nome = input("Qual seu nome?\n")
+Qual seu nome?
+Rafael
+>>> nome
+'Rafael'
+
+```
+No código acima, a variável __nome__ vai receber o conteúdo que o usuário informar pelo terminal. Outro detalhe a se observar é o __\n__ ele no final da string significa que o terminal deve pular uma linha para você de acordo com sua posição na string\mensagem. Vale ressaltar também que toda informação vinda deste modo é atribuida como texto a variável nome independente se o usuário digitar um número qualquer. Nesse caso, se você deseja informar um dado do tipo numérico você deve fazer o seguinte.
+
+```bash
+>>> inteiro = int(input("informe um numero de 1 a 10: \n"))
+informe um numero de 1 a 10:
+5
+>>> inteiro
+5
+>>> type(inteiro)
+<class 'int'>
+
+>>> flutuante = float(input("informe um numero de 1.0 a 10.0: \n"))
+informe um numero de 1.0 a 10.0:
+1.7
+>>> flutuante
+1.7
+>>> type(flutuante)
+<class 'float'>
+
+```
+No código acima estamos adicionando as funções __int()__ e __float()__ que servem para transformar o conteúdo digitado pelo usuário nos seus respectivos tipos. Outra função que utilizei agora foi a função __type()__ essa função tem por natureza retorna o tipo da variável que você passar a ela por parâmetro.
+
+A seguir vou apresentar exemplos de saída de dados e para isso vou utilizar a função __print()__ e depois vou explicando o que foi feito.
+
+```bash
+>>> nome = input("Informe seu nome:\n")
+Informe seu nome:
+Rafael
+>>> print("O nome informado foi: ",nome)
+O nome informado foi:  Rafael
+>>> print("O nome informado foi: {} ".format(nome))
+O nome informado foi: Rafael
+>>>
+```
+
+Como é possível observador no exemplo acima eu apresentei duas formas de apresentar seu dado utilizando a função print. No primeiro exemplo eu apenas mesclo o texto a ser exibido com a variável separando o texto por meio de virgula (",") e na sequência a respectiva variável que ira conter o conteúdo a ser exibido naquela parte do texto.
+
+O outro exemplo tem a mesma finalidade mas, você não precisa ficar mesclando seu texto com variáveis e virgulas e ele deixa sua mensagem mais limpa e elegante. Nesse exemplo nos adicionamos a função __format()__ essa é uma função utilizada com dados do tipo __string__. Ela funciona da seguinte forma, você escreve seu texto/mensagem e nela no local onde você deseja que suas variáveis apareçam você utiliza __{}__ no final da sua __string__ você coloca "." e digita __format()__ como parâmetro na função format você passa as suas respectivas variáveis separadas por virgula na sequência que você deseja que elas apareçam na sua mensagem e no caso as variáveis vão assumir os __{}__.
+
+Exercícios para praticar o que aprendeu:
+
+1. Criar uma variável chamada nome e outra chamada sobrenome e atribuir o seu nome e sobrenome a cada uma delas, faça isso utilizando a função que aprendeu para entrada de dados e depois gerar uma saída indicando o nome e sobre utilizando a função para apresentar dados.
+
+2. Criar uma variável chamada nome e outra chamada sobrenome e atribuir o seu nome e sobrenome a cada uma delas, faça isso utilizando a função que aprendeu para entrada de dados e depois gerar uma saída indicando o nome e sobre utilizando a função para apresentar dados. Nesse exemplo utilize a função __format__ para formatar sua mensagem e altere a sua mensagem para algum conteúdo diferente do acima do jeito que desejar.
+
+3. Faça um programa que solicite dois número ao usuário do computador e apresente a soma deles. Faça o mesmo para subtração, multiplicação e divisão. Obs: não se esqueça de __converter__ os valores informados.  
+
 ## Operadores Lógicos, Aritméticos e Relacionais
 
 __Operadores Lógicos__:
@@ -483,9 +544,9 @@ Os lações de repetição são utilizados na maioria das vezes para realizar re
 
 No python nos temos os seguintes comandos de laço de repetição sendo eles o: __for__ e o __while__.
 
-o __for__: ele é geralmente utilizado quando eu sei a quantidade de repetições a serem realizadas.
+o laço de repetição __for__: ele é geralmente utilizado quando eu sei a quantidade de repetições a serem realizadas.
 
-o __while__: ele é geralmente utilizado quando eu não sei o número de repetições a serem realizadas.
+o laço de repetição __while__: ele é geralmente utilizado quando eu não sei o número de repetições a serem realizadas.
 
 Vamos entender isso um pouco mais. Vamos imaginar que o professor Rafael te passou uma lição para casa e você não a fez. Como castigo o professor Rafael lhe pediu para que escrever na losa o seu nome dele 10 vezes para que você não esqueça mais de fazer a lição de casa. Poxa vida mas que coisa chata, é verdade eu também pensei o mesmo.
 
@@ -578,7 +639,83 @@ posicao da fruta na lista: 5 Nomde da fruta: uva
 
 Simples não é mesmo?
 
-Agora vamos entender melhor o laço de repetição __while__.
+Agora vamos entender melhor o laço de repetição __while__. O comando __while__ faz com que um conjunto de instruções seja executado enquanto uma condição é atendida. Quando o resultado dessa condição passa a ser falso, a execução do loop é interrompida, como mostra o exemplo a seguir.
+
+```bash
+>>> contador = 0
+>>> while (contador < 10):
+...        print(contador)
+...        contador   = contador + 1
+...
+0
+1
+2
+3
+4
+5
+6
+7
+8
+9
+```
+No código acima eu inicializei uma variável chamanda de contador com o valor zero e na linha seguinte eu uso o comando while seguido de uma expressão booleana que enquanto ela continuar sendo verdadeira o laço de repetição irá continuar acontecendo. No caso do exemplo acima a condição diz que __ENQUANTO__ o conteúdo da variável contador for menor que dez o laço de repetição deve ser executado.
+Nesse exemplo a cada execução é apresentado ao usuário o valor corrente da variável contador naquele momento e na sequência ele tem seu valor alterado para que em determinado momento o laço seja interrompido e por consequência finalizado. Se por algum acaso a sua condição sempre gerar resultado verdadeiro você irá cair no que chamamos de loop infinito ou laço de repetição sem fim. Evite que isso aconteça, pois leva ao congelamento e finalização da aplicação/programa de computador.
+
+A seguir veja um exemplo utilizando entrada de dados.
+
+```bash
+>>> numero = int(input("Informe um número entre 1 a 10\n"))
+Informe um número entre 1 a 10
+2
+>>> while(numero > 0 and numero <=10):
+...     print("Você informou o número: {}".format(numero))
+...     numero = int(input("Informe um número entre 1 a 10\n"))
+...
+Você informou o número: 2
+Informe um número entre 1 a 10
+2
+Você informou o número: 2
+Informe um número entre 1 a 10
+5
+Você informou o número: 5
+Informe um número entre 1 a 10
+0
+
+```
+Veja que interessante o código acima. Nele é solicitado um número ao usuário e enquanto esse número informado pelo usuário for maior que zero e menor ou igual a dez o computador irá ficar solicitando ao usuário um número desde que ele atenda a condição do laço while.
+
+```bash
+>>> numero = int(input("Informe um número entre 1 a 10\n"))
+Informe um número entre 1 a 10
+1
+>>> print(numero)
+1
+>>> while(numero > 0 and numero <=10):
+...     print("Você informou o número: {}".format(numero))
+...     numero = int(input("Informe um número entre 1 a 10\n"))
+... else:
+...     print("Você informou o número: {} e ele está fora da condição estabelecida".format(numero))
+...
+Você informou o número: 1
+Informe um número entre 1 a 10
+5
+Você informou o número: 5
+Informe um número entre 1 a 10
+6
+Você informou o número: 6
+Informe um número entre 1 a 10
+4
+Você informou o número: 4
+Informe um número entre 1 a 10
+11
+Você informou o número: 11 e ele está fora da condição estabelecida
+
+```
+
+O código acima é exatamente igual ao anterior mas com o diferencial do comando __else__ eu particularmente nunca utilizei ele com laço de repetição while mas, se em algum momento você precisar fica ai mais uma forma de utilizar ele no seu dia a dia se for da sua vontade e necessidade. 
+
+## Strings
+
 Em construção...
 
 ## Estruturas de dados
