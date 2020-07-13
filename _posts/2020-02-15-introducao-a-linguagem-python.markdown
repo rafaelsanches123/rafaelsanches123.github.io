@@ -135,7 +135,7 @@ Exercícios para praticar o que aprendeu:
 
 1. Criar uma variável chamada nome e atribuir o seu nome a ela.
 
-2. Criar uma variável chama idade e atribuir a sua idade a ela.
+2. Criar uma variável chamada idade e atribuir a sua idade a ela.
 
 3. Criar uma variável chamada camiseta e atribuir um valor flutuante (i.e., valor quebrado) a ela.
 
@@ -376,6 +376,7 @@ Descrição |	Operador
 Maior que |	>
 Menor que |	<
 Igual a | ==
+Diferente a | !=
 Maior ou igual a |	>=
 Menor ou igual a |	<=
 
@@ -389,6 +390,9 @@ False
 
 >>> 10 == 2
 False
+
+>>> 10 != 2
+True
 
 >>> 10 >= 2
 True
@@ -404,25 +408,28 @@ Exercícios para praticar o que aprendeu:
 
 2. Usando o operador de __igual a__ verificar se o valor de __maior_valor__ é igual ao conteúdo da variável __menor_valor__.
 
-3. Usando o operador __maior que__ verificar se o valor de __maior_valor__ é maior que o conteúdo da variável __menor_valor__.
+3. Usando o operador de __diferente a__ verificar se o valor de __maior_valor__ é igual ao conteúdo da variável __menor_valor__ ou se os valores são diferentes.
 
-4. Usando o operador __menor que__ verificar se o valor de __maior_valor__ é menor que o conteúdo da variável __menor_valor__.
+4. Usando o operador __maior que__ verificar se o valor de __maior_valor__ é maior que o conteúdo da variável __menor_valor__.
 
-5. Usando o operador __subtração__ calcular o resultado entre  __maior_valor__ e __menor_valor__.
+5. Usando o operador __menor que__ verificar se o valor de __maior_valor__ é menor que o conteúdo da variável __menor_valor__.
 
-6. Usando o operador __multiplicação__ calcular o resultado entre  __maior_valor__ e __menor_valor__.
+6. Usando o operador __subtração__ calcular o resultado entre  __maior_valor__ e __menor_valor__.
 
-7. Usando o operador __divisão__ calcular o resultado entre  __maior_valor__ e __menor_valor__.
+7. Usando o operador __multiplicação__ calcular o resultado entre  __maior_valor__ e __menor_valor__.
 
-8. Usando o operador __parte inteira__ calcular o resultado entre  __maior_valor__ e __menor_valor__.
+8. Usando o operador __divisão__ calcular o resultado entre  __maior_valor__ e __menor_valor__.
 
-9. Usando o operador __módulo__ calcular o resultado entre  __maior_valor__ e o número 2 e verificar se o resultado gerado é diferente de zero. (Se o resultado gerado for zero significado que __maior_valor__ é par).
+9. Usando o operador __parte inteira__ calcular o resultado entre  __maior_valor__ e __menor_valor__.
 
-10. Usando o operador __módulo__ calcular o resultado entre  __menor_valor__ e o número 2 e verificar se o resultado gerado é diferente de zero. (Se o resultado gerado for zero significado que __menor_valor__ é par).
+10. Usando o operador __módulo__ calcular o resultado entre  __maior_valor__ e o número 2 e verificar se o resultado gerado é diferente de zero. (Se o resultado gerado for zero significado que __maior_valor__ é par).
 
-11. Crie um lista de comprar e nela adicione 5 produtos que você costuma comprar no mercado. Usando o operador __in__ use 3 produtos que você não adicionou na sua lista e depois faça a mesma coisa para 2 produtos que você colocou na sua lista.
+11. Usando o operador __módulo__ calcular o resultado entre  __menor_valor__ e o número 2 e verificar se o resultado gerado é diferente de zero. (Se o resultado gerado for zero significado que __menor_valor__ é par).
 
-12. Utilizando o operador __not__ aplique ele para o valor 1 e depois para o valor zero e veja o que ele retorna para cada um desses valores.
+12. Crie um lista de comprar e nela adicione 5 produtos que você costuma comprar no mercado. Usando o operador __in__ use 3 produtos que você não adicionou na sua lista e depois faça a mesma coisa para 2 produtos que você colocou na sua lista.
+
+13. Utilizando o operador __not__ aplique ele para o valor 1 e depois para o valor zero e veja o que ele retorna para cada um desses valores.
+
 
 ## Estruturas condicionais
 
@@ -568,7 +575,7 @@ Rafael
 Rafael
 >>>
 ```
-Vamos entender o código acima e também o que o comando novo que surgiu faz. A estrutura do comando for é bastante simples de forma falada o que ele faz é: "Para" cada valor "i" iniciando a partir de "0" até "10" faça. De forma bastante sucinta é exatamente isso que ele faz. O comando range nada mais é do que uma __função__ algo que será visto mais a frente que cria para você uma lista de números que vai de 0 até 9 exatamente. A variável i após o comando for para cada iteração ela recebe o conteudo gerado pela função range.
+Vamos entender o código acima e também o que o comando novo que surgiu faz. A estrutura do comando for é bastante simples de forma falada o que ele faz é: "Para" cada valor "i" iniciando a partir de "0" até "10" faça. De forma bastante sucinta é exatamente isso que ele faz. O comando __range__ nada mais é do que uma __função__ algo que será visto mais a frente que cria para você uma lista de números que vai de 0 até 9 exatamente. A variável i após o comando for para cada iteração ela recebe o conteudo gerado pela função range.
 
 Agora, vamos replicar a mesma ideia acima só que uma pitada a mais de conhecimento utilizando o comando __enumerate__ e pega uma lista ou outro tipo de coleção de dados e lhe retorna o indice e o valor referente aquele indice. Vamos por a mão na massa para entender isso melhor:
 
@@ -712,7 +719,11 @@ Você informou o número: 11 e ele está fora da condição estabelecida
 
 ```
 
-O código acima é exatamente igual ao anterior mas com o diferencial do comando __else__ eu particularmente nunca utilizei ele com laço de repetição while mas, se em algum momento você precisar fica ai mais uma forma de utilizar ele no seu dia a dia se for da sua vontade e necessidade. 
+O código acima é exatamente igual ao anterior mas com o diferencial do comando __else__ eu particularmente nunca utilizei ele com laço de repetição while mas, se em algum momento você precisar fica ai mais uma forma de utilizar ele no seu dia a dia se for da sua vontade e necessidade.
+
+Exercícios para praticar o que aprendeu:
+
+1.
 
 ## Strings
 
