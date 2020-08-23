@@ -723,7 +723,34 @@ O código acima é exatamente igual ao anterior mas com o diferencial do comando
 
 Exercícios para praticar o que aprendeu:
 
-1.
+1. Com a ajuda de uma laço de repetição, solicite ao usuário um número inteiro e a cada iteração desse laço. O número de repetições deve ser 10. A cada iteração imprimir na tela a sequência do laço e o número que o usuário informou naquela iteração.
+
+2. Faça um programa similar ao programa do exercício 1 acima. Nesse novo programa, ao final da execução desse laço de repetição você precisa imprimir na tela do usuário qual foi o menor número informado durante a execução do laço de repetição.
+
+3. Faça um programa similar ao programa do exercício 2 acima. Nesse novo programa, ao final da execução desse laço de repetição você precisa imprimir na tela do usuário qual foi o maior número informado durante a execução do laço de repetição.
+
+4. Solicite ao usuário dois números inteiros e imprimir na tela do usuário os números entre os dois números solicitados. Ex: n1=2 e n2=5 caso você use esses dois número o deverá aparecer na tela do usuário a seguinte sequência: 2, 3, 4, 5.
+
+5. Faça um programa similar ao programa do exercício 4 acima. Nesse novo programa, você deve imprimir no final da sequência solicitada ao usuário o somatório dessa sequência.
+
+6. Com a ajuda de um laço de repetição realize 20 repetições e imprima na tela do usuário somente as posições impares.
+
+7. Com a ajuda de um laço de repetição realize 30 repetições e imprima na tela do usuário somente as posições pares.
+
+8. Com a ajuda de um laço de repetição, fique solicitando um valor inteiro ao usuário a cada iteração do laço. O laço de repetição nesse exercício só deve terminar quando o usuário informar um valor inteiro negativo.
+
+9. Desenvolva um programa gerador de tabuada, capaz de gerar a tabuada de qualquer número inteiro entre 1 a 10. O usuário deve informar de qual numero ele deseja ver a tabuada. A saída deve ser conforme o exemplo abaixo:
+Tabuada de 5:
+5 X 1 = 5
+5 X 2 = 10
+...
+5 X 10 = 50
+
+10. O desafio mais dificil desse estágio: __Fibonacci__ é uma sequência de números, que aparece em certos mistérios da natureza e da vida, onde a sequência inicia com 0 e 1, e os números seguintes serão a soma dos dois números anteriores.
+
+Por exemplo: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55…
+
+Faça um programa capaz de gerar a série de Fibonacci até o n−ésimo termo ou seja, solicite um número inteiro ao usuário e dado esse número gerar a série de Fibonacci até essa posição da sequência. Por exemplo, se o usuário solicitar a 7ª você deve gerar a sequência 0, 1, 1, 2, 3, 5, 8 na tela do usuário.
 
 ## Strings
 
