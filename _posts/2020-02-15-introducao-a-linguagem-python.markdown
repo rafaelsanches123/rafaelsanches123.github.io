@@ -68,6 +68,8 @@ Tipos de variaveis no python:
 * valores __booleanos__ (i.e., Falso ou Verdadeiro). Dentro desse contexto os valores númericos 0 pode ser considerado como falso e 1 como verdadeiro,
 * __variáveis heterogêneas__ como __listas__, __dicionários__, __tuplas__, __sets__, __arrays__ e __matrizes__ que serão apresentadas em outra momento no decorrer desse post.
 
+O tipo de variável número complexo por eu nunca ter precisado utilizar na minha jornada de desenvolvedor não será apresentado nesse post mas, vale a ressalva de que esse tipo de existe no python. Para maiores entendimento do que é um número complexo e afins segue [link](https://pt.wikipedia.org/wiki/N%C3%BAmero_complexo#:~:text=representa%20o%20n%C3%BAmero%20Z%20em,parte%20real%20da%20parte%20imagin%C3%A1ria.&text=e%20o%20semi%2Deixo%20real,complexo%20Z%20e%20denotado%20por).
+
 Para criar uma variável no python é bastante simples, basta informar o nome da variável seguida do operador de atribuição (i.e., __=__ ) e na sequência o valor que será inserido nessa variável. Veja no exemplo a seguir para ficar mais claro:
 
 ```python
@@ -753,6 +755,190 @@ Por exemplo: 0, 1, 1, 2, 3, 5, 8, 13, 21, 34, 55…
 Faça um programa capaz de gerar a série de Fibonacci até o n−ésimo termo ou seja, solicite um número inteiro ao usuário e dado esse número gerar a série de Fibonacci até essa posição da sequência. Por exemplo, se o usuário solicitar a 7ª você deve gerar a sequência 0, 1, 1, 2, 3, 5, 8 na tela do usuário.
 
 ## Strings
+
+No python uma string é um tipo de várivel que contém uma sequência de caracteres ou números (Observação: Lembre-se que se você informar um número como string ele não é do tipo inteiro e nem flutuante nesse caso). Uma string sempre é circundada por aspas duplas ou apostofre dupla também. Exemplo: "Texto de exemplo" ou 'Texto de exemplo' repare que ambos seguem a regra dita anteriormente.
+
+Abra o seu terminal e faça o mesmo apresentado a seguir:
+
+```bash
+
+>>> string = "Exemplo de texto"
+>>> print(string)
+Exemplo de texto
+>>> string1 = '1'
+>>> print(string1)
+1
+>>> string2 = "1.2"
+>>> print(string2)
+1.2
+
+>>> print(type(string))
+<class 'str'>
+>>> print(type(string1))
+<class 'str'>
+>>> print(type(string2))
+<class 'str'>
+
+```
+
+No exemplo acima é possível observar que mesmo para números, sejam eles inteiros ou flutuantes, se estiverem no modelo do tipo string eles não são utilizados mais como números e sim como textos. Um exemplo disso ocorre se você tentar realizar alguma operação matemática com eles veja o exemplo a seguir:
+
+imagine que você tenha 2 variáveis: 
+
+```bash
+
+>>> num1 = "10"
+>>> num2 = "5"
+
+```
+Se você tentar realizar as operações básicas de subtração, multiplicação e divisão você irá obter um erro avisando que esse tipo de tarefa não é possível de ser feito pois você está utilizando variáveis do tipo string. Se você tentar realizar a operação de adição ela não vai gerar um erro de compilação e para seu código mas, se você tentar somar essa duas varáveis você irá obter o seguinte:
+
+
+```bash
+
+>>> num1 = "10"
+>>> num2 = "5"
+>>> res = num1 + num2
+>>> print(res)
+105
+```
+
+Ué, mas o que aconteceu? Então, isso aconteceu porque no python quando você utiliza o operador de soma __+__ com strings ele realiza a junção dessas duas string e as transforma em apenas 1. Acredito que foi simples entender o que aconteceu não foi mesmo?
+
+A seguir, vou apresentar algumas funções disponiveis no python para trabalharmos com string e que podem ajudar muito sua vida na criação de algum programa que necessite o uso de strings.
+
+Como saber o tamanho de uma string?
+Para saber o tamanho de uma string, basta utilizar a função __len()__. Essa função retorna um valor inteiro referente a quantidade de caracteres presentes em uma string veja alguns exemplos a seguir:
+
+```bash
+>>> string1 = "Rafael"
+>>> len(string1)
+6
+>>> print("A string1 tem o tamanho: ",len(string1))
+A string1 tem o tamanho:  6
+
+>>> string2 = "Eu sou programador(a)!"
+>>> len(string2)
+22
+ 
+```
+
+Observação: lembre-se que o espaço em branco entre caracteres também é computado como uma posição na string. Por esse motivo a string2 tem o tamanho 22 e não 20.
+
+Muito simples não é mesmo!
+
+Agora vou relembrar a você meu caro(a) leitor(a) uma função muito bacanuda que nós conhecemos no início do post chamada __format()__. Ela é bastante simples também nos permite inserir valores em posições desejadas em uma string por meio de __{}__ dentro da string. A seguir eu vou apresentar o modelo visto no início do post e um plus dessa função de modo que você consiga alterar a posição dos elementos inseridos na string.
+
+```bash
+>>> string = "O número {} é maior que o número {} e meu nome é {}".format(10, 2, "Rafael")
+>>> print(string)
+O número 10 é maior que o número 2 e meu nome é Rafael
+>>> string = "O número {1} é maior que o número {2} e meu nome é {0}".format(10, 2, "Rafael")
+>>> print(string)
+O número 2 é maior que o número Rafael e meu nome é 10
+```
+
+No código acima perceba que na primeira utilização do método __format__ dentro dele, você passa como parâmetro os conteudos/variáveis respectivos(as) dos pares de chaves seguindo a ordem de precedência que eles aparecem como parâmetros na função format. No segundo caso um plus não mencionado sobre esse método no ínicio do post é que se você enumerar o interior do par de chaves com um número que esteja dentro da quantidade de parâmetros na função format a variável/conteúdo daquela posição irá ser movido para esse respectivo par de chaves. Vale ressaltar também que a primeira posição de chaves começa sempre por zero e não por 1 e isso pode acabar confundindo sua cabeça na hora de realizar isso. Uma boa prática nesse caso seria deixar as chaves sem númeração e colocar os parâmetros da função format na ordem que eles devem aparecer na string.
+
+Como acessar o conteúdo de uma posição especifica na string?
+Muito simples, basta utilizar colchetes na frente da sua string ou variável que contem sua string e acessar a posição desejada. Segue um exemplo:
+
+```bash
+ 
+>>> "python"[0] # 'p'
+'p'
+>>> "python"[1] # 'y'
+'y'
+>>> "python"[2] # 't'
+'t'
+>>> "python"[3] # 'h'
+'h'
+>>> "python"[4] # 'o'
+'o'
+>>> "python"[5] # 'n'
+'n'
+>>> string = "Rafael"
+>>> string[0]
+'R'
+>>> string[7]
+Traceback (most recent call last):
+  File "<stdin>", line 1, in <module>
+IndexError: string index out of range
+
+```
+
+No exemplo acima são ilustrados 3 casos: 1º acessando a posição do conteúdo diretamente da string, 2º atribuindo a string a uma variável e acessando a posição desejada na sequência e 3º quando você tentar acessar uma posição que não exista na string você receberá como feedback do python a mensagem explicitando que você tentou acessar uma posição fora dos limites ou do tamanho da sua string.
+
+Uma observação sobre strings é não podemos alterar seu valor atribuindo um valor através do índice. Como no exemplo a seguir:
+
+```bash
+ 
+>>> string = "Rafael"
+>>> string[0] = "A"
+Traceback (most recent call last):
+  File "main.py", line 2, in <module>
+    string[0] = "A"
+TypeError: 'str' object does not support item assignment
+```
+
+A forma mais comum de se substituir alguma coisa dentro de uma string é utilizando a função __replace()__. No código a seguir, vamos definir uma string e em seguida, substituir uma parte do seu conteúdo por outra.
+
+```bash
+>>> texto = "A função replace aaaaaa substitui parte de um texto por outro texto"
+>>> texto.replace("aaaaaa", "basicamente")
+'A função replace basicamente substitui parte de um texto por outro texto'
+>>>
+```
+
+No código acima foi definido uma variável do tipo string chamada texto e dentro desta nós colocamos uma marcação aaaaaa, somente para facilitar o entendimento da função __replace__. Em seguida, invocamos a funçao replace(), e dissemos, que queríamos alterar a string aaaaaa pelo conteúdo, "basicamente". Feito isso, uma nova string foi retornada com a alteração realizada.
+
+Novamente é importante relembrar que o que foi retornado é uma nova string, até porque, a string utilizada não pode ser alterada assim como já expliquei antes.
+
+Vale ressaltar que o tipo string é um objeto iterável então podemos andar pelas posições da string utilizando um laço de repetição. Veja um exemplo a seguir:
+
+```bash 
+>>> for letra in string:
+...   print(letra)
+... 
+R
+a
+f
+a
+e
+l
+>>> for indice,letra in enumerate("Rafael"):
+...   texto = "Posicao: {}, Letra: {}".format(indice, letra)
+...   print(texto)
+... 
+Posicao: 0, Letra: R
+Posicao: 1, Letra: a
+Posicao: 2, Letra: f
+Posicao: 3, Letra: a
+Posicao: 4, Letra: e
+Posicao: 5, Letra: l
+```
+
+Outra coisa super bacana que podemos fazer com strings é recuperar um parte da string utilizandos ou como geralmente é falado "fatiar" a string em inglês você verá esse conceito como "slice". E fazer isso é algo bastante simples. Veja alguns exemplos a seguir:
+
+```bash
+>>> string = "Rafael"
+>>> string
+'Rafael'
+>>> string[1:4]
+'afa'
+>>> string[0:3]
+'Raf'
+>>> string[:3]
+'Raf'
+>>> string[-1]
+'l'
+>>> string[-2]
+'e'
+>>> string[:]
+'Rafael'
+>>> string[0:]
+'Rafael' 
+```
 
 Em construção...
 
