@@ -68,7 +68,7 @@ Tipos de variaveis no python:
 * valores __booleanos__ (i.e., Falso ou Verdadeiro). Dentro desse contexto os valores númericos 0 pode ser considerado como falso e 1 como verdadeiro,
 * __variáveis heterogêneas__ como __listas__, __dicionários__, __tuplas__, __sets__, __arrays__ e __matrizes__ que serão apresentadas em outra momento no decorrer desse post.
 
-O tipo de variável número complexo por eu nunca ter precisado utilizar na minha jornada de desenvolvedor não será apresentado nesse post mas, vale a ressalva de que esse tipo de existe no python. Para maiores entendimento do que é um número complexo e afins segue [link](https://pt.wikipedia.org/wiki/N%C3%BAmero_complexo#:~:text=representa%20o%20n%C3%BAmero%20Z%20em,parte%20real%20da%20parte%20imagin%C3%A1ria.&text=e%20o%20semi%2Deixo%20real,complexo%20Z%20e%20denotado%20por).
+O tipo de variável número complexo por eu nunca ter precisado utilizar na minha jornada de desenvolvedor não será apresentado nesse post. Para maiores interessados(as) do que é um número complexo e afins segue [link](https://pt.wikipedia.org/wiki/N%C3%BAmero_complexo#:~:text=representa%20o%20n%C3%BAmero%20Z%20em,parte%20real%20da%20parte%20imagin%C3%A1ria.&text=e%20o%20semi%2Deixo%20real,complexo%20Z%20e%20denotado%20por).
 
 Para criar uma variável no python é bastante simples, basta informar o nome da variável seguida do operador de atribuição (i.e., __=__ ) e na sequência o valor que será inserido nessa variável. Veja no exemplo a seguir para ficar mais claro:
 
@@ -918,7 +918,7 @@ Posicao: 4, Letra: e
 Posicao: 5, Letra: l
 ```
 
-Outra coisa super bacana que podemos fazer com strings é recuperar um parte da string utilizandos ou como geralmente é falado "fatiar" a string em inglês você verá esse conceito como "slice". E fazer isso é algo bastante simples. Veja alguns exemplos a seguir:
+Outra coisa super bacana que podemos fazer com strings é recuperar uma parte da string (i.e., fatiar a string que em inglês você verá esse conceito como "slice"). Fazer isso é algo bastante simples, vejamos alguns exemplos a seguir:
 
 ```bash
 >>> string = "Rafael"
