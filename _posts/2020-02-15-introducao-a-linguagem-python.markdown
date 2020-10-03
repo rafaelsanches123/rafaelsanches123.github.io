@@ -1033,7 +1033,7 @@ Nos exemplos acima, eu também ilustrei que é possível juntar listas que é um
 E se eu não gostei do que eu juntei e também se eu pegar alguma string que eu queira separar os itens o que eu devo utilizar? Nesse caso, você precisa utilizar o método __split()__. Veja alguns exemplos a seguir:
 
 
-Repare que o método __split()__ também utiliza um delimitador para separar a string diferente do método __join()__ que usa um delimitador para juntar os itens da string. O __split()__ é inverso do método __join()__. Veja alguns exemplos a seguir:
+Repare que o método __split()__ também utiliza um delimitador para separar a string diferente do método __join()__ que usa um delimitador para juntar os itens da string. O __split()__ é o inverso do método __join()__. Veja alguns exemplos a seguir:
 
 ```bash
 string = "nome - sobrenome"
@@ -1047,6 +1047,28 @@ string = "nome - sobrenome"
 ```
 
 Esses foram apenas alguns métodos que você pode aplicar para trabalhar com strings, se quiser conhecer outros não mencionados aqui, eu recomendo que você acesse a documentação do python e explore ainda mais esse universo.
+
+Exercícios para praticar o que aprendeu:
+
+1. Criar uma variável do tipo string e atribuir o seu nome a ela. Depois de atribuir seu nome a variável criada, imprima seu conteúdo na tela com a seguinte frase: "Olá eu sou: " e imprima o seu nome após os ":".
+
+2. Criar uma variável e atribuir seu nome a ela. Criar uma segunda variável e atribuir o nome de uma pessoa que você gosta a ela. No final imprimir o resultado da concatenação do conteúdo da primeira variável "+" a seguinte frase " ama " "+" com o conteúdo da segunda variável que você criou. Exemplo de resultado: "Rafael ama Renata".
+
+3. Criar uma variável e atribuir seu nome completo a ela. Depois de atribuir seu nome completo a ela imprimir a quantidade de caracteres que tem no seu nome completo. Dica: lembre de antes de apresentar o valor subtrair com a quantidade de espaços vazios entre as palavras.
+
+4. Criar uma variável e atribuir o nome do seu animal de estimação a ela. Depois de atribuir o nome do seu pet a variável, criar uma frase e adicionar a variável na frase utilizando a função __format()__.
+
+5. Criar uma variável e atribuir o seguinte texto a ela "O rato roeu a roupa do rei de Roma". Depois de atribuir o texto a variável, imprimir o conteúdo do texto substituindo a palavra "rei" pelo seu nome.
+
+6. Criar uma variável e atribuir o seu nome completo a ela. Depois de atribuir o seu nome completo a variável, imprimir somente as 3 primeiras letras do seu nome.
+
+7. Criar uma variável e atribuir o conteúdo "Eu sou grande!" o a ela. Depois de atribuir o conteúdo a variável, imprimir todo o conteúdo em caixa alta.
+
+8. Criar uma variável e atribuir o conteúdo "Eu sou pequeno!" o a ela. Depois de atribuir o conteúdo a variável, imprimir todo o conteúdo em caixa baixa.
+
+9. Faça um programa que solicite ao usuário 2 variáveis onde, a primeira recebera um texto e a segunda um outro texto com conteúdo diferentes. Verifique qual variavél tem o tamanho maior entre as duas e imprimir qual é a maior. 
+
+10. Faça um programa que solicite um texto e separe ele por meio do delimitador "*".
 
 ## Estruturas de dados
 
