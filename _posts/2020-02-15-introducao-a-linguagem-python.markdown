@@ -847,7 +847,7 @@ Observação: lembre-se que o espaço em branco entre caracteres também é comp
 
 Muito simples não é mesmo!
 
-Agora vou relembrar a você meu caro(a) leitor(a) uma função muito bacanuda que nós conhecemos no início do post chamada __format()__. Ela é bastante simples também nos permite inserir valores em posições desejadas em uma string por meio de __{}__ dentro da string. A seguir eu vou apresentar o modelo visto no início do post e um plus dessa função de modo que você consiga alterar a posição dos elementos inseridos na string.
+Agora vou relembrar a você meu caro(a) leitor(a) uma função muito bacanuda que nós conhecemos no início do post chamada __format()__. Ela é bastante simples e também nos permite inserir valores em posições desejadas em uma string por meio de __{}__ dentro da string. A seguir eu vou apresentar o modelo visto no início do post e um plus dessa função de modo que você consiga alterar a posição dos elementos inseridos na string.
 
 ```bash
 >>> string = "O número {} é maior que o número {} e meu nome é {}".format(10, 2, "Rafael")
@@ -889,7 +889,7 @@ IndexError: string index out of range
 
 No exemplo acima são ilustrados 3 casos: 1º acessando a posição do conteúdo diretamente da string, 2º atribuindo a string a uma variável e acessando a posição desejada na sequência e 3º quando você tentar acessar uma posição que não exista na string você receberá como feedback do python a mensagem explicitando que você tentou acessar uma posição fora dos limites ou do tamanho da sua string.
 
-Uma observação sobre strings é não podemos alterar seu valor atribuindo um valor através do índice. Como no exemplo a seguir:
+Uma observação sobre strings: não podemos alterar seu valor atribuindo um valor através do índice. Como no exemplo a seguir:
 
 ```bash
  
@@ -910,7 +910,7 @@ A forma mais comum de se substituir alguma coisa dentro de uma string é utiliza
 >>>
 ```
 
-No código acima foi definido uma variável do tipo string chamada texto e dentro desta nós colocamos uma marcação aaaaaa, somente para facilitar o entendimento da função __replace__. Em seguida, invocamos a funçao replace(), e dissemos, que queríamos alterar a string aaaaaa pelo conteúdo, "basicamente". Feito isso, uma nova string foi retornada com a alteração realizada.
+No código acima foi definido uma variável do tipo string chamada texto e dentro desta nós colocamos uma marcação __aaaaaa__, somente para facilitar o entendimento da função __replace__. Em seguida, invocamos a funçao replace(), e dissemos, que queríamos alterar a string __aaaaaa__ pelo conteúdo, __"basicamente"__. Feito isso, uma nova string foi retornada com a alteração realizada.
 
 Novamente é importante relembrar que o que foi retornado é uma nova string, até porque, a string utilizada não pode ser alterada assim como já expliquei antes.
 
@@ -960,7 +960,93 @@ Outra coisa super bacana que podemos fazer com strings é recuperar uma parte da
 'Rafael' 
 ```
 
-Em construção...
+Se eu quiser deixar minha string com todo o contéudo em __caixa alta__ (i.e., em letra maiuscúla) eu preciso utilizar o método __upper()__. Veja um exemplo a seguir:
+
+```bash
+>>> string = "Meu nome é Rafael!"
+>>> string
+'Meu nome é Rafael!'
+>>> string.upper()
+'MEU NOME É RAFAEL!'
+```
+
+Se eu quiser deixar minha string com todo o contéudo em __caixa baixa__ (i.e., em letra minuscúla) eu preciso utilizar o método __lower()__. Veja um exemplo a seguir:
+
+```bash
+>>> string = "MEU NOME É RAFAEL!"
+>>> string
+'MEU NOME É RAFAEL!'
+>>> string.lower()
+'meu nome é rafael!'
+```
+
+Se eu quiser converter uma variável númerica em string eu preciso utilizar o método __str()__. Veja um exemplo a seguir:
+
+```bash 
+>>> numero = 10
+>>> numero
+10
+>>> type(numero)
+<class 'int'>
+>>> str(numero)
+'10'
+>>> type(str(numero))
+<class 'str'>
+```
+
+Se eu precisar descobrir se existe ou não apenas letras na minha string eu preciso utilizar o método __isalpha__. Veja um exemplo a seguir:
+
+```bash
+>>> "Rafael".isalpha()
+True
+>>> "Rafa1l".isalpha()
+False
+>>> "123".isalpha()
+False
+```
+
+Se eu precisar remover espaços vazios ao redor da string eu preciso utilizar o método __strip__. Veja um exemplo a seguir:
+
+```bash 
+>>> " sobrando espaços ".strip()
+'sobrando espaços'
+>>> "  sobrando espaços   ".strip()
+'sobrando espaços'
+```
+
+Se eu precisar juntar cada item de uma string por meio de um delimitador específico eu preciso utilizar o método __join()__. Veja alguns exemplos a seguir:
+
+```bash
+>>> string ="Eu estou com calor by Renata!"
+>>> string
+'Eu estou com calor by Renata!'
+>>> "_".join(string)
+'E_u_ _e_s_t_o_u_ _c_o_m_ _c_a_l_o_r_ _b_y_ _R_e_n_a_t_a_!'
+>>> "-".join(['Rafael','Programacao','Blog'])
+'Rafael-Programacao-Blog'
+>>> " ".join(['Rafael','Programacao','Blog'])
+'Rafael Programacao Blog'
+```
+
+Nos exemplos acima, eu também ilustrei que é possível juntar listas que é uma estrutura de dados utilizada em python e que será melhor detalhada no próximo tópico.
+
+E se eu não gostei do que eu juntei e também se eu pegar alguma string que eu queira separar os itens o que eu devo utilizar? Nesse caso, você precisa utilizar o método __split()__. Veja alguns exemplos a seguir:
+
+
+Repare que o método __split()__ também utiliza um delimitador para separar a string diferente do método __join()__ que usa um delimitador para juntar os itens da string. O __split()__ é inverso do método __join()__. Veja alguns exemplos a seguir:
+
+```bash
+string = "nome - sobrenome"
+>>> string.split("-")
+['nome ', ' sobrenome']
+>>> string = "1,2,3,4,5,6"
+>>> string.split(" ")
+['1,2,3,4,5,6']
+>>> string.split(",")
+['1', '2', '3', '4', '5', '6']
+```
+
+Esses foram apenas alguns métodos que você pode aplicar para trabalhar com strings, se quiser conhecer outros não mencionados aqui, eu recomendo que você acesse a documentação do python e explore ainda mais esse universo.
 
 ## Estruturas de dados
 
