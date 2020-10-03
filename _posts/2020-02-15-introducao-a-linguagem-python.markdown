@@ -52,10 +52,30 @@ sudo apt-get install python3.6
 
 ### MacOS
 
-Primeira coisa a se fazer é instalar o gerenciador de pacotes do MacOs o HomeBrew. Para isso acesse o site com todos os passos para isso [HomeBrew](https://brew.sh/). Depois de instalar o HomeBrew, basta abrir um terminal e digitar o comando a seguir:
+No MacOs a primeira coisa a se fazer é instalar o gerenciador de pacotes do MacOs o __HomeBrew__. Para isso acesse o site com todos os passos para necessários [HomeBrew](https://brew.sh/). Depois de instalar o HomeBrew, basta abrir um terminal e digitar o comando a seguir:
 ```
 brew install python3
 ```
+
+### Python pelo navegador do seu computador, tablet ou smartphone
+
+Se você não quiser instalar o python na sua máquina por meio dos métodos acima por ter algum medo, você poder usar alguns dos sites a seguir para rodar o python no seu navegador e poder fazer esse curso introdutório:
+
+* [Repl.it](https://repl.it/languages/python3)
+* [IDEONE](https://ideone.com/)
+
+Se você conhece mais algum outro site que não listei acima, menciona ele nos comentários que eu adiciono ele na lista acima.
+
+Bora lá então se você for utilizar algum dos listados acima para fazer esse curso, eu recomendaria o [Repl.it](https://repl.it/languages/python3) eu acho ele melhor e mais fácil de utilizar.
+
+A seguir, temos uma imagem do [Repl.it](https://repl.it/languages/python3) e alguns apontamentos de como utilizar ele para esse curso:
+
+![python-web-repl.it]({{ site.url }}/assets/repl-it-languages-python3.png){:style="width: 100%" }
+
+A própria imagem acima fala por si só não é mesmo? Na parte esquerda do site, você cria os seus scripts com a extensão __.py__. No meio do site, fica a região na qual representa um editor de textos para python e ele vai colorir seus códigos e ajudar você a visualizar melhor seus comandos python. Na parte a direita do site, fica o __terminal__ e é nele que vai aparecer o resultado do que codificarmos. Você pode escrever seus códigos no editor no bloco central do site e depois que escrever seu código você deve executar ele e para isso você dever clicar no botão __Run__ que fica logo acima do nosso editor. Após clicar nele seu código será interpretado e o resultado irá aparecer no seu terminal.
+
+Outra alternativa também é escrever seus códigos diretamente do terminal. Mas ai fica a seu critério essa escolha.
+
 
 ## Variável e tipos de dados no Python
 
