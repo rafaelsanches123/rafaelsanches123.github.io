@@ -1072,7 +1072,65 @@ Exercícios para praticar o que aprendeu:
 
 ## Estruturas de dados
 
-Em construção...
+Estruturas de dados consistem na organização de dados na memória de um computador ou em um dispositivo de armazenamento de modo que esses dados possam ser acessados de forma performática.
+
+Em python temos estruturas de dados por meio dos tipos de variáveis compostas __Listas__, __Dicionários__, __Tuplas__ e __Conjuntos__ que nos auxiliam de forma performática a armazenar dados e acessá-los da melhor forma possível. Vale ressaltar que isso ocorre de modo mais alto nível em comparação a linguagens como a __c__ por exemplo que você desenvolve todo processo relacionado a essas estruturas de dados desde a conexão entre posições na memória por meio de ponteiros e a lógica por trás desses processos que precisam ser desenvolvidos. 
+
+### Tupla:
+
+A tupla é uma variável de tipo composto que permite que seja atribuído a ela mais de um tipo de variável simples/primitiva. Isso é básicamente uma lista que vai guardar variáveis porém, existe um ponto importante sobre tuplas, elas não permitem ser modificadas depois de serem criadas ou seja a __Tupla__ é uma Lista __imutável__. Veja o exemplo a seguir:
+
+Código:
+```python
+nomes = ("Rafael", "Gabriel", "Pedro")
+
+print(nomes[0])
+print(nomes[1])
+print(nomes[2])
+
+print(type(nomes))
+
+nomes[0] = "Leandro"
+
+```
+Resultado:
+```bash
+Rafael
+Gabriel
+Pedro
+<class 'tuple'>
+Traceback (most recent call last):
+  File "main.py", line 9, in <module>
+    nomes[0] = "Leandro"
+TypeError: 'tuple' object does not support item assignment
+>>> 
+
+```
+No resultado ilustrado acima é possível visualizar a imutabilidade de uma tupla quando tentamos alterar ela.
+
+Uma tupla pode ser declada das seguintes formas a baixo:
+
+```python
+# Tupla declarada sem o uso de parêntesis
+tupla_1 = 1, 2, 3
+# Tupla declarada com o uso de parêntesis
+tupla_2 = (1, 2, 3)
+
+# Tupla com um único elemento
+tupla_3 = 1,
+
+# Tupla vazia
+tupla_4 = ()
+```
+
+Durante meus anos de desenvolvimento eu particularmente não cheguei a precisar utilizar tupla nos softwares que já criei. Se você que está lendo esse post já teve que utilizar para algo comenta nos comentários onde você já utilizou!
+
+
+### Lista:
+
+### Dicionário:
+
+### Conjunto:
 
 ## Funções
 
