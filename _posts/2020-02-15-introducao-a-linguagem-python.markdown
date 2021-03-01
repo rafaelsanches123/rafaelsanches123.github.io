@@ -1212,13 +1212,95 @@ IndexError: list index out of range
 ```
 Para o exemplo acima a lista1 esta vazia logo, não é possível acessar nada nela e por isso ao tentarmos acessar uma posição qualquer nela ela gerou a exceção acima na saída do código. Lembre se que mesmo para uma lista que contenha elementos e não esteja vazia se você tentar acessar uma posição que não exista nessa lista a exceção acima também ocorrerá.
 
+```python
+#Posição 0
+print(lista2[0])
+
+#Posição 3
+print(lista2[2])
+
+#Posição 5
+print(lista2[4])
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+29
+-9
+[1, 2, 3, 4, 5]
+```
+
+Se eu quiser verificar se um determinado elemento está na lista eu posso utilizar o operador __in__:
+```python
+if(-9 in lista2):
+  print("-9 está na lista2 !")
+else:
+  print("-9 não está na lista2 !")
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+-9 está na lista2 !
+```
+```python
+if(30 in lista2):
+  print("30 está na lista2 !")
+else:
+  print("30 não está na lista2 !")
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+30 não está na lista2 !
+```
+
+Sabia que você também pode encontrar valores de mínimos, máximos e soma utilizando listas:
+
+```python
+#lista composta somente por números
+lista3 = [10, 5, 3, 18, 1, 25]
+
+#mínimo
+print("Menor valor: {}".format(min(lista3)))
+
+#máximo
+print("Maior valor: {}".format(max(lista3)))
+
+#somatório
+print("Soma: {}".format(sum(lista3)))
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Menor valor: 1
+Maior valor: 25
+Soma: 62
+```
+
+
+
+
+
+
+```python
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+```
+
 Em desenvolvimento...
 
 ### Dicionário:
 Em desenvolvimento...
+```python
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+```
 
 ### Conjunto:
 Em desenvolvimento...
+```python
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+```
 
 ## Funções
 
