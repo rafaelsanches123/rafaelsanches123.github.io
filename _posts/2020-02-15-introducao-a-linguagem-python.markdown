@@ -71,6 +71,7 @@ Bora lá então se você for utilizar algum dos listados acima para fazer esse c
 A seguir, temos uma imagem do [Repl.it](https://repl.it/languages/python3) e alguns apontamentos de como utilizar ele para esse curso:
 
 ![python-web-repl.it]({{ site.url }}/assets/repl-it-languages-python3.png){:style="width: 100%" }
+***Figura 1***: *Exemplo de ambiente web alternativo para programar em python*
 
 A própria imagem acima fala por si só não é mesmo? Na parte esquerda do site, você cria os seus scripts com a extensão __.py__. No meio do site, fica a região na qual representa um editor de textos para python e ele vai colorir seus códigos e ajudar você a visualizar melhor seus comandos python. Na parte a direita do site, fica o __terminal__ e é nele que vai aparecer o resultado do que codificarmos. Você pode escrever seus códigos no editor no bloco central do site e depois que escrever seu código você deve executar ele e para isso você dever clicar no botão __Run__ que fica logo acima do nosso editor. Após clicar nele seu código será interpretado e o resultado irá aparecer no seu terminal.
 
@@ -803,7 +804,7 @@ Exemplo de texto
 
 No exemplo acima é possível observar que mesmo para números, sejam eles inteiros ou flutuantes, se estiverem no modelo do tipo string eles não são utilizados mais como números e sim como textos. Um exemplo disso ocorre se você tentar realizar alguma operação matemática com eles veja o exemplo a seguir:
 
-imagine que você tenha 2 variáveis: 
+imagine que você tenha 2 variáveis:
 
 ```bash
 
@@ -840,7 +841,7 @@ A string1 tem o tamanho:  6
 >>> string2 = "Eu sou programador(a)!"
 >>> len(string2)
 22
- 
+
 ```
 
 Observação: lembre-se que o espaço em branco entre caracteres também é computado como uma posição na string. Por esse motivo a string2 tem o tamanho 22 e não 20.
@@ -864,7 +865,7 @@ Como acessar o conteúdo de uma posição especifica na string?
 Muito simples, basta utilizar colchetes na frente da sua string ou variável que contem sua string e acessar a posição desejada. Segue um exemplo:
 
 ```bash
- 
+
 >>> "python"[0] # 'p'
 'p'
 >>> "python"[1] # 'y'
@@ -892,7 +893,7 @@ No exemplo acima são ilustrados 3 casos: 1º acessando a posição do conteúdo
 Uma observação sobre strings: não podemos alterar seu valor atribuindo um valor através do índice. Como no exemplo a seguir:
 
 ```bash
- 
+
 >>> string = "Rafael"
 >>> string[0] = "A"
 Traceback (most recent call last):
@@ -916,10 +917,10 @@ Novamente é importante relembrar que o que foi retornado é uma nova string, at
 
 Vale ressaltar que o tipo string é um objeto iterável então podemos andar pelas posições da string utilizando um laço de repetição. Veja um exemplo a seguir:
 
-```bash 
+```bash
 >>> for letra in string:
 ...   print(letra)
-... 
+...
 R
 a
 f
@@ -929,7 +930,7 @@ l
 >>> for indice,letra in enumerate("Rafael"):
 ...   texto = "Posicao: {}, Letra: {}".format(indice, letra)
 ...   print(texto)
-... 
+...
 Posicao: 0, Letra: R
 Posicao: 1, Letra: a
 Posicao: 2, Letra: f
@@ -957,7 +958,7 @@ Outra coisa super bacana que podemos fazer com strings é recuperar uma parte da
 >>> string[:]
 'Rafael'
 >>> string[0:]
-'Rafael' 
+'Rafael'
 ```
 
 Se eu quiser deixar minha string com todo o contéudo em __caixa alta__ (i.e., em letra maiuscúla) eu preciso utilizar o método __upper()__. Veja um exemplo a seguir:
@@ -982,7 +983,7 @@ Se eu quiser deixar minha string com todo o contéudo em __caixa baixa__ (i.e., 
 
 Se eu quiser converter uma variável númerica em string eu preciso utilizar o método __str()__. Veja um exemplo a seguir:
 
-```bash 
+```bash
 >>> numero = 10
 >>> numero
 10
@@ -1007,7 +1008,7 @@ False
 
 Se eu precisar remover espaços vazios ao redor da string eu preciso utilizar o método __strip__. Veja um exemplo a seguir:
 
-```bash 
+```bash
 >>> " sobrando espaços ".strip()
 'sobrando espaços'
 >>> "  sobrando espaços   ".strip()
@@ -1052,7 +1053,7 @@ Exercícios para praticar o que aprendeu:
 
 1. Criar uma variável do tipo string e atribuir o seu nome a ela. Depois de atribuir seu nome a variável criada, imprima seu conteúdo na tela com a seguinte frase: "Olá eu sou: " e imprima o seu nome após os ":".
 
-2. Criar uma variável e atribuir seu nome a ela. Criar uma segunda variável e atribuir o nome de uma pessoa que você gosta a ela. No final imprimir o resultado da concatenação do conteúdo da primeira variável "+" a seguinte frase " ama " "+" com o conteúdo da segunda variável que você criou. Exemplo de resultado: "Rafael ama Renata".
+2. Criar uma variável e atribuir seu nome a ela. Criar uma segunda variável e atribuir o nome de uma pessoa que você gosta a ela. No final imprimir o resultado da concatenação do conteúdo da primeira variável "+" a seguinte frase " curte " "+" com o conteúdo da segunda variável que você criou. Exemplo de resultado: "Rafael curte Renata".
 
 3. Criar uma variável e atribuir seu nome completo a ela. Depois de atribuir seu nome completo a ela imprimir a quantidade de caracteres que tem no seu nome completo. Dica: lembre de antes de apresentar o valor subtrair com a quantidade de espaços vazios entre as palavras.
 
@@ -1066,7 +1067,7 @@ Exercícios para praticar o que aprendeu:
 
 8. Criar uma variável e atribuir o conteúdo "Eu sou pequeno!" o a ela. Depois de atribuir o conteúdo a variável, imprimir todo o conteúdo em caixa baixa.
 
-9. Faça um programa que solicite ao usuário 2 variáveis onde, a primeira recebera um texto e a segunda um outro texto com conteúdo diferentes. Verifique qual variavél tem o tamanho maior entre as duas e imprimir qual é a maior. 
+9. Faça um programa que solicite ao usuário 2 variáveis onde, a primeira recebera um texto e a segunda um outro texto com conteúdo diferentes. Verifique qual variável tem o tamanho maior entre as duas e imprimir qual é a maior.
 
 10. Faça um programa que solicite um texto e separe ele por meio do delimitador "*".
 
@@ -1074,7 +1075,7 @@ Exercícios para praticar o que aprendeu:
 
 Estruturas de dados consistem na organização de dados na memória de um computador ou em um dispositivo de armazenamento de modo que esses dados possam ser acessados de forma performática.
 
-Em python temos estruturas de dados por meio dos tipos de variáveis compostas __Listas__, __Dicionários__, __Tuplas__ e __Conjuntos__ que nos auxiliam de forma performática a armazenar dados e acessá-los da melhor forma possível. Vale ressaltar que isso ocorre de modo mais alto nível em comparação a linguagens como a __c__ por exemplo que você desenvolve todo processo relacionado a essas estruturas de dados desde a conexão entre posições na memória por meio de ponteiros e a lógica por trás desses processos que precisam ser desenvolvidos. 
+Em python temos estruturas de dados por meio dos tipos de variáveis compostas __Listas__, __Dicionários__, __Tuplas__ e __Conjuntos__ que nos auxiliam de forma performática a armazenar dados e acessá-los da melhor forma possível. Vale ressaltar que isso ocorre de modo mais alto nível em comparação a linguagens como a __c__ por exemplo que você desenvolve todo processo relacionado a essas estruturas de dados desde a conexão entre posições na memória por meio de ponteiros e a lógica por trás desses processos que precisam ser desenvolvidos.
 
 ### Tupla:
 
@@ -1103,7 +1104,7 @@ Traceback (most recent call last):
   File "main.py", line 9, in <module>
     nomes[0] = "Leandro"
 TypeError: 'tuple' object does not support item assignment
->>> 
+>>>
 
 ```
 No resultado ilustrado acima é possível visualizar a imutabilidade de uma tupla quando tentamos alterar ela.
@@ -1128,9 +1129,96 @@ Durante meus anos de desenvolvimento eu particularmente não cheguei a precisar 
 
 ### Lista:
 
+As listas em Python são uma sequência ordenada de valores onde, cada valor na lista é identificado por um índice. Os valores que formam uma lista são chamados elementos ou itens. Listas são similares a strings, que são uma sequência de caracteres, no entanto, diferentemente de strings, os itens de uma lista podem ser de tipos diferentes e tamanhos.
+
+Veja um exemplo na imagem a seguir:
+
+![lista-em-python]({{ site.url }}/assets/listas-em-python.png){:style="width: 100%" }
+
+***Figura 2***: *Exemplo do tipo de dados lista em python*
+
+Na Figura acima é possível observar um exemplo de lista na qual ela tem tamanho 6. Vale lembrar que em python as listas começam na posição 0. Na lista de exemplo na imagem é possível observar que ela tem o número 29 do tipo inteiro na 1ª posição. Na 2ª posição temos o nome Rafael que nada mais é do que uma variável do tipo String. Na 3ª posição temos o número -9. Na 4ª posição temos a string cursos. Na 5ª posição temos uma lista de números inteiros e na última posição (i.e., 6ª) temos um tipo string contendo a palavra Teste.
+
+Uma coisa que geralmente deixa as pessoas confusas quando estão aprendendo alguma linguagem de programação é a posição dos elementos. Isso ocorre pelo fato de começarem pela posição 0 e não pela posição 1. Não se preocupe que com o tempo você se acostuma com isso e vai virar algo super comum para você.
+
+Bora ver alguns exemplos de como criar listas e algumas ações que podemos realizar sobre elas.
+
+Primeiro passo é criar uma lista:
+```python
+#Lista vazia
+lista1 = []
+
+#Lista da Figura 1
+lista2 = [29,"Rafael",-9,"cursos",[1,2,3,4,5],"Teste"]
+```
+Para descobrirmos a quantidade de elementos em uma lista pode usar a função __len__:
+
+```python
+#Tamanho de uma lista
+print("O tamanho da lista1 é: {}".format(len(lista1)))
+
+print("O tamanho da lista2 é: {}".format(len(lista2)))
+```
+
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+O tamanho da lista1 é: 0
+O tamanho da lista2 é: 6
+```
+Para acessar os elementos de uma lista podemos realizar essa ação de dois modos, um deles seria acessando o elemento na posição desejada e o outro por meio de um laço de repetição.
+
+Exemplos utilizando laço de repetição:
+
+```python
+#iterar sobre uma lista
+for elemento in lista2:
+  print("Elemento: {}".format(elemento))
+```
+```bash
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+Elemento: 29
+Elemento: Rafael
+Elemento: -9
+Elemento: cursos
+Elemento: [1, 2, 3, 4, 5]
+Elemento: Teste
+```
+```python
+#exibir posição e elemento daquela posição
+for posicao, elemento in enumerate(lista2):
+  print("Posição: {}, Elemento: {}".format(posicao, elemento))
+```
+
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Posição: 0, Elemento: 29
+Posição: 1, Elemento: Rafael
+Posição: 2, Elemento: -9
+Posição: 3, Elemento: cursos
+Posição: 4, Elemento: [1, 2, 3, 4, 5]
+Posição: 5, Elemento: Teste
+```
+Veja agora alguns exemplos acessando diretamente a posição de uma lista:
+
+```python
+print(lista1[0])
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Traceback (most recent call last):
+  File "main.py", line 27, in <module>
+    print(lista1[0])
+IndexError: list index out of range
+```
+Para o exemplo acima a lista1 esta vazia logo, não é possível acessar nada nela e por isso ao tentarmos acessar uma posição qualquer nela ela gerou a exceção acima na saída do código. Lembre se que mesmo para uma lista que contenha elementos e não esteja vazia se você tentar acessar uma posição que não exista nessa lista a exceção acima também ocorrerá.
+
+Em desenvolvimento...
+
 ### Dicionário:
+Em desenvolvimento...
 
 ### Conjunto:
+Em desenvolvimento...
 
 ## Funções
 
@@ -1143,14 +1231,14 @@ Como criar uma função no python? Como é a sua sintaxe?
 
 def nome_da_funcao(param1, param2, param3):
   resultado = param1 + param2 + param3
-  return resultado 
+  return resultado
 
 def nome_da_funcao(param1, param2, param3):
   resultado = param1 + param2 + param3
   print("Resultado da Função: {}".format(resultado))
 
 def nome_da_funcao(param1, param2, param3):
-  param1 = param1 + 5 
+  param1 = param1 + 5
   param2 = param2 + 3
   param3 = param3 + 7
   return param1, param2, param3
@@ -1172,19 +1260,19 @@ Abra o seu terminal e borá colocar a mão na massa:
 
 >>> def somar(num1, num2):
 ...   return num1 + num2
-... 
+...
 >>> def subtrair(num1, num2):
 ...   return num1 - num2
-... 
+...
 >>> def multiplicar(num1, num2):
 ...   return num1 * num2
-... 
+...
 >>> def dividir(num1, num2):
 ...   return num1 / num2
-... 
+...
 >>> resultado = somar(10,5)
 >>> resultado
-15 
+15
 >>> resultado = subtrair(10,5)
 >>> resultado
 5
@@ -1203,10 +1291,10 @@ Depois de ver o exemplo acima, acredito que você meu caro(a) leitor(a) você es
 Exercícios para praticar o que aprendeu:
 
 1. Crie um programa semelhante a uma calculadora:
-* Primeiro Solicite um número inteiro entre 1 e 4. 
+* Primeiro Solicite um número inteiro entre 1 e 4.
 * Se o usuário digitar 1 você deve solicitar 2 novos números para ele e realizar a ação de somar esses 2 novos números;
 * Se o usuário digitar 2 você deve solicitar 2 novos números para ele e realizar a ação de subtrair esses 2 novos números;
-* Se o usuário digitar 3 você deve solicitar 2 novos números para ele e realizar a ação de multiplicar esses 2 novos números; 
+* Se o usuário digitar 3 você deve solicitar 2 novos números para ele e realizar a ação de multiplicar esses 2 novos números;
 * Se o usuário digitar 4 você deve solicitar 2 novos números para ele e realizar a ação de dividir esses 2 novos números;
 * Para sair do laço de repetição solicite ao usuário que informe um número -1.
 
