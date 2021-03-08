@@ -209,18 +209,215 @@ Maior valor: 25
 Soma: 62
 ```
 
-
-
+A ordenação de listas:
 
 ```python
+#ordem crescente
+print(sorted(lista3, key=int, reverse=False))
+
+#ordem decrescente
+print(sorted(lista3, key=int, reverse=True))
 ```
 Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
 ```bash
+[1, 3, 5, 10, 18, 25]
+[25, 18, 10, 5, 3, 1]
 ```
 
-Em desenvolvimento...
+Operações com Listas:
+
+```python
+#Adicionando elementos de forma dinâmica a listas:
+
+#lista vazia
+lista_nomes = []
+
+#adicionando nomes a lista vazia
+
+#adicionando elemento na última posição da lista
+lista_nomes.append("Rafael")
+
+#adicionando elemento na última posição da lista
+lista_nomes.append("Francisco")
+
+#adicionando elemento na última posição da lista
+lista_nomes.append("Viana")
+
+#adicionando elemento na última posição da lista
+lista_nomes.append("Sanches")
+
+#exibindo a lista
+print(lista_nomes)
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+['Rafael', 'Francisco', 'Viana', 'Sanches']
+```
+
+A função __append__ sempre insere elementos no final da lista. Isso é bom por questões de desempenho. É mais rápido inserir elementos no final de uma lista porque não precisamos percorrer a lista procurando a posição onde o elemento deve ser inserido. Mas também é possível inserir elementos em posições específicas da lista, usando a função __insert__.
+
+
+```python
+lista_nomes.insert(1, "Teste")
+
+#exibindo a lista
+print(lista_nomes)
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+['Rafael', 'Teste', 'Francisco', 'Viana', 'Sanches']
+```
+
+Removendo elementos de listas:
+
+```python
+#lista vazia
+lista_nomes = []
+
+#adicionando nomes a lista vazia
+
+#adicionando elemento na ultima posição da lista
+lista_nomes.append("Rafael")
+
+#adicionando elemento na ultima posição da lista
+lista_nomes.append("Francisco")
+
+#adicionando elemento na ultima posição da lista
+lista_nomes.append("Viana")
+
+#adicionando elemento na ultima posição da lista
+lista_nomes.append("Sanches")
+
+#exibindo a lista original
+print("Lista Original: ",lista_nomes)
+
+lista_nomes.remove("Viana")
+
+#exibindo a lista
+print("Lista Modificada: ",lista_nomes)
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Lista Original:  ['Rafael', 'Francisco', 'Viana', 'Sanches']
+Lista Modificada:  ['Rafael', 'Francisco', 'Sanches']
+```
+
+Para remover um elemento em uma posição específica, usamos a função __del__. Observe a diferença em relação à função remove, que recebe como parâmetro o valor que desejamos remover.
+
+```python
+#lista vazia
+lista_nomes = []
+
+#adicionando nomes a lista vazia
+
+#adicionando elemento na ultima posição da lista
+lista_nomes.append("Rafael")
+
+#adicionando elemento na ultima posição da lista
+lista_nomes.append("Francisco")
+
+#adicionando elemento na ultima posição da lista
+lista_nomes.append("Viana")
+
+#adicionando elemento na ultima posição da lista
+lista_nomes.append("Sanches")
+
+#exibindo a lista original
+print("Lista Original: ",lista_nomes)
+
+del lista_nomes[3]
+
+#exibindo a lista
+print("Lista Modificada: ",lista_nomes)
+
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Lista Original:  ['Rafael', 'Francisco', 'Viana', 'Sanches']
+Lista Modificada:  ['Rafael', 'Francisco', 'Viana']
+```
+
+Exitem ainda muitos outros métodos que podemos utilizar com listas e para poder conhece-los abra seu terminal e digite o comando __help(list)__. Segue um exemplo:
+
+```bash
+Python 3.8.5 (default, Jan 27 2021, 15:41:15)
+[GCC 9.3.0] on linux
+Type "help", "copyright", "credits" or "license" for more information.
+>>> help(list)
+```
 
 ### Dicionário:
+
+Os dicionários são estruturas que não possuem uma ordenação específica. Os dicionários são representados na forma de chave e valor. A chave é uma referência para o valor de um elemento do dicionário. Veja a seguir alguns exemplos de ações que você pode realizar com dicionários.
+
+Os dicionários são criados colocando os pares __chave__ : __valor__ entre chaves __{__ __}__ da seguinte forma:
+
+Criando um dicionário:
+
+```python
+#dicionário vazio
+dicionario = {}
+
+#imprimindo o conteúdo do dicionário
+print("Dicionário vazio: ",dicionario)
+
+#dicionário criado com chaves e valores
+dicionario = {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao' : 'JAVA', 'Bruno': 'C++', 'Ana' : 'PHP'}
+
+#acessando itens de um dicionário
+print(dicionario['Rafael'])
+print(dicionario['Renata'])
+print(dicionario['Ana'])
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Dicionario vazio:  {}
+PYTHON
+SQL
+PHP
+```
+
+Para recuperar um valor no dicionário podemos usar o método __get__ passando como argumento a chave do valor que queremos recuperar:
+
+```python
+#dicionário criado com chave e valores
+dicionario = {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao' : 'JAVA', 'Bruno': 'C++', 'Ana' : 'PHP'}
+
+#imprimindo o conteúdo das chaves Rafael, Renata e Ana usando o método get
+print(dicionario.get('Rafael'))
+print(dicionario.get('Renata'))
+print(dicionario.get('Ana'))
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+PYTHON
+SQL
+PHP
+```
+
+Iterando sobre os itens de um dicionário utilizando o laço de repetição __for__:
+
+```python
+dicionario = {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao' : 'JAVA', 'Bruno': 'C++', 'Ana' : 'PHP'}
+
+for chave in dicionario:
+  print(chave, 'programa em:', dicionario[chave])
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Rafael programa em: PYTHON
+Renata programa em: SQL
+Joao programa em: JAVA
+Bruno programa em: C++
+Ana programa em: PHP
+```
+
+
+
+
+
+
+
 Em desenvolvimento...
 ```python
 ```
