@@ -412,18 +412,131 @@ Bruno programa em: C++
 Ana programa em: PHP
 ```
 
+Para alterar uma valor em um dicionário use o nome do dicionário com a chave entre colchetes e associe um __novo valor__ a __chave__:
 
-
-
-
-
-
-Em desenvolvimento...
 ```python
+#dicionário criado com chaves e valores
+dicionario = {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao' : 'JAVA', 'Bruno': 'C++', 'Ana' : 'PHP'}
+
+print("Antes da alteração: ",dicionario)
+
+dicionario['Rafael'] = 'Ruby'
+
+print("Depois da alteração: ",dicionario)
 ```
 Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
 ```bash
+Antes da alteração:  {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao': 'JAVA', 'Bruno': 'C++', 'Ana': 'PHP'}
+Depois da alteração:  {'Rafael': 'Ruby', 'Renata': 'SQL', 'Joao': 'JAVA', 'Bruno': 'C++', 'Ana': 'PHP'}
 ```
+
+Para inserir um novo item em um dicionário basta declarar o dicionário colocando entre colchetes a __nova chave__ e __atribuindo um valor a ela__:
+
+```python
+#dicionário criado com chaves e valores
+dicionario = {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao' : 'JAVA', 'Bruno': 'C++', 'Ana' : 'PHP'}
+
+print("Antes da alteração: ",dicionario)
+
+dicionario['Joelson'] = 'C#'
+
+print("Depois da alteração: ",dicionario)
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Antes da alteração:  {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao': 'JAVA', 'Bruno': 'C++', 'Ana': 'PHP'}
+Depois da alteração:  {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao': 'JAVA', 'Bruno': 'C++', 'Ana': 'PHP', 'Joelson': 'C#'}
+```
+
+Inserindo itens novos ou alterando itens já existentes em um dicionário com o método __update()__.
+
+```python
+#dicionário criado com chaves e valores
+dicionario = {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao' : 'JAVA', 'Bruno': 'C++', 'Ana' : 'PHP'}
+
+print("Antes da alteração: ",dicionario)
+
+# Chave não existe no dicionario. Nesse caso ocorre automaticamente uma inserção no dicionário ou seja, um novo conjunto de chave e valor é adicionado ao dicionário.
+dicionario.update({'Joelson':'C#'})
+
+print("Depois da alteração: ",dicionario)
+
+# Chave já existe no dicionario. Nesse caso ocorre automaticamente uma atualização no dicionário ou seja, um novo valor é atribuído a uma chave que já está no dicionário.
+
+dicionario.update({'Rafael':'R'})
+
+print("Depois da alteração: ",dicionario)
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Antes da alteração:  {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao': 'JAVA', 'Bruno': 'C++', 'Ana': 'PHP'}
+Depois da alteração:  {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao': 'JAVA', 'Bruno': 'C++', 'Ana': 'PHP', 'Joelson': 'C#'}
+Depois da alteração:  {'Rafael': 'R', 'Renata': 'SQL', 'Joao': 'JAVA', 'Bruno': 'C++', 'Ana': 'PHP', 'Joelson': 'C#'}
+```
+
+Removendo um par chave e valor de um dicionário usando o comando __del__:
+
+```python
+#dicionário criado com chaves e valores
+dicionario = {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao' : 'JAVA', 'Bruno': 'C++', 'Ana' : 'PHP'}
+
+print("Antes da alteração: ",dicionario)
+
+del dicionario['Bruno']
+
+print("Depois da alteração: ",dicionario)
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Antes da alteração:  {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao': 'JAVA', 'Bruno': 'C++', 'Ana': 'PHP'}
+Depois da alteração:  {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao': 'JAVA', 'Ana': 'PHP'}
+```
+
+Removendo e obtendo um par chave, valor com o método __pop()__:
+
+```python
+#dicionário criado com chaves e valores
+dicionario = {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao' : 'JAVA', 'Bruno': 'C++', 'Ana' : 'PHP'}
+
+print("Antes da alteração: ",dicionario)
+
+dicionario.pop('Renata')
+
+print("Depois da alteração: ",dicionario)
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Antes da alteração:  {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao': 'JAVA', 'Bruno': 'C++', 'Ana': 'PHP'}
+Depois da alteração:  {'Rafael': 'PYTHON', 'Joao': 'JAVA', 'Bruno': 'C++', 'Ana': 'PHP'}
+```
+
+Para poder entender o seu dicionário ou o dicionário que outra pessoa tenha criado, você pode usufruir de alguns métodos sendo eles:
+
+Nome do método | O que ele faz?
+:------:|:------:
+keys() | Ele retorna todas as chaves de um dicionário
+values() | Ele retorna todos os valores de um dicionário
+items() | Ele retorna todos os pares de chave e valor de um dicionário
+
+
+```python
+#dicionário criado com chaves e valores
+dicionario = {'Rafael': 'PYTHON', 'Renata': 'SQL', 'Joao' : 'JAVA', 'Bruno': 'C++', 'Ana' : 'PHP'}
+
+print("Todas as chaves: ",dicionario.keys())
+print("Todos os valores: ",dicionario.values())
+print("Todos os pares de (chave, valor): ",dicionario.items())
+
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Todas as chaves:  dict_keys(['Rafael', 'Renata', 'Joao', 'Bruno', 'Ana'])
+Todos os valores:  dict_values(['PYTHON', 'SQL', 'JAVA', 'C++', 'PHP'])
+Todos os pares de (chave, valor):  dict_items([('Rafael', 'PYTHON'), ('Renata', 'SQL'), ('Joao', 'JAVA'), ('Bruno', 'C++'), ('Ana', 'PHP')])
+```
+
+Vale ressaltar que os comandos utilizados acima retornam para o método __keys()__ uma lista com as chaves existentes no dicionário. Para o método __values()__, retorna-se uma lista com os valores do dicionário. O método __items()__ ele é um pouco diferente pois ele retorna uma lista que seus elementos por sua vez possuem tuplas como valores onde o primeiro elemento de cada tupla representa a chave e o segundo elemento o valor relacionado a respectiva chave do primeiro elemento.
+
 
 ### Conjunto:
 Em desenvolvimento...
