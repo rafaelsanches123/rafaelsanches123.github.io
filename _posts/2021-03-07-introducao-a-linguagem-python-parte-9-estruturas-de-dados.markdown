@@ -13,6 +13,13 @@ Estruturas de dados consistem na organização de dados na memória de um comput
 
 Em python temos estruturas de dados por meio dos tipos de variáveis compostas __Listas__, __Dicionários__, __Tuplas__ e __Conjuntos__ que nos auxiliam de forma performática a armazenar dados e acessá-los da melhor forma possível. Vale ressaltar que isso ocorre de modo mais alto nível em comparação a linguagens como a __c__ por exemplo que você desenvolve todo processo relacionado a essas estruturas de dados desde a conexão entre posições na memória por meio de ponteiros e a lógica por trás desses processos que precisam ser desenvolvidos.
 
+Na linguagem de programação Python:
+* O tipo Lista é uma estrutura de dados ordenada e mutável. Permite itens duplicados.
+* O tipo Tupla é uma estrutura de dados ordenada e imutável. Permite itens duplicados.
+* O tipo Conjunto é uma estrutura de dados não ordenada e não indexada. Não permite itens duplicados.
+* O tipo dicionário é uma estrutura de dados desordenada e mutável. Não permite itens duplicados.
+
+
 ### Tupla:
 
 A tupla é uma variável de tipo composto que permite que seja atribuído a ela mais de um tipo de variável simples/primitiva. Isso é básicamente uma lista que vai guardar variáveis porém, existe um ponto importante sobre tuplas, elas não permitem ser modificadas depois de serem criadas ou seja a __Tupla__ é uma Lista __imutável__. Veja o exemplo a seguir:
@@ -539,9 +546,228 @@ Vale ressaltar que os comandos utilizados acima retornam para o método __keys()
 
 
 ### Conjunto:
-Em desenvolvimento...
+
+Os conjuntos são tipos de dados que tem algumas peculiaridades assim como as outras estruturas de dados já estudadas por aqui. Em Conjuntos os seus itens não são ordenados e também não podem ser alterados e não é permitido a ocorrência de valores duplicados.
+
+Os itens que são definidos em um conjunto podem aparecer em uma ordem diferente cada vez que você os usa e não podem ser referenciados por índice ou chave.
+
+Os conjuntos também são imutáveis, o que significa que não podemos alterar os seus itens após a  sua criação.
+
+Outro detalhe é que após criar um conjunto, você não pode alterar seus itens, mas pode adicionar novos itens.
+
+Os conjuntos não podem ter dois itens ou mais com o mesmo valor.
+
+Criando um conjunto:
+
 ```python
+#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+conjunto_A = {1, 12, 5, 2, 75, 12, 45, 3}
+print(conjunto_A)
 ```
 Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
 ```bash
+{1, 2, 3, 5, 75, 12, 45}
 ```
+Como foi possível observar no exemplo utilizado acima, o número __12__ que possuía duplicidade dentro do conjunto foi automaticamente removido e apenas 1 ocorrência permaneceu depois de sua criação.
+
+Descobrindo o tamanho de um conjunto:
+
+```python
+print('Tamanho do conjunto: ',len(conjunto_A))
+
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Tamanho do conjunto:  7
+```
+Para descobrir se o tipo de dados que você criou é um conjunto você pode usar:
+
+```python
+# função type retorna o tipo de qualquer variável
+print('Tipo: ',type(conjunto_A))
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Tipo:  <class 'set'>
+```
+
+Acessando itens no conjunto:
+
+Você não pode acessar itens em um conjunto referindo-se a um índice ou chave. Nesse caso você pode percorrer os itens do conjunto por meio de um laço de repetição __for__, ou você pode verificar se um item especifico está presente em um conjunto, usando a palavra-chave reservada __in__.
+
+```python
+#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+conjunto_A = {1, 12, 5, 2, 75, 12, 45, 3}
+print(conjunto_A)
+
+#iterando sobre o conjunto e acessando seu itens
+for item in conjunto_A:
+  print("Item: ",item)
+
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+{1, 2, 3, 5, 75, 12, 45}
+Item:  1
+Item:  2
+Item:  3
+Item:  5
+Item:  75
+Item:  12
+Item:  45
+```
+
+Verificando se um valor/item existe dentro do conjunto:
+
+```python
+#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+conjunto_A = {1, 12, 5, 2, 75, 12, 45, 3}
+print(conjunto_A)
+
+print(7 in conjunto_A)
+print(5 in conjunto_A)
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+{1, 2, 3, 5, 75, 12, 45}
+False
+True
+```
+
+Adicionando itens ao conjunto depois de ele já estar criado:
+
+```python
+#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+conjunto_A = {1, 12, 5, 2, 75, 12, 45, 3}
+print("Conjunto Original: ",conjunto_A)
+
+#utilize a função add() para adicionar novos itens ao conjunto depois de criado
+conjunto_A.add(23)
+
+print("Conjunto Modificado: ",conjunto_A)
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Conjunto Original:  {1, 2, 3, 5, 75, 12, 45}
+Conjunto Modificado:  {1, 2, 3, 5, 75, 12, 45, 23}
+```
+
+Para adicionar um conjunto a outro conjunto já criado faça:
+
+```python
+#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+conjunto_A = {1, 12, 5, 2, 75, 12, 45, 3}
+print("Conjunto A: ",conjunto_A)
+
+conjunto_B = {99, 123, 5, 29, 757, 12, 458, 3}
+print("Conjunto B: ",conjunto_B)
+
+conjunto_A.update(conjunto_B)
+
+print(conjunto_A)
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Conjunto A:  {1, 2, 3, 5, 75, 12, 45}
+Conjunto B:  {99, 3, 5, 458, 12, 757, 123, 29}
+{1, 2, 3, 99, 5, 458, 75, 12, 45, 757, 123, 29}
+```
+
+Vale ressaltar que parâmetro da função update() não precisa ser necessariamente um Conjunto e ele pode ser qualquer estrutura de dados iterável (e.g., tuplas, listas, dicionários etc.).
+
+Para remover elementos de um conjunto você pode utilizar de quatro funções:
+
+As funções remove() e discard() você precisa passar para elas por parâmetro o item que você deseja remover. A função pop() diferente das anteriores sempre irá remover o último elemento do Conjunto (i.e., o elemento mais velho do conjunto ou em todo caso o primeiro que foi criado no conjunto) e ela não precisa de parâmetro.
+
+```python
+#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+conjunto_A = {1, 12, 5, 2, 75, 12, 45, 3}
+print("Conjunto A: ",conjunto_A)
+
+conjunto_B = {99, 123, 5, 29, 757, 12, 458, 3}
+print("Conjunto B: ",conjunto_B)
+
+conjunto_A.remove(12)
+print("Conjunto A novo: ",conjunto_A)
+
+conjunto_B.discard(29)
+print("Conjunto B novo: ",conjunto_B)
+
+conjunto_A.pop()
+print("Conjunto A novo: ",conjunto_A)
+
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Conjunto A:  {1, 2, 3, 5, 75, 12, 45}
+Conjunto B:  {99, 3, 5, 458, 12, 757, 123, 29}
+Conjunto A novo:  {1, 2, 3, 5, 75, 45}
+Conjunto B novo:  {99, 3, 5, 458, 12, 757, 123}
+Conjunto A novo:  {2, 3, 5, 75, 45}
+```
+
+Para limpar um conjunto você pode utilizar a função __clear()__ e para deletar um conjunto completamente da memória do computador você pode utilizar a palavra reservada __del__.
+
+```python
+#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+conjunto_A = {1, 12, 5, 2, 75, 12, 45, 3}
+print("Conjunto A: ",conjunto_A)
+
+conjunto_B = {99, 123, 5, 29, 757, 12, 458, 3}
+print("Conjunto B: ",conjunto_B)
+
+print("Conjunto A: ",conjunto_A.clear())
+
+del conjunto_B
+print("Conjunto B: ",conjunto_B)
+
+```
+Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+```bash
+Conjunto A:  {1, 2, 3, 5, 75, 12, 45}
+Conjunto B:  {99, 3, 5, 458, 12, 757, 123, 29}
+Conjunto A:  None
+Traceback (most recent call last):
+  File "main.py", line 12, in <module>
+    print("Conjunto B: ",conjunto_B)
+NameError: name 'conjunto_B' is not defined
+```
+
+Exitem outras funções não mencionadas aqui que você pode encontrar na documentação da linguagem python assim como:
+
+Nome do método/função | O que ele faz?
+:------:|:------:
+difference() |	Retorna um conjunto contendo a diferença entre dois ou mais conjuntos
+difference_update() |	Remove os itens neste conjunto que também estão incluídos em outro, especificado
+intersection() | Retorna um conjunto, que é a interseção de dois outros conjuntos
+intersection_update() |	Remove os itens no conjunto que chama essa função e que não estão presentes em outros conjuntos especificados/utilizados
+union()  |	Retorna um conjunto contendo a união dos conjuntos
+
+
+Exercícios para praticar o que aprendeu:
+
+1. Crie um programa em python que solicite ao usuário do computador 5 nomes diferentes que comecem com a primeira letra diferentes e a sua tarefa será ordenar essa lista por ordem alfabética.
+
+2. Crie um programa que simule um sistema de banco e para esse sistema você irá criar:
+  1. Crie um programa que forneça ao usuário do computador as seguintes opções: Cadastrar, Atualizar, Credito e a opção Debito.
+  2. Crie um programa que quando o usuário solicitar a opção Cadastrar ele precise informar: Nome, Sobrenome, CPF, Idade e Saldo.
+  3. Crie um programa que quando o usuário solicitar a opção Atualizar ele precise informar o seu CPF e a partir desse ponto as informações de Nome, Sobrenome, Idade possam ser atualizadas.
+  4. Crie um programa que quando o usuário solicitar a opção Credito seja solicitado a ele a quantia em reais que ele deseja armazenar na sua conta bancaria nesse mini sistema.
+  5. Crie um programa que quando o usuário solicitar a opção Debito seja solicitado a ele a quantia em reais que saíra da sua conta bancaria.
+
+3. Em complemento ao sistema do exercício 2, crie um programa que adicione a lista de opções do sistema a opção de Remover. Essa opção irá solicitar o CPF do usuário que ira ser removido desse sistema e após a confirmação dessa ação esse cliente do banco não deverá mais estar no mini sistema cadastrado.
+
+4. Em complemento ao sistema do exercício 2, crie um programa que adicione a lista de opções do sistema a opção de Listar. Essa opção irá listar na tela todos os clientes cadastrados nesse sistema apresentando todos os dados dos clientes.
+
+5. Em complemento ao sistema do exercício 2, crie um programa que adicione a lista de opções do sistema a opção de Procurar. Essa opção irá solicitar o CPF do cliente e com esse dados você deverá retornar as informações desse cliente na tela.
+
+6. Em complemento ao sistema do exercício 2, imagine que agora o gerente também quer utilizar esse sistema para verificar alguma informações importantes para ele como gestor. Crie um programa que adicione a lista de opções do sistema a opção de Maior Saldo. Ao acionar essa opção o sistema irá verificar e retornar na tela para o gerente o cliente que tenha o saldo mais alto entre seus clientes.
+
+7. Seguindo a mesma linha do exercício 6, nesse exercício você deve adicionar a lista de opções do sistema a opção de Menor Saldo. E buscar e apresentar na tela o cliente com o menor saldo dentro do sistema.
+
+8. Ainda tentando ajudar o gerente, agora ele precisa que você crie um programa que traga para ele o valor total de dinheiro guardado no banco. Nesse exercício você deve adicionar a lista de opções do sistema a opção de Saldo Total.
+
+9. Crie um programa que adicione a lista de opções do sistema a opção de Ranking Saldo. Nesse exercício você precisa listar todos os clientes mas usando como critério de ordem de exibição dos dados do cliente com maior saldo para o com menor saldo.
+
+
+Se ficar com alguma dúvida ou precisar de ajuda fique a vontade para nos mandar uma mensagem.

@@ -2,7 +2,7 @@
 layout: post
 title:  "Extraindo texto de imagens com python"
 date:   2019-09-14 10:10:03 -0300
-categories: python
+categories: python ocr inteligência-artificial
 ---
 
 ![python-ocr-pytesseract]({{ site.url }}/assets/tesseract-ocr-e-python.jpg){:style="width: 100%" }
