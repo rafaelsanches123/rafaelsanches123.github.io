@@ -69,7 +69,7 @@ imagem_original_gray = cv2.cvtColor(imagem_original, cv2.COLOR_BGR2GRAY)
 #Variável que armazena objeto(s) com as coordenadas da face encontrada na imagem
 faces = face_classifier.detectMultiScale(imagem_original_gray, 1.0485258, 6)
 
-if len(faces) == 0::
+if len(faces) == 0:
     print("Nenhuma face encontrada!")
 else:
     for (x,y,w,h) in faces:
