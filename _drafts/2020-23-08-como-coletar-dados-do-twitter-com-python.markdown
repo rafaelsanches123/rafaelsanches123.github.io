@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Coletar e classificar dados do twitter com python"
+title:  "Como coletar dados do twitter com python"
 date:   2020-23-08 16:27:01 -0300
 categories: inteligência-artificial python mineração-de-dados machine-learning analise-de-sentimentos
 ---

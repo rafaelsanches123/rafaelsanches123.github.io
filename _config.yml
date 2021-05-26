@@ -13,7 +13,7 @@
 # you will see them accessed via {{ site.title }}, {{ site.email }}, and so on.
 # You can create any custom variable you would like, and they will be accessible
 # in the templates via {{ site.myvariable }}.
-title: < Tudo Programado />
+title: < Tudo Programado Blog />
 email: rafaelsanches123@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
   Esse blog foi desenvolvido com o intuito de que eu pudesse compartilhar um pouco do meu conhecimento sobre a área de informática com todos.
