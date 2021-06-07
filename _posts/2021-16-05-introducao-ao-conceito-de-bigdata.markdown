@@ -5,7 +5,7 @@ date: 2021-05-15 17:00:03 -0300
 categories: big-data data
 ---
 
-![face-detection-python]({{ site.url }}/assets/big-data.png){:style="width: 100%" }
+![big-data]({{ site.url }}/assets/big-data.png){:style="width: 100%" }
 
 Fala pessoal blz? No post de hoje vamos trocar uma ideia sobre uma assunto que está super no hype e que demanda diversos profissionais novos no mercado de trabalho. E aí, bora aprender algo novo?
 
