@@ -35,7 +35,7 @@ Quando utilizamos o Hadoop outra questão que deve ser analisada é que ele não
 
 O HDFS possui o __conceito de blocos__, assim como no sistema Unix, mas seus blocos normalmente têm tamanho de __128MB__.  Um arquivo muito grande pode ter blocos armazenados em mais de um local (i.e., sistema de tolerância a falhas). Com este conceito de blocos de tamanho fixo fica mais fácil calcular as necessidades de armazenamento para cada projeto que precise utilizar o seu cluster Hadoop. Essa representação de alocação de recurso no HDFS fica mais clara com o exemplo na Figura 1. Na Figura 1 é utilizado um arquivo de exemplo com a extensão .txt que tem o tamanho de 612 MB. Devido ao tamanho do arquivo ele é quebrado em 5 partes onde, 4 partes usam 128 MB e somente a ultima parte tem o tamanho 100 MB sendo o menor bloco. Isso ocorre devido ao formato e tamanho do armazenato configurados para o seu ambiente hadoop.
 
-![arquitetura-hadoop]({{ site.url }}/assets/bloco_de_dados_hdfs.png){:style="width: 100%" }
+![arquitetura-hadoop]({{ site.url }}/assets/hadoop_hdfs.png){:style="width: 100%" }
 ***Figura 1***: *Exemplo de alocação de recursos no HFDS para um arquivo com tamanho de 612 MB - Imagem adaptada de: https://data-flair.training/blogs/data-block/*
 
 O HDFS possui 2 tipos de nós sendo eles o __Master__ (ou __Namenode__) e __Worker__ (ou __Datanode__).  O Master armazena informações da distribuição de arquivos e os seus respectivos metadados. O Worker armazena os dados propriamente ditos.
