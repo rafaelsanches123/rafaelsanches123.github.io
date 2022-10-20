@@ -1,0 +1,356 @@
+I"<<p><img src="http://localhost:4000/assets/linguagem-python.png" alt="linguagem-python" style="width: 100%" /></p>
+
+<h2 id="operadores-lógicos-aritméticos-e-relacionais">Operadores Lógicos, Aritméticos e Relacionais</h2>
+
+<p><strong>Operadores Lógicos</strong>:
+As linguagens de programação, utilizam os conectivos lógicos da lógica formal, ou melhor da lógica Aristotélica, na construção de expressões lógicas. Existem 2 conectivos lógicos e, mesmo que não os conheçamos com o nome de conectivos lógicos, utilizamo-os constantemente ao conversarmos ou então, para explicarmos qualquer disciplina a outra pessoa.</p>
+
+<p>Os dois conectivos lógicos são:</p>
+
+<p>Conectivo de <strong>conjunção</strong>: <strong>E</strong>
+Conectivo de <strong>disjunção</strong>: <strong>OU</strong></p>
+
+<p>Os operadores lógicos são utilizados para avaliar o resultado de uma expressão ou sub-expressões de modo que seja retornado como resposta True (verdadeiro) ou False (falso) de acordo com a relação apresentada.</p>
+
+<p>Veja nas tabelas a seguir um exemplo dos resultados dos operadores <strong>AND</strong> e <strong>OR</strong> de acordo com a tabela verdade respectiva de cada um.</p>
+
+<p><strong>AND</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Expressão 1</th>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: center">Expressão 2</th>
+      <th style="text-align: center">Resultado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">True</td>
+      <td style="text-align: center">AND</td>
+      <td style="text-align: center">True</td>
+      <td style="text-align: center">True</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">True</td>
+      <td style="text-align: center">AND</td>
+      <td style="text-align: center">False</td>
+      <td style="text-align: center">False</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">False</td>
+      <td style="text-align: center">AND</td>
+      <td style="text-align: center">True</td>
+      <td style="text-align: center">False</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">False</td>
+      <td style="text-align: center">AND</td>
+      <td style="text-align: center">False</td>
+      <td style="text-align: center">False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p><strong>OR</strong>:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Expressão 1</th>
+      <th style="text-align: center">Operador</th>
+      <th style="text-align: center">Expressão 2</th>
+      <th style="text-align: center">Resultado</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">True</td>
+      <td style="text-align: center">OR</td>
+      <td style="text-align: center">True</td>
+      <td style="text-align: center">True</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">True</td>
+      <td style="text-align: center">OR</td>
+      <td style="text-align: center">False</td>
+      <td style="text-align: center">True</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">False</td>
+      <td style="text-align: center">OR</td>
+      <td style="text-align: center">True</td>
+      <td style="text-align: center">True</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">False</td>
+      <td style="text-align: center">OR</td>
+      <td style="text-align: center">False</td>
+      <td style="text-align: center">False</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Exemplos:</p>
+<ol>
+  <li>Nesse exemplo a primeira expressão e a segunda resultam em resultado verdadeiro logo, a resposta será verdadeira. O operador <strong>AND</strong> só irá gerar uma resposta falsa se pelo menos uma das expressões resultar falso. Ele sempre retornará verdadeiro se todas as expressões ou sub-expressões forem verdadeiras.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> x <span class="o">=</span> 1
+<span class="o">&gt;&gt;&gt;</span> <span class="o">((</span>x <span class="o">&gt;</span> 0<span class="o">)</span> and <span class="o">(</span>x &lt; 100<span class="o">))</span>
+True
+<span class="o">&gt;&gt;&gt;</span> <span class="o">((</span>x <span class="o">&gt;</span> 1<span class="o">)</span> and <span class="o">(</span>x &lt; 100<span class="o">))</span>
+False
+</code></pre></div>    </div>
+  </li>
+  <li>Nesse exemplo a segunda expressão é falsa logo a resultado final é verdadeiro. O operador <strong>OR</strong> só retornará falso quando todas expressões resultarem em falso.
+    <div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> x <span class="o">=</span> 10
+<span class="o">&gt;&gt;&gt;</span> <span class="o">((</span>x &lt; 1<span class="o">)</span> or <span class="o">(</span>x &lt; 100<span class="o">))</span>
+True
+<span class="o">&gt;&gt;&gt;</span> <span class="o">((</span>x &lt; 1<span class="o">)</span> or <span class="o">(</span>x &lt; 5<span class="o">))</span>
+False
+</code></pre></div>    </div>
+    <p>Outros dois operadores lógicos ainda não mencionados mas, muito utilizados no python são: <strong>not</strong> e o <strong>in</strong>. O operador not é geralmente utilizado para negar uma expressão booleana por exemplo:</p>
+  </li>
+</ol>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> A <span class="o">=</span> True
+<span class="o">&gt;&gt;&gt;</span> not A
+False
+<span class="o">&gt;&gt;&gt;</span> A
+True
+<span class="o">&gt;&gt;&gt;</span> B <span class="o">=</span> False
+<span class="o">&gt;&gt;&gt;</span> B
+False
+<span class="o">&gt;&gt;&gt;</span> not B
+True
+<span class="o">&gt;&gt;&gt;</span>
+
+</code></pre></div></div>
+
+<p>Muito simples não é mesmo?</p>
+
+<p>O operador in ele é uma ferramenta muito interessante quando temos que verificar se algo existe ou não dentro de alguma variável de tipo heterogênea como strings, listas, etc…</p>
+
+<p>Vamos ver ele na prática como funciona e ver como ele é simples:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> lista_frutas <span class="o">=</span> <span class="o">[</span><span class="s1">'uva'</span>,<span class="s1">'maçã'</span>,<span class="s1">'limão'</span>,<span class="s1">'jaca'</span><span class="o">]</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">'uva'</span> <span class="k">in </span>lista_frutas
+True
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">'laranja'</span> <span class="k">in </span>lista_frutas
+False
+<span class="o">&gt;&gt;&gt;</span> frase <span class="o">=</span> <span class="s2">"eu trabalho na empresa serasa e gosto de computadores"</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">'empresa'</span> <span class="k">in </span>frase
+True
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">'valor'</span> <span class="k">in </span>frase
+False
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">'Rafael'</span> <span class="k">in </span>frase
+False
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">'computador'</span> <span class="k">in </span>frase
+True
+<span class="o">&gt;&gt;&gt;</span> <span class="s1">'computaçao'</span> <span class="k">in </span>frase
+False
+<span class="o">&gt;&gt;&gt;</span>
+
+</code></pre></div></div>
+
+<p><strong>Operadores Aritméticos</strong>:
+O python é uma ferramenta tão poderosa pode ser utilizado como uma calculadora matemática avançada. Praticamente, todos os operadores aritméticos funcionam da mesma forma como os conhecemos da matemática elementar. Por exemplo, para trabalharmos com as 4 principais funções matemáticas, a soma, subtração, multiplicação e divisão, temos os operadores conforme tabela a seguir.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operação</th>
+      <th style="text-align: center">Operador</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">adição</td>
+      <td style="text-align: center">+</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">subtração</td>
+      <td style="text-align: center">-</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">multiplicação</td>
+      <td style="text-align: center">*</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">divisão</td>
+      <td style="text-align: center">/</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Além dos operadores supracitados existem também, operadores para exponenciação, obtenção da parte inteira de uma divisão, extração do módulo da divisão, conforme pode ser visto na tabela a seguir:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Operação</th>
+      <th style="text-align: center">Operador</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">exponenciação</td>
+      <td style="text-align: center">**</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">parte inteira</td>
+      <td style="text-align: center">//</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">módulo</td>
+      <td style="text-align: center">%</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Exemplos:
+Adição:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> 1 + 1
+2
+</code></pre></div></div>
+<p>Subtração:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> 7 - 5
+2
+</code></pre></div></div>
+<p>Multiplicação:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> 2 <span class="k">*</span> 2
+4
+</code></pre></div></div>
+<p>Divisão:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> 10/3
+3
+
+<span class="o">&gt;&gt;&gt;</span> 10.0/3.0
+3.3333333333333335
+
+</code></pre></div></div>
+<p>Exponenciação:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> 2 <span class="k">**</span> 3
+8
+
+</code></pre></div></div>
+<p>Parte Inteira:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> 10.0/4.0
+2.5
+
+<span class="o">&gt;&gt;&gt;</span> 10.0//4.0
+2.0
+
+</code></pre></div></div>
+<p>Módulo:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> 10.0 % 4.0
+2.0
+<span class="o">&gt;&gt;&gt;</span> 10.0 % 2.0
+0.0
+<span class="o">&gt;&gt;&gt;</span>
+
+</code></pre></div></div>
+
+<p><strong>Operador Relacionais</strong>:
+É todo operador que obtém a relação do membro a esquerda com o membro a sua direita. Na tabela abaixo, temos os operadores relacionais disponibilizados pelo python.</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Descrição</th>
+      <th style="text-align: center">Operador</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">Maior que</td>
+      <td style="text-align: center">&gt;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Menor que</td>
+      <td style="text-align: center">&lt;</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Igual a</td>
+      <td style="text-align: center">==</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Diferente a</td>
+      <td style="text-align: center">!=</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Maior ou igual a</td>
+      <td style="text-align: center">&gt;=</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">Menor ou igual a</td>
+      <td style="text-align: center">&lt;=</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Exemplos:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> 10 <span class="o">&gt;</span> 2
+True
+
+<span class="o">&gt;&gt;&gt;</span> 10 &lt; 2
+False
+
+<span class="o">&gt;&gt;&gt;</span> 10 <span class="o">==</span> 2
+False
+
+<span class="o">&gt;&gt;&gt;</span> 10 <span class="o">!=</span> 2
+True
+
+<span class="o">&gt;&gt;&gt;</span> 10 <span class="o">&gt;=</span> 2
+True
+
+<span class="o">&gt;&gt;&gt;</span> 10 &lt;<span class="o">=</span> 2
+False
+
+</code></pre></div></div>
+
+<p>Exercícios para praticar o que aprendeu:</p>
+
+<ol>
+  <li>
+    <p>Criar uma variável e chamada de <strong>maior_valor</strong> e atribuir a ela o valor 10. Criar uma variável e chamada de <strong>menor_valor</strong> e atribuir a ela o valor 3.</p>
+  </li>
+  <li>
+    <p>Usando o operador de <strong>igual a</strong> verificar se o valor de <strong>maior_valor</strong> é igual ao conteúdo da variável <strong>menor_valor</strong>.</p>
+  </li>
+  <li>
+    <p>Usando o operador de <strong>diferente a</strong> verificar se o valor de <strong>maior_valor</strong> é igual ao conteúdo da variável <strong>menor_valor</strong> ou se os valores são diferentes.</p>
+  </li>
+  <li>
+    <p>Usando o operador <strong>maior que</strong> verificar se o valor de <strong>maior_valor</strong> é maior que o conteúdo da variável <strong>menor_valor</strong>.</p>
+  </li>
+  <li>
+    <p>Usando o operador <strong>menor que</strong> verificar se o valor de <strong>maior_valor</strong> é menor que o conteúdo da variável <strong>menor_valor</strong>.</p>
+  </li>
+  <li>
+    <p>Usando o operador <strong>subtração</strong> calcular o resultado entre  <strong>maior_valor</strong> e <strong>menor_valor</strong>.</p>
+  </li>
+  <li>
+    <p>Usando o operador <strong>multiplicação</strong> calcular o resultado entre  <strong>maior_valor</strong> e <strong>menor_valor</strong>.</p>
+  </li>
+  <li>
+    <p>Usando o operador <strong>divisão</strong> calcular o resultado entre  <strong>maior_valor</strong> e <strong>menor_valor</strong>.</p>
+  </li>
+  <li>
+    <p>Usando o operador <strong>parte inteira</strong> calcular o resultado entre  <strong>maior_valor</strong> e <strong>menor_valor</strong>.</p>
+  </li>
+  <li>
+    <p>Usando o operador <strong>módulo</strong> calcular o resultado entre  <strong>maior_valor</strong> e o número 2 e verificar se o resultado gerado é diferente de zero. (Se o resultado gerado for zero significado que <strong>maior_valor</strong> é par).</p>
+  </li>
+  <li>
+    <p>Usando o operador <strong>módulo</strong> calcular o resultado entre  <strong>menor_valor</strong> e o número 2 e verificar se o resultado gerado é diferente de zero. (Se o resultado gerado for zero significado que <strong>menor_valor</strong> é par).</p>
+  </li>
+  <li>
+    <p>Crie um lista de comprar e nela adicione 5 produtos que você costuma comprar no mercado. Usando o operador <strong>in</strong> use 3 produtos que você não adicionou na sua lista e depois faça a mesma coisa para 2 produtos que você colocou na sua lista.</p>
+  </li>
+  <li>
+    <p>Utilizando o operador <strong>not</strong> aplique ele para o valor 1 e depois para o valor zero e veja o que ele retorna para cada um desses valores.</p>
+  </li>
+</ol>
+:ET

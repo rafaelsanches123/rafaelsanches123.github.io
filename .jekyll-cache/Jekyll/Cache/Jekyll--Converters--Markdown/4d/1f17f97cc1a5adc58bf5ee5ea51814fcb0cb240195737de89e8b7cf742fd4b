@@ -1,0 +1,292 @@
+I"�Z<p><img src="http://localhost:4000/assets/linguagem-python.png" alt="linguagem-python" style="width: 100%" /></p>
+
+<h2 id="strings">Strings</h2>
+
+<p>No python uma string é um tipo de várivel que contém uma sequência de caracteres ou números (Observação: Lembre-se que se você informar um número como string ele não é do tipo inteiro e nem flutuante nesse caso). Uma string sempre é circundada por aspas duplas ou apostofre dupla também. Exemplo: “Texto de exemplo” ou ‘Texto de exemplo’ repare que ambos seguem a regra dita anteriormente.</p>
+
+<p>Abra o seu terminal e faça o mesmo apresentado a seguir:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">&gt;&gt;&gt;</span> string <span class="o">=</span> <span class="s2">"Exemplo de texto"</span>
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>string<span class="o">)</span>
+Exemplo de texto
+<span class="o">&gt;&gt;&gt;</span> string1 <span class="o">=</span> <span class="s1">'1'</span>
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>string1<span class="o">)</span>
+1
+<span class="o">&gt;&gt;&gt;</span> string2 <span class="o">=</span> <span class="s2">"1.2"</span>
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>string2<span class="o">)</span>
+1.2
+
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span><span class="nb">type</span><span class="o">(</span>string<span class="o">))</span>
+&lt;class <span class="s1">'str'</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span><span class="nb">type</span><span class="o">(</span>string1<span class="o">))</span>
+&lt;class <span class="s1">'str'</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span><span class="nb">type</span><span class="o">(</span>string2<span class="o">))</span>
+&lt;class <span class="s1">'str'</span><span class="o">&gt;</span>
+
+</code></pre></div></div>
+
+<p>No exemplo acima é possível observar que mesmo para números, sejam eles inteiros ou flutuantes, se estiverem no modelo do tipo string eles não são utilizados mais como números e sim como textos. Um exemplo disso ocorre se você tentar realizar alguma operação matemática com eles veja o exemplo a seguir:</p>
+
+<p>imagine que você tenha 2 variáveis:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">&gt;&gt;&gt;</span> num1 <span class="o">=</span> <span class="s2">"10"</span>
+<span class="o">&gt;&gt;&gt;</span> num2 <span class="o">=</span> <span class="s2">"5"</span>
+
+</code></pre></div></div>
+<p>Se você tentar realizar as operações básicas de subtração, multiplicação e divisão você irá obter um erro avisando que esse tipo de tarefa não é possível de ser feito pois você está utilizando variáveis do tipo string. Se você tentar realizar a operação de adição ela não vai gerar um erro de compilação e para seu código mas, se você tentar somar essa duas varáveis você irá obter o seguinte:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">&gt;&gt;&gt;</span> num1 <span class="o">=</span> <span class="s2">"10"</span>
+<span class="o">&gt;&gt;&gt;</span> num2 <span class="o">=</span> <span class="s2">"5"</span>
+<span class="o">&gt;&gt;&gt;</span> res <span class="o">=</span> num1 + num2
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>res<span class="o">)</span>
+105
+</code></pre></div></div>
+
+<p>Ué, mas o que aconteceu? Então, isso aconteceu porque no python quando você utiliza o operador de soma <strong>+</strong> com strings ele realiza a junção dessas duas string e as transforma em apenas 1. Acredito que foi simples entender o que aconteceu não foi mesmo?</p>
+
+<p>A seguir, vou apresentar algumas funções disponiveis no python para trabalharmos com string e que podem ajudar muito sua vida na criação de algum programa que necessite o uso de strings.</p>
+
+<p>Como saber o tamanho de uma string?
+Para saber o tamanho de uma string, basta utilizar a função <strong>len()</strong>. Essa função retorna um valor inteiro referente a quantidade de caracteres presentes em uma string veja alguns exemplos a seguir:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> string1 <span class="o">=</span> <span class="s2">"Rafael"</span>
+<span class="o">&gt;&gt;&gt;</span> len<span class="o">(</span>string1<span class="o">)</span>
+6
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span><span class="s2">"A string1 tem o tamanho: "</span>,len<span class="o">(</span>string1<span class="o">))</span>
+A string1 tem o tamanho:  6
+
+<span class="o">&gt;&gt;&gt;</span> string2 <span class="o">=</span> <span class="s2">"Eu sou programador(a)!"</span>
+<span class="o">&gt;&gt;&gt;</span> len<span class="o">(</span>string2<span class="o">)</span>
+22
+
+</code></pre></div></div>
+
+<p>Observação: lembre-se que o espaço em branco entre caracteres também é computado como uma posição na string. Por esse motivo a string2 tem o tamanho 22 e não 20.</p>
+
+<p>Muito simples não é mesmo!</p>
+
+<p>Agora vou relembrar a você meu caro(a) leitor(a) uma função muito bacanuda que nós conhecemos no início do post chamada <strong>format()</strong>. Ela é bastante simples e também nos permite inserir valores em posições desejadas em uma string por meio de <strong>{}</strong> dentro da string. A seguir eu vou apresentar o modelo visto no início do post e um plus dessa função de modo que você consiga alterar a posição dos elementos inseridos na string.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> string <span class="o">=</span> <span class="s2">"O número {} é maior que o número {} e meu nome é {}"</span>.format<span class="o">(</span>10, 2, <span class="s2">"Rafael"</span><span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>string<span class="o">)</span>
+O número 10 é maior que o número 2 e meu nome é Rafael
+<span class="o">&gt;&gt;&gt;</span> string <span class="o">=</span> <span class="s2">"O número {1} é maior que o número {2} e meu nome é {0}"</span>.format<span class="o">(</span>10, 2, <span class="s2">"Rafael"</span><span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> print<span class="o">(</span>string<span class="o">)</span>
+O número 2 é maior que o número Rafael e meu nome é 10
+</code></pre></div></div>
+
+<p>No código acima perceba que na primeira utilização do método <strong>format</strong> dentro dele, você passa como parâmetro os conteudos/variáveis respectivos(as) dos pares de chaves seguindo a ordem de precedência que eles aparecem como parâmetros na função format. No segundo caso um plus não mencionado sobre esse método no ínicio do post é que se você enumerar o interior do par de chaves com um número que esteja dentro da quantidade de parâmetros na função format a variável/conteúdo daquela posição irá ser movido para esse respectivo par de chaves. Vale ressaltar também que a primeira posição de chaves começa sempre por zero e não por 1 e isso pode acabar confundindo sua cabeça na hora de realizar isso. Uma boa prática nesse caso seria deixar as chaves sem númeração e colocar os parâmetros da função format na ordem que eles devem aparecer na string.</p>
+
+<p>Como acessar o conteúdo de uma posição especifica na string?
+Muito simples, basta utilizar colchetes na frente da sua string ou variável que contem sua string e acessar a posição desejada. Segue um exemplo:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"python"</span><span class="o">[</span>0] <span class="c"># 'p'</span>
+<span class="s1">'p'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"python"</span><span class="o">[</span>1] <span class="c"># 'y'</span>
+<span class="s1">'y'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"python"</span><span class="o">[</span>2] <span class="c"># 't'</span>
+<span class="s1">'t'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"python"</span><span class="o">[</span>3] <span class="c"># 'h'</span>
+<span class="s1">'h'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"python"</span><span class="o">[</span>4] <span class="c"># 'o'</span>
+<span class="s1">'o'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"python"</span><span class="o">[</span>5] <span class="c"># 'n'</span>
+<span class="s1">'n'</span>
+<span class="o">&gt;&gt;&gt;</span> string <span class="o">=</span> <span class="s2">"Rafael"</span>
+<span class="o">&gt;&gt;&gt;</span> string[0]
+<span class="s1">'R'</span>
+<span class="o">&gt;&gt;&gt;</span> string[7]
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"&lt;stdin&gt;"</span>, line 1, <span class="k">in</span> &lt;module&gt;
+IndexError: string index out of range
+
+</code></pre></div></div>
+
+<p>No exemplo acima são ilustrados 3 casos: 1º acessando a posição do conteúdo diretamente da string, 2º atribuindo a string a uma variável e acessando a posição desejada na sequência e 3º quando você tentar acessar uma posição que não exista na string você receberá como feedback do python a mensagem explicitando que você tentou acessar uma posição fora dos limites ou do tamanho da sua string.</p>
+
+<p>Uma observação sobre strings: não podemos alterar seu valor atribuindo um valor através do índice. Como no exemplo a seguir:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">&gt;&gt;&gt;</span> string <span class="o">=</span> <span class="s2">"Rafael"</span>
+<span class="o">&gt;&gt;&gt;</span> string[0] <span class="o">=</span> <span class="s2">"A"</span>
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"main.py"</span>, line 2, <span class="k">in</span> &lt;module&gt;
+    string[0] <span class="o">=</span> <span class="s2">"A"</span>
+TypeError: <span class="s1">'str'</span> object does not support item assignment
+</code></pre></div></div>
+
+<p>A forma mais comum de se substituir alguma coisa dentro de uma string é utilizando a função <strong>replace()</strong>. No código a seguir, vamos definir uma string e em seguida, substituir uma parte do seu conteúdo por outra.</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> texto <span class="o">=</span> <span class="s2">"A função replace aaaaaa substitui parte de um texto por outro texto"</span>
+<span class="o">&gt;&gt;&gt;</span> texto.replace<span class="o">(</span><span class="s2">"aaaaaa"</span>, <span class="s2">"basicamente"</span><span class="o">)</span>
+<span class="s1">'A função replace basicamente substitui parte de um texto por outro texto'</span>
+<span class="o">&gt;&gt;&gt;</span>
+</code></pre></div></div>
+
+<p>No código acima foi definido uma variável do tipo string chamada texto e dentro desta nós colocamos uma marcação <strong>aaaaaa</strong>, somente para facilitar o entendimento da função <strong>replace</strong>. Em seguida, invocamos a funçao replace(), e dissemos, que queríamos alterar a string <strong>aaaaaa</strong> pelo conteúdo, <strong>“basicamente”</strong>. Feito isso, uma nova string foi retornada com a alteração realizada.</p>
+
+<p>Novamente é importante relembrar que o que foi retornado é uma nova string, até porque, a string utilizada não pode ser alterada assim como já expliquei antes.</p>
+
+<p>Vale ressaltar que o tipo string é um objeto iterável então podemos andar pelas posições da string utilizando um laço de repetição. Veja um exemplo a seguir:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="k">for </span>letra <span class="k">in </span>string:
+...   print<span class="o">(</span>letra<span class="o">)</span>
+...
+R
+a
+f
+a
+e
+l
+<span class="o">&gt;&gt;&gt;</span> <span class="k">for </span>indice,letra <span class="k">in </span>enumerate<span class="o">(</span><span class="s2">"Rafael"</span><span class="o">)</span>:
+...   texto <span class="o">=</span> <span class="s2">"Posicao: {}, Letra: {}"</span>.format<span class="o">(</span>indice, letra<span class="o">)</span>
+...   print<span class="o">(</span>texto<span class="o">)</span>
+...
+Posicao: 0, Letra: R
+Posicao: 1, Letra: a
+Posicao: 2, Letra: f
+Posicao: 3, Letra: a
+Posicao: 4, Letra: e
+Posicao: 5, Letra: l
+</code></pre></div></div>
+
+<p>Outra coisa super bacana que podemos fazer com strings é recuperar uma parte da string (i.e., fatiar a string que em inglês você verá esse conceito como “slice”). Fazer isso é algo bastante simples, vejamos alguns exemplos a seguir:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> string <span class="o">=</span> <span class="s2">"Rafael"</span>
+<span class="o">&gt;&gt;&gt;</span> string
+<span class="s1">'Rafael'</span>
+<span class="o">&gt;&gt;&gt;</span> string[1:4]
+<span class="s1">'afa'</span>
+<span class="o">&gt;&gt;&gt;</span> string[0:3]
+<span class="s1">'Raf'</span>
+<span class="o">&gt;&gt;&gt;</span> string[:3]
+<span class="s1">'Raf'</span>
+<span class="o">&gt;&gt;&gt;</span> string[-1]
+<span class="s1">'l'</span>
+<span class="o">&gt;&gt;&gt;</span> string[-2]
+<span class="s1">'e'</span>
+<span class="o">&gt;&gt;&gt;</span> string[:]
+<span class="s1">'Rafael'</span>
+<span class="o">&gt;&gt;&gt;</span> string[0:]
+<span class="s1">'Rafael'</span>
+</code></pre></div></div>
+
+<p>Se eu quiser deixar minha string com todo o contéudo em <strong>caixa alta</strong> (i.e., em letra maiuscúla) eu preciso utilizar o método <strong>upper()</strong>. Veja um exemplo a seguir:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> string <span class="o">=</span> <span class="s2">"Meu nome é Rafael!"</span>
+<span class="o">&gt;&gt;&gt;</span> string
+<span class="s1">'Meu nome é Rafael!'</span>
+<span class="o">&gt;&gt;&gt;</span> string.upper<span class="o">()</span>
+<span class="s1">'MEU NOME É RAFAEL!'</span>
+</code></pre></div></div>
+
+<p>Se eu quiser deixar minha string com todo o contéudo em <strong>caixa baixa</strong> (i.e., em letra minuscúla) eu preciso utilizar o método <strong>lower()</strong>. Veja um exemplo a seguir:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> string <span class="o">=</span> <span class="s2">"MEU NOME É RAFAEL!"</span>
+<span class="o">&gt;&gt;&gt;</span> string
+<span class="s1">'MEU NOME É RAFAEL!'</span>
+<span class="o">&gt;&gt;&gt;</span> string.lower<span class="o">()</span>
+<span class="s1">'meu nome é rafael!'</span>
+</code></pre></div></div>
+
+<p>Se eu quiser converter uma variável númerica em string eu preciso utilizar o método <strong>str()</strong>. Veja um exemplo a seguir:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> numero <span class="o">=</span> 10
+<span class="o">&gt;&gt;&gt;</span> numero
+10
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="o">(</span>numero<span class="o">)</span>
+&lt;class <span class="s1">'int'</span><span class="o">&gt;</span>
+<span class="o">&gt;&gt;&gt;</span> str<span class="o">(</span>numero<span class="o">)</span>
+<span class="s1">'10'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">type</span><span class="o">(</span>str<span class="o">(</span>numero<span class="o">))</span>
+&lt;class <span class="s1">'str'</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>Se eu precisar descobrir se existe ou não apenas letras na minha string eu preciso utilizar o método <strong>isalpha</strong>. Veja um exemplo a seguir:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s2">"Rafael"</span>.isalpha<span class="o">()</span>
+True
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"Rafa1l"</span>.isalpha<span class="o">()</span>
+False
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"123"</span>.isalpha<span class="o">()</span>
+False
+</code></pre></div></div>
+
+<p>Se eu precisar remover espaços vazios ao redor da string eu preciso utilizar o método <strong>strip</strong>. Veja um exemplo a seguir:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> <span class="s2">" sobrando espaços "</span>.strip<span class="o">()</span>
+<span class="s1">'sobrando espaços'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"  sobrando espaços   "</span>.strip<span class="o">()</span>
+<span class="s1">'sobrando espaços'</span>
+</code></pre></div></div>
+
+<p>Se eu precisar juntar cada item de uma string por meio de um delimitador específico eu preciso utilizar o método <strong>join()</strong>. Veja alguns exemplos a seguir:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">&gt;&gt;&gt;</span> string <span class="o">=</span><span class="s2">"Eu estou com calor by Renata!"</span>
+<span class="o">&gt;&gt;&gt;</span> string
+<span class="s1">'Eu estou com calor by Renata!'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"_"</span>.join<span class="o">(</span>string<span class="o">)</span>
+<span class="s1">'E_u_ _e_s_t_o_u_ _c_o_m_ _c_a_l_o_r_ _b_y_ _R_e_n_a_t_a_!'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">"-"</span>.join<span class="o">([</span><span class="s1">'Rafael'</span>,<span class="s1">'Programacao'</span>,<span class="s1">'Blog'</span><span class="o">])</span>
+<span class="s1">'Rafael-Programacao-Blog'</span>
+<span class="o">&gt;&gt;&gt;</span> <span class="s2">" "</span>.join<span class="o">([</span><span class="s1">'Rafael'</span>,<span class="s1">'Programacao'</span>,<span class="s1">'Blog'</span><span class="o">])</span>
+<span class="s1">'Rafael Programacao Blog'</span>
+</code></pre></div></div>
+
+<p>Nos exemplos acima, eu também ilustrei que é possível juntar listas que é uma estrutura de dados utilizada em python e que será melhor detalhada no próximo tópico.</p>
+
+<p>E se eu não gostei do que eu juntei e também se eu pegar alguma string que eu queira separar os itens o que eu devo utilizar? Nesse caso, você precisa utilizar o método <strong>split()</strong>. Veja alguns exemplos a seguir:</p>
+
+<p>Repare que o método <strong>split()</strong> também utiliza um delimitador para separar a string diferente do método <strong>join()</strong> que usa um delimitador para juntar os itens da string. O <strong>split()</strong> é o inverso do método <strong>join()</strong>. Veja alguns exemplos a seguir:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>string <span class="o">=</span> <span class="s2">"nome - sobrenome"</span>
+<span class="o">&gt;&gt;&gt;</span> string.split<span class="o">(</span><span class="s2">"-"</span><span class="o">)</span>
+<span class="o">[</span><span class="s1">'nome '</span>, <span class="s1">' sobrenome'</span><span class="o">]</span>
+<span class="o">&gt;&gt;&gt;</span> string <span class="o">=</span> <span class="s2">"1,2,3,4,5,6"</span>
+<span class="o">&gt;&gt;&gt;</span> string.split<span class="o">(</span><span class="s2">" "</span><span class="o">)</span>
+<span class="o">[</span><span class="s1">'1,2,3,4,5,6'</span><span class="o">]</span>
+<span class="o">&gt;&gt;&gt;</span> string.split<span class="o">(</span><span class="s2">","</span><span class="o">)</span>
+<span class="o">[</span><span class="s1">'1'</span>, <span class="s1">'2'</span>, <span class="s1">'3'</span>, <span class="s1">'4'</span>, <span class="s1">'5'</span>, <span class="s1">'6'</span><span class="o">]</span>
+</code></pre></div></div>
+
+<p>Esses foram apenas alguns métodos que você pode aplicar para trabalhar com strings, se quiser conhecer outros não mencionados aqui, eu recomendo que você acesse a documentação do python e explore ainda mais esse universo.</p>
+
+<p>Exercícios para praticar o que aprendeu:</p>
+
+<ol>
+  <li>
+    <p>Criar uma variável do tipo string e atribuir o seu nome a ela. Depois de atribuir seu nome a variável criada, imprima seu conteúdo na tela com a seguinte frase: “Olá eu sou: “ e imprima o seu nome após os “:”.</p>
+  </li>
+  <li>
+    <p>Criar uma variável e atribuir seu nome a ela. Criar uma segunda variável e atribuir o nome de uma pessoa que você gosta a ela. No final imprimir o resultado da concatenação do conteúdo da primeira variável “+” a seguinte frase “ curte “ “+” com o conteúdo da segunda variável que você criou. Exemplo de resultado: “Rafael curte Renata”.</p>
+  </li>
+  <li>
+    <p>Criar uma variável e atribuir seu nome completo a ela. Depois de atribuir seu nome completo a ela imprimir a quantidade de caracteres que tem no seu nome completo. Dica: lembre de antes de apresentar o valor subtrair com a quantidade de espaços vazios entre as palavras.</p>
+  </li>
+  <li>
+    <p>Criar uma variável e atribuir o nome do seu animal de estimação a ela. Depois de atribuir o nome do seu pet a variável, criar uma frase e adicionar a variável na frase utilizando a função <strong>format()</strong>.</p>
+  </li>
+  <li>
+    <p>Criar uma variável e atribuir o seguinte texto a ela “O rato roeu a roupa do rei de Roma”. Depois de atribuir o texto a variável, imprimir o conteúdo do texto substituindo a palavra “rei” pelo seu nome.</p>
+  </li>
+  <li>
+    <p>Criar uma variável e atribuir o seu nome completo a ela. Depois de atribuir o seu nome completo a variável, imprimir somente as 3 primeiras letras do seu nome.</p>
+  </li>
+  <li>
+    <p>Criar uma variável e atribuir o conteúdo “Eu sou grande!” o a ela. Depois de atribuir o conteúdo a variável, imprimir todo o conteúdo em caixa alta.</p>
+  </li>
+  <li>
+    <p>Criar uma variável e atribuir o conteúdo “Eu sou pequeno!” o a ela. Depois de atribuir o conteúdo a variável, imprimir todo o conteúdo em caixa baixa.</p>
+  </li>
+  <li>
+    <p>Faça um programa que solicite ao usuário 2 variáveis onde, a primeira recebera um texto e a segunda um outro texto com conteúdo diferentes. Verifique qual variável tem o tamanho maior entre as duas e imprimir qual é a maior.</p>
+  </li>
+  <li>
+    <p>Faça um programa que solicite um texto e separe ele por meio do delimitador “*”.</p>
+  </li>
+</ol>
+:ET
