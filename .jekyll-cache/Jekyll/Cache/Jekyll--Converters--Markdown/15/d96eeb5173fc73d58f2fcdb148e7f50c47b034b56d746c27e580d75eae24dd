@@ -1,0 +1,803 @@
+I"Un<p><img src="http://localhost:4000/assets/database-schema.png" alt="database-schema" style="width: 100%" /></p>
+
+<p>Fala pessoal blz? No post de hoje vamos trocar uma ideia sobre a biblioteca ORM <strong>SQLALCHEMY</strong> utilizada com python para manipulação de bancos de dados. E aí, bora aprender algo novo?</p>
+
+<h2 id="introdução-ao-framework-sql-alchemy">INTRODUÇÃO AO FRAMEWORK SQL ALCHEMY</h2>
+
+<p><strong>SQL ALCHEMY</strong> é um <strong>framework</strong> do tipo <strong>Mapeamento objeto-relacional</strong> ou simplesmente <strong>ORM</strong>. Isso significa que por meio da linguagem python e orientação a objetos é possível converter código python e entidades de dados e também realizar o gerenciamento das mesmas. A seguir, vou ilustrar como isso funciona passo a passo para te ajudar a se tornar um profissional melhor.</p>
+
+<h2 id="instalando-a-biblioteca-do-sql-alchemy-no-python-3">INSTALANDO A BIBLIOTECA DO SQL ALCHEMY NO PYTHON 3</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># no seu terminal digite apenas =&gt; pip install SQLAlchemy
+# o comando abaixo com ! é por eu estar executando em um notebook que estou preparando esse tutorial
+#!pip install SQLAlchemy
+</span><span class="kn">from</span> <span class="nn">sqlalchemy.exc</span> <span class="kn">import</span> <span class="n">SQLAlchemyError</span> <span class="c1">#USAMOS ESSE OBJETO DA BIBLIOTECA SQLACHEMY PARA RECUPERAR OS ERROS QUE PODEM OCORRER DURANTE AS INTERAÇÕES COM O BANCO DE DADOS
+</span><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">inspect</span> <span class="c1">#USAMOS ESSE OBJETO DA BIBLIOTECA SQLACHEMY PARA VERIFICAR SE ALGUMA TABELA NOSSA QUE DESEJAMOS CRIAR JÁ POSSA EXISTIR E PODERMOS TOMAR ALGUMA DECISÃO QUANTO A ISSO
+</span></code></pre></div></div>
+
+<h2 id="criando-uma-engine">CRIANDO UMA ENGINE</h2>
+
+<p>O engine é como o SQLAlchemy se comunica com o banco de dados. Portanto, ao criar o mecanismo, você deve adicionar a URL do banco de dados e é basicamente isso. A seguir vou utilizar o sqlite por sem bem simples e fácil de outras pessoas conseguirem reproduzir esse tutotial, mas se você quiser basta pesquisar na internet o modo de se comunicar com o banco de dados que você utiliza seja ele Mysql, SqlServer, Oracle etc…</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="kn">from</span> <span class="nn">sqlalchemy</span> <span class="kn">import</span> <span class="n">create_engine</span>
+<span class="c1"># Para utilizar o debug deve-se adicionar ``echo=True``: ele permite que ao interagir com o banco você visualize todos os comandos executados pelo SQLAlchemy
+</span><span class="n">database_url</span> <span class="o">=</span> <span class="s">'sqlite:///teste.db'</span>
+<span class="n">engine</span> <span class="o">=</span> <span class="n">create_engine</span><span class="p">(</span><span class="n">database_url</span><span class="p">,</span> <span class="n">echo</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">engine</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Engine(sqlite:///teste.db)
+</code></pre></div></div>
+
+<p><img src="http://localhost:4000/assets/engine_sqlalchemy.png" alt="engine-sqlalchemy" style="width: 100%" /></p>
+
+<p>Com a engine pronta você pode se conectar e manipular um banco de dados de 2 formas possíveis. A seguir eu apresento a primeira forma que permite a manipulação de uma banco de dados forma direta:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># EXEMPLO DE CONSULTA DE DATA ATUAL USANDO SQL
+</span><span class="n">conn</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">trans</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s">'SELECT DATE();'</span>
+<span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"DATE = </span><span class="si">{</span><span class="n">row</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s">"</span><span class="p">)</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:17,663 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2022-12-03 12:50:17,664 INFO sqlalchemy.engine.Engine SELECT DATE();
+2022-12-03 12:50:17,665 INFO sqlalchemy.engine.Engine [raw sql] ()
+</code></pre></div></div>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">DATE = <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2022</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12</span>-<span style="color: #008080; text-decoration-color: #008080; font-weight: bold">03</span>
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:17,669 INFO sqlalchemy.engine.Engine COMMIT
+</code></pre></div></div>
+
+<h2 id="lembrete">LEMBRETE</h2>
+
+<p>Nunca se esqueça que se você abrir uma conexão, você precisa fecha-lá ao terminar de manipular os dados no banco de dados. Também é importante fechar qualquer transação que você abra após terminar de manipular os dados. A conexão permite que você converse com o banco de dados. A transação garante que o banco execute o comando que você deseja que ele realize.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conn</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span> <span class="c1">#ABRIR CONEXÃO COM O BANCO DE DADOS
+</span><span class="n">trans</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="c1">#ABRIR TRANSAÇÃO PARA MANIPULAR OS DADOS
+</span>
+<span class="c1"># aqui nesse espaço você constroe suas consultas ou outro tipo de ação que desejar realizar
+</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span> <span class="c1">#FECHAR A TRANSAÇÃO ABERTA ANTERIORMENTE PARA MANIPULAR OS DADOS
+</span><span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span> <span class="c1">#FECHAR A CONEXÃO COM O BANCO DE DADOS
+</span></code></pre></div></div>
+
+<h2 id="criando-uma-função-que-retorna-se-uma-tabela-já-existe-ou-não">CRIANDO UMA FUNÇÃO QUE RETORNA SE UMA TABELA JÁ EXISTE OU NÃO</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">inspector</span> <span class="o">=</span> <span class="n">inspect</span><span class="p">(</span><span class="n">engine</span><span class="p">)</span>
+<span class="k">def</span> <span class="nf">tabela_ja_existe</span><span class="p">(</span><span class="n">nome_tabela</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"VALIDANDO SE A TABELA </span><span class="si">{</span><span class="n">nome_tabela</span><span class="si">}</span><span class="s"> JÁ EXISTE OU NÃO"</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">nome_tabela</span> <span class="ow">in</span> <span class="n">inspector</span><span class="p">.</span><span class="n">get_table_names</span><span class="p">():</span>
+        <span class="k">return</span> <span class="bp">True</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="bp">False</span>
+</code></pre></div></div>
+
+<h2 id="criando-tabelas">CRIANDO TABELAS</h2>
+
+<p>Se as tabelas já existirem você irá receber um erro ao executar o bloco a baixo. Caso as tabelas ainda não existam elas serão criadas.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#AQUI TEMOS AS TABELAS QUE DESEJAMOS CRIAR
+</span><span class="n">tabelas</span> <span class="o">=</span> <span class="p">[</span><span class="s">"funcionarios"</span><span class="p">,</span> <span class="s">"departamentos"</span><span class="p">,</span> <span class="s">"trabalha"</span><span class="p">]</span>
+
+<span class="c1">#EXIBINDO OS NOMES DE NOSSAS TABELAS QUE INFORMAMOS NA LISTA ACIMA
+</span><span class="k">print</span><span class="p">(</span><span class="s">"EXIBINDO OS NOMES DE NOSSAS TABELAS QUE DESEJAMOS CRIAR:"</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"TABELA: "</span><span class="p">,</span> <span class="n">tabelas</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"TABELA: "</span><span class="p">,</span> <span class="n">tabelas</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"TABELA: "</span><span class="p">,</span> <span class="n">tabelas</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"</span><span class="se">\n\n\n</span><span class="s">"</span><span class="p">)</span>
+
+<span class="n">ddl_1</span> <span class="o">=</span> <span class="s">"""
+CREATE TABLE IF NOT EXISTS {} (
+    id INTEGER PRIMARY KEY,
+    nome TEXT,
+    idade INT,
+    salario DECIMAL(10,3)
+);
+"""</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">tabelas</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="n">ddl_2</span> <span class="o">=</span> <span class="s">"""
+CREATE TABLE IF NOT EXISTS {} (
+    id INTEGER PRIMARY KEY,
+    nome TEXT
+);
+"""</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">tabelas</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+
+<span class="n">ddl_3</span> <span class="o">=</span> <span class="s">"""
+CREATE TABLE IF NOT EXISTS {} (
+    id INTEGER PRIMARY KEY,
+    id_funcionario INT,
+    id_departamento INT,
+    data_entrada DATE,
+    data_saida DATE,
+    FOREIGN KEY (id_funcionario) REFERENCES funcionarios (id),
+    FOREIGN KEY (id_departamento) REFERENCES departamentos (id)
+);
+"""</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">tabelas</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="n">conn</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">trans</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span>
+
+<span class="k">if</span> <span class="n">tabela_ja_existe</span><span class="p">(</span><span class="n">tabelas</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">ddl_1</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="s">"</span><span class="se">\n\n\n</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">console</span><span class="p">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">show_locals</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Tabela </span><span class="si">{</span><span class="n">tabelas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="si">}</span><span class="s"> já existe!"</span><span class="p">)</span>
+<span class="c1">#==============================================
+</span><span class="k">if</span> <span class="n">tabela_ja_existe</span><span class="p">(</span><span class="n">tabelas</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">ddl_2</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="s">"</span><span class="se">\n\n\n</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">console</span><span class="p">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">show_locals</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Tabela </span><span class="si">{</span><span class="n">tabelas</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="si">}</span><span class="s"> já existe!"</span><span class="p">)</span>
+<span class="c1">#==============================================
+</span><span class="k">if</span> <span class="n">tabela_ja_existe</span><span class="p">(</span><span class="n">tabelas</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span> <span class="o">==</span> <span class="bp">False</span><span class="p">:</span>
+    <span class="k">try</span><span class="p">:</span>
+        <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">ddl_3</span><span class="p">)</span>
+    <span class="k">except</span> <span class="nb">Exception</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+        <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="s">"</span><span class="se">\n\n\n</span><span class="s">"</span><span class="p">)</span>
+        <span class="n">console</span><span class="p">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">show_locals</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="sa">f</span><span class="s">"Tabela </span><span class="si">{</span><span class="n">tabelas</span><span class="p">[</span><span class="mi">2</span><span class="p">]</span><span class="si">}</span><span class="s"> já existe!"</span><span class="p">)</span>
+
+
+<span class="n">trans</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">EXIBINDO OS NOMES DE NOSSAS TABELAS QUE DESEJAMOS CRIAR:
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">TABELA:  funcionarios
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">TABELA:  departamentos
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">TABELA:  trabalha
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:17,766 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+</code></pre></div></div>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">VALIDANDO SE A TABELA funcionarios JÁ EXISTE OU NÃO
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:17,769 INFO sqlalchemy.engine.Engine SELECT name FROM sqlite_master WHERE type='table' ORDER BY name
+2022-12-03 12:50:17,770 INFO sqlalchemy.engine.Engine [raw sql] ()
+2022-12-03 12:50:17,771 INFO sqlalchemy.engine.Engine 
+CREATE TABLE IF NOT EXISTS funcionarios (
+    id INTEGER PRIMARY KEY,
+    nome TEXT,
+    idade INT,
+    salario DECIMAL(10,3)
+);
+
+2022-12-03 12:50:17,772 INFO sqlalchemy.engine.Engine [raw sql] ()
+</code></pre></div></div>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">VALIDANDO SE A TABELA departamentos JÁ EXISTE OU NÃO
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:17,867 INFO sqlalchemy.engine.Engine 
+CREATE TABLE IF NOT EXISTS departamentos (
+    id INTEGER PRIMARY KEY,
+    nome TEXT
+);
+
+2022-12-03 12:50:17,868 INFO sqlalchemy.engine.Engine [raw sql] ()
+</code></pre></div></div>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">VALIDANDO SE A TABELA trabalha JÁ EXISTE OU NÃO
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:17,923 INFO sqlalchemy.engine.Engine 
+CREATE TABLE IF NOT EXISTS trabalha (
+    id INTEGER PRIMARY KEY,
+    id_funcionario INT,
+    id_departamento INT,
+    data_entrada DATE,
+    data_saida DATE,
+    FOREIGN KEY (id_funcionario) REFERENCES funcionarios (id),
+    FOREIGN KEY (id_departamento) REFERENCES departamentos (id)
+);
+
+2022-12-03 12:50:17,925 INFO sqlalchemy.engine.Engine [raw sql] ()
+2022-12-03 12:50:17,976 INFO sqlalchemy.engine.Engine COMMIT
+</code></pre></div></div>
+
+<h2 id="inserindo-dados-nas-tabelas">INSERINDO DADOS NAS TABELAS</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># PARTINDO DO PENSAMENTO DE QUE JÁ TEMOS AS TABELAS CRIADAS COM SUCESSO, AGORA DESEJAMOS INSERIR INFORMAÇÕES NAS TABELAS
+</span><span class="n">conn</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">trans</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">comando_sql</span> <span class="o">=</span> <span class="s">"""
+    INSERT INTO {} (nome, idade, salario) 
+    VALUES ('Hephzibah', 38, 306.261),
+    ('Paxon', 65, 428.725),
+    ('Corty', 48, 198.27),
+    ('Hedy', 46, 440.927),
+    ('Elyse', 39, 480.426),
+    ('Ira', 21, 186.163),
+    ('Mattias', 43, 344.029),
+    ('Tybalt', 57, 363.227),
+    ('Sully', 40, 282.221),
+    ('Wrennie', 41, 122.309),
+    ('Anatol', 60, 176.018),
+    ('Craggie', 69, 201.606),
+    ('Aila', 20, 358.59),
+    ('Marylin', 40, 163.559),
+    ('Moselle', 48, 306.284),
+    ('Raleigh', 23, 430.375),
+    ('Tracey', 31, 109.874),
+    ('Olenolin', 40, 190.977),
+    ('Myranda', 49, 324.872),
+    ('Filberto', 24, 362.89),
+    ('Calvin', 37, 498.879); 
+     """</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">tabelas</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">comando_sql</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">SQLAlchemyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="s">"</span><span class="se">\n\n\n</span><span class="s">"</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">comando_sql</span> <span class="o">=</span> <span class="s">"""
+    INSERT INTO {} (nome) 
+    VALUES ('Human Resources'),
+    ('Services'),
+    ('Product Management'),
+    ('Support'),
+    ('Business Development'),
+    ('Services'),
+    ('Human Resources'),
+    ('Support'),
+    ('Engineering'),
+    ('Services');
+    """</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">tabelas</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">comando_sql</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">SQLAlchemyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="s">"</span><span class="se">\n\n\n</span><span class="s">"</span><span class="p">)</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">show_locals</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">comando_sql</span> <span class="o">=</span> <span class="s">"""
+    INSERT INTO {} (id_funcionario, id_departamento, data_entrada, data_saida) 
+    VALUES (1, 4, '7/8/2022', '10/8/2021'),
+    (2, 5, '1/10/2022', '3/14/2022'),
+    (3, 7, '3/3/2021', '6/24/2021'),
+    (4, 10, '1/4/2022', '11/27/2021'),
+    (5, 3, '5/20/2022', '2/20/2021'),
+    (6, 5, '9/7/2021', '10/11/2022'),
+    (7, 6, '5/29/2021', '7/11/2022'),
+    (8, 5, '2/18/2022', '5/28/2022'),
+    (9, 3, '3/17/2022', null),
+    (10, 9, '1/31/2022', '10/11/2021'),
+    (11, 9, '2/6/2022', null),
+    (12, 2, '9/28/2021', null),
+    (13, 6, '2/28/2021', '4/6/2022'),
+    (14, 5, '11/25/2022', null),
+    (15, 10, '8/8/2021', '6/16/2021'),
+    (16, 5, '8/1/2022', null),
+    (17, 1, '5/26/2022', null),
+    (18, 6, '11/13/2021', null),
+    (19, 8, '6/22/2022', '12/11/2022'),
+    (20, 5, '2/19/2021', '7/11/2022'),
+    (21, 1, '9/7/2021', null);
+    """</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">tabelas</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">comando_sql</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">SQLAlchemyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="s">"</span><span class="se">\n\n\n</span><span class="s">"</span><span class="p">)</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">show_locals</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:17,985 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2022-12-03 12:50:17,987 INFO sqlalchemy.engine.Engine 
+    INSERT INTO funcionarios (nome, idade, salario) 
+    VALUES ('Hephzibah', 38, 306.261),
+    ('Paxon', 65, 428.725),
+    ('Corty', 48, 198.27),
+    ('Hedy', 46, 440.927),
+    ('Elyse', 39, 480.426),
+    ('Ira', 21, 186.163),
+    ('Mattias', 43, 344.029),
+    ('Tybalt', 57, 363.227),
+    ('Sully', 40, 282.221),
+    ('Wrennie', 41, 122.309),
+    ('Anatol', 60, 176.018),
+    ('Craggie', 69, 201.606),
+    ('Aila', 20, 358.59),
+    ('Marylin', 40, 163.559),
+    ('Moselle', 48, 306.284),
+    ('Raleigh', 23, 430.375),
+    ('Tracey', 31, 109.874),
+    ('Olenolin', 40, 190.977),
+    ('Myranda', 49, 324.872),
+    ('Filberto', 24, 362.89),
+    ('Calvin', 37, 498.879); 
+     
+2022-12-03 12:50:17,988 INFO sqlalchemy.engine.Engine [raw sql] ()
+2022-12-03 12:50:17,990 INFO sqlalchemy.engine.Engine 
+    INSERT INTO departamentos (nome) 
+    VALUES ('Human Resources'),
+    ('Services'),
+    ('Product Management'),
+    ('Support'),
+    ('Business Development'),
+    ('Services'),
+    ('Human Resources'),
+    ('Support'),
+    ('Engineering'),
+    ('Services');
+    
+2022-12-03 12:50:17,991 INFO sqlalchemy.engine.Engine [raw sql] ()
+2022-12-03 12:50:17,992 INFO sqlalchemy.engine.Engine 
+    INSERT INTO trabalha (id_funcionario, id_departamento, data_entrada, data_saida) 
+    VALUES (1, 4, '7/8/2022', '10/8/2021'),
+    (2, 5, '1/10/2022', '3/14/2022'),
+    (3, 7, '3/3/2021', '6/24/2021'),
+    (4, 10, '1/4/2022', '11/27/2021'),
+    (5, 3, '5/20/2022', '2/20/2021'),
+    (6, 5, '9/7/2021', '10/11/2022'),
+    (7, 6, '5/29/2021', '7/11/2022'),
+    (8, 5, '2/18/2022', '5/28/2022'),
+    (9, 3, '3/17/2022', null),
+    (10, 9, '1/31/2022', '10/11/2021'),
+    (11, 9, '2/6/2022', null),
+    (12, 2, '9/28/2021', null),
+    (13, 6, '2/28/2021', '4/6/2022'),
+    (14, 5, '11/25/2022', null),
+    (15, 10, '8/8/2021', '6/16/2021'),
+    (16, 5, '8/1/2022', null),
+    (17, 1, '5/26/2022', null),
+    (18, 6, '11/13/2021', null),
+    (19, 8, '6/22/2022', '12/11/2022'),
+    (20, 5, '2/19/2021', '7/11/2022'),
+    (21, 1, '9/7/2021', null);
+    
+2022-12-03 12:50:17,993 INFO sqlalchemy.engine.Engine [raw sql] ()
+2022-12-03 12:50:17,995 INFO sqlalchemy.engine.Engine COMMIT
+</code></pre></div></div>
+
+<h2 id="recuperando-os-dados-das-tabelas">RECUPERANDO OS DADOS DAS TABELAS</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conn</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span> <span class="c1">#ABRIR CONEXÃO COM O BANCO DE DADOS
+</span><span class="n">trans</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span> <span class="c1">#ABRIR TRANSAÇÃO PARA MANIPULAR OS DADOS
+</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"######################## RECUPERANDO OS DADOS DOS FUNCIONARIOS ########################"</span><span class="p">)</span>
+
+<span class="n">comando_sql</span> <span class="o">=</span> <span class="s">"""
+SELECT * FROM funcionarios;
+"""</span>
+<span class="n">funcionarios</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">comando_sql</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">f</span> <span class="ow">in</span> <span class="n">funcionarios</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">f</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"######################## RECUPERANDO OS DADOS DOS DEPARTAMENTOS ########################"</span><span class="p">)</span>
+
+<span class="n">comando_sql</span> <span class="o">=</span> <span class="s">"""
+SELECT * FROM departamentos;
+"""</span>
+<span class="n">departamentos</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">comando_sql</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">d</span> <span class="ow">in</span> <span class="n">departamentos</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">d</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"######################## RECUPERANDO OS DADOS DOS FUNCIONARIOS QUEM TRABALHAM NOS DEPARTAMENTOS ########################"</span><span class="p">)</span>
+
+<span class="n">comando_sql</span> <span class="o">=</span> <span class="s">"""
+SELECT f.nome, f.idade, f.salario, d.nome, t.data_entrada, t.data_saida FROM trabalha as t JOIN funcionarios as f ON t.id_funcionario = f.id JOIN departamentos d ON t.id_departamento = d.id;
+"""</span>
+<span class="n">trabalham</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">comando_sql</span><span class="p">)</span>
+
+<span class="k">for</span> <span class="n">t</span> <span class="ow">in</span> <span class="n">trabalham</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">t</span><span class="p">)</span>
+
+<span class="n">trans</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span> <span class="c1">#FECHAR A TRANSAÇÃO ABERTA ANTERIORMENTE PARA MANIPULAR OS DADOS
+</span><span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span> <span class="c1">#FECHAR A CONEXÃO COM O BANCO DE DADOS
+</span></code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,098 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+</code></pre></div></div>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">######################## RECUPERANDO OS DADOS DOS FUNCIONARIOS ########################
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,103 INFO sqlalchemy.engine.Engine 
+SELECT * FROM funcionarios;
+
+2022-12-03 12:50:18,104 INFO sqlalchemy.engine.Engine [raw sql] ()
+</code></pre></div></div>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008000; text-decoration-color: #008000">'Hephzibah'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">38</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">306.261</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="color: #008000; text-decoration-color: #008000">'Paxon'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">428.725</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>, <span style="color: #008000; text-decoration-color: #008000">'Corty'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">48</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">198.27</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>, <span style="color: #008000; text-decoration-color: #008000">'Hedy'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">46</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">440.927</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>, <span style="color: #008000; text-decoration-color: #008000">'Elyse'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">39</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">480.426</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>, <span style="color: #008000; text-decoration-color: #008000">'Ira'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">21</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">186.163</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>, <span style="color: #008000; text-decoration-color: #008000">'Mattias'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">43</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">344.029</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>, <span style="color: #008000; text-decoration-color: #008000">'Tybalt'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">57</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">363.227</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9</span>, <span style="color: #008000; text-decoration-color: #008000">'Sully'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">282.221</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>, <span style="color: #008000; text-decoration-color: #008000">'Wrennie'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">41</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">122.309</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span>, <span style="color: #008000; text-decoration-color: #008000">'Anatol'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">176.018</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">12</span>, <span style="color: #008000; text-decoration-color: #008000">'Craggie'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">69</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">201.606</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">13</span>, <span style="color: #008000; text-decoration-color: #008000">'Aila'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">20</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">358.59</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">14</span>, <span style="color: #008000; text-decoration-color: #008000">'Marylin'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">163.559</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">15</span>, <span style="color: #008000; text-decoration-color: #008000">'Moselle'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">48</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">306.284</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">16</span>, <span style="color: #008000; text-decoration-color: #008000">'Raleigh'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">23</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">430.375</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">17</span>, <span style="color: #008000; text-decoration-color: #008000">'Tracey'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">31</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">109.874</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">18</span>, <span style="color: #008000; text-decoration-color: #008000">'Olenolin'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">190.977</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">19</span>, <span style="color: #008000; text-decoration-color: #008000">'Myranda'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">49</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">324.872</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">20</span>, <span style="color: #008000; text-decoration-color: #008000">'Filberto'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">24</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">362.89</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">21</span>, <span style="color: #008000; text-decoration-color: #008000">'Calvin'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">37</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">498.879</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">######################## RECUPERANDO OS DADOS DOS DEPARTAMENTOS ########################
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,144 INFO sqlalchemy.engine.Engine 
+SELECT * FROM departamentos;
+
+2022-12-03 12:50:18,145 INFO sqlalchemy.engine.Engine [raw sql] ()
+</code></pre></div></div>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008000; text-decoration-color: #008000">'Human Resources'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="color: #008000; text-decoration-color: #008000">'Services'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>, <span style="color: #008000; text-decoration-color: #008000">'Product Management'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>, <span style="color: #008000; text-decoration-color: #008000">'Support'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>, <span style="color: #008000; text-decoration-color: #008000">'Business Development'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>, <span style="color: #008000; text-decoration-color: #008000">'Services'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>, <span style="color: #008000; text-decoration-color: #008000">'Human Resources'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>, <span style="color: #008000; text-decoration-color: #008000">'Support'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9</span>, <span style="color: #008000; text-decoration-color: #008000">'Engineering'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>, <span style="color: #008000; text-decoration-color: #008000">'Services'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace">######################## RECUPERANDO OS DADOS DOS FUNCIONARIOS QUEM TRABALHAM NOS DEPARTAMENTOS 
+########################
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,159 INFO sqlalchemy.engine.Engine 
+SELECT f.nome, f.idade, f.salario, d.nome, t.data_entrada, t.data_saida FROM trabalha as t JOIN funcionarios as f ON t.id_funcionario = f.id JOIN departamentos d ON t.id_departamento = d.id;
+
+2022-12-03 12:50:18,159 INFO sqlalchemy.engine.Engine [raw sql] ()
+</code></pre></div></div>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Hephzibah'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">38</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">306.261</span>, <span style="color: #008000; text-decoration-color: #008000">'Support'</span>, <span style="color: #008000; text-decoration-color: #008000">'7/8/2022'</span>, <span style="color: #008000; text-decoration-color: #008000">'10/8/2021'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Paxon'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">428.725</span>, <span style="color: #008000; text-decoration-color: #008000">'Business Development'</span>, <span style="color: #008000; text-decoration-color: #008000">'1/10/2022'</span>, <span style="color: #008000; text-decoration-color: #008000">'3/14/2022'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Corty'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">48</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">198.27</span>, <span style="color: #008000; text-decoration-color: #008000">'Human Resources'</span>, <span style="color: #008000; text-decoration-color: #008000">'3/3/2021'</span>, <span style="color: #008000; text-decoration-color: #008000">'6/24/2021'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Hedy'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">46</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">440.927</span>, <span style="color: #008000; text-decoration-color: #008000">'Services'</span>, <span style="color: #008000; text-decoration-color: #008000">'1/4/2022'</span>, <span style="color: #008000; text-decoration-color: #008000">'11/27/2021'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Elyse'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">39</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">480.426</span>, <span style="color: #008000; text-decoration-color: #008000">'Product Management'</span>, <span style="color: #008000; text-decoration-color: #008000">'5/20/2022'</span>, <span style="color: #008000; text-decoration-color: #008000">'2/20/2021'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Ira'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">21</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">186.163</span>, <span style="color: #008000; text-decoration-color: #008000">'Business Development'</span>, <span style="color: #008000; text-decoration-color: #008000">'9/7/2021'</span>, <span style="color: #008000; text-decoration-color: #008000">'10/11/2022'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Mattias'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">43</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">344.029</span>, <span style="color: #008000; text-decoration-color: #008000">'Services'</span>, <span style="color: #008000; text-decoration-color: #008000">'5/29/2021'</span>, <span style="color: #008000; text-decoration-color: #008000">'7/11/2022'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Tybalt'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">57</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">363.227</span>, <span style="color: #008000; text-decoration-color: #008000">'Business Development'</span>, <span style="color: #008000; text-decoration-color: #008000">'2/18/2022'</span>, <span style="color: #008000; text-decoration-color: #008000">'5/28/2022'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Sully'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">282.221</span>, <span style="color: #008000; text-decoration-color: #008000">'Product Management'</span>, <span style="color: #008000; text-decoration-color: #008000">'3/17/2022'</span>, <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Wrennie'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">41</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">122.309</span>, <span style="color: #008000; text-decoration-color: #008000">'Engineering'</span>, <span style="color: #008000; text-decoration-color: #008000">'1/31/2022'</span>, <span style="color: #008000; text-decoration-color: #008000">'10/11/2021'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Anatol'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">176.018</span>, <span style="color: #008000; text-decoration-color: #008000">'Engineering'</span>, <span style="color: #008000; text-decoration-color: #008000">'2/6/2022'</span>, <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Craggie'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">69</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">201.606</span>, <span style="color: #008000; text-decoration-color: #008000">'Services'</span>, <span style="color: #008000; text-decoration-color: #008000">'9/28/2021'</span>, <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Aila'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">20</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">358.59</span>, <span style="color: #008000; text-decoration-color: #008000">'Services'</span>, <span style="color: #008000; text-decoration-color: #008000">'2/28/2021'</span>, <span style="color: #008000; text-decoration-color: #008000">'4/6/2022'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Marylin'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">163.559</span>, <span style="color: #008000; text-decoration-color: #008000">'Business Development'</span>, <span style="color: #008000; text-decoration-color: #008000">'11/25/2022'</span>, <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Moselle'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">48</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">306.284</span>, <span style="color: #008000; text-decoration-color: #008000">'Services'</span>, <span style="color: #008000; text-decoration-color: #008000">'8/8/2021'</span>, <span style="color: #008000; text-decoration-color: #008000">'6/16/2021'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Raleigh'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">23</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">430.375</span>, <span style="color: #008000; text-decoration-color: #008000">'Business Development'</span>, <span style="color: #008000; text-decoration-color: #008000">'8/1/2022'</span>, <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Tracey'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">31</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">109.874</span>, <span style="color: #008000; text-decoration-color: #008000">'Human Resources'</span>, <span style="color: #008000; text-decoration-color: #008000">'5/26/2022'</span>, <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Olenolin'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">190.977</span>, <span style="color: #008000; text-decoration-color: #008000">'Services'</span>, <span style="color: #008000; text-decoration-color: #008000">'11/13/2021'</span>, <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Myranda'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">49</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">324.872</span>, <span style="color: #008000; text-decoration-color: #008000">'Support'</span>, <span style="color: #008000; text-decoration-color: #008000">'6/22/2022'</span>, <span style="color: #008000; text-decoration-color: #008000">'12/11/2022'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Filberto'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">24</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">362.89</span>, <span style="color: #008000; text-decoration-color: #008000">'Business Development'</span>, <span style="color: #008000; text-decoration-color: #008000">'2/19/2021'</span>, <span style="color: #008000; text-decoration-color: #008000">'7/11/2022'</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008000; text-decoration-color: #008000">'Calvin'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">37</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">498.879</span>, <span style="color: #008000; text-decoration-color: #008000">'Human Resources'</span>, <span style="color: #008000; text-decoration-color: #008000">'9/7/2021'</span>, <span style="color: #800080; text-decoration-color: #800080; font-style: italic">None</span><span style="font-weight: bold">)</span>
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,209 INFO sqlalchemy.engine.Engine COMMIT
+</code></pre></div></div>
+
+<h2 id="atualizando-os-dados-nas-tabelas">ATUALIZANDO OS DADOS NAS TABELAS</h2>
+
+<p>Para esse exemplo vamos selecionar os 10 primeiros funcionários e escolher um deles para realizar alguma alteração como por exemplo o valor do salário.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conn</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">trans</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s">'SELECT * FROM funcionarios LIMIT 10;'</span> <span class="c1">#CONSULTA PARA SELECIONAR OS 10 PRIMEIROS FUNCIONÁRIOS CADASTRADOS NO NOSSO BANCO DE DADOS
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,216 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2022-12-03 12:50:18,217 INFO sqlalchemy.engine.Engine SELECT * FROM funcionarios LIMIT 10;
+2022-12-03 12:50:18,218 INFO sqlalchemy.engine.Engine [raw sql] ()
+</code></pre></div></div>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008000; text-decoration-color: #008000">'Hephzibah'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">38</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">306.261</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="color: #008000; text-decoration-color: #008000">'Paxon'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">428.725</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>, <span style="color: #008000; text-decoration-color: #008000">'Corty'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">48</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">198.27</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>, <span style="color: #008000; text-decoration-color: #008000">'Hedy'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">46</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">440.927</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>, <span style="color: #008000; text-decoration-color: #008000">'Elyse'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">39</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">480.426</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>, <span style="color: #008000; text-decoration-color: #008000">'Ira'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">21</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">186.163</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>, <span style="color: #008000; text-decoration-color: #008000">'Mattias'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">43</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">344.029</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>, <span style="color: #008000; text-decoration-color: #008000">'Tybalt'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">57</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">363.227</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9</span>, <span style="color: #008000; text-decoration-color: #008000">'Sully'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">282.221</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>, <span style="color: #008000; text-decoration-color: #008000">'Wrennie'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">41</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">122.309</span><span style="font-weight: bold">)</span>
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,242 INFO sqlalchemy.engine.Engine COMMIT
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conn</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">trans</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">comando_sql</span> <span class="o">=</span> <span class="s">"""
+    UPDATE funcionarios
+    SET nome = 'Rafael', salario = 50000.00
+    WHERE id = 3;
+    """</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">comando_sql</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">SQLAlchemyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="s">"</span><span class="se">\n\n\n</span><span class="s">"</span><span class="p">)</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">show_locals</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,258 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2022-12-03 12:50:18,259 INFO sqlalchemy.engine.Engine 
+    UPDATE funcionarios
+    SET nome = 'Rafael', salario = 50000.00
+    WHERE id = 3;
+    
+2022-12-03 12:50:18,260 INFO sqlalchemy.engine.Engine [raw sql] ()
+2022-12-03 12:50:18,263 INFO sqlalchemy.engine.Engine COMMIT
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conn</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">trans</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s">'SELECT * FROM funcionarios LIMIT 10;'</span> <span class="c1">#CONSULTA PARA SELECIONAR OS 10 PRIMEIROS FUNCIONÁRIOS CADASTRADOS NO NOSSO BANCO DE DADOS
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,363 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2022-12-03 12:50:18,364 INFO sqlalchemy.engine.Engine SELECT * FROM funcionarios LIMIT 10;
+2022-12-03 12:50:18,364 INFO sqlalchemy.engine.Engine [raw sql] ()
+</code></pre></div></div>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008000; text-decoration-color: #008000">'Hephzibah'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">38</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">306.261</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="color: #008000; text-decoration-color: #008000">'Paxon'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">428.725</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>, <span style="color: #008000; text-decoration-color: #008000">'Rafael'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">48</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50000</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">4</span>, <span style="color: #008000; text-decoration-color: #008000">'Hedy'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">46</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">440.927</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>, <span style="color: #008000; text-decoration-color: #008000">'Elyse'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">39</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">480.426</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>, <span style="color: #008000; text-decoration-color: #008000">'Ira'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">21</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">186.163</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>, <span style="color: #008000; text-decoration-color: #008000">'Mattias'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">43</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">344.029</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>, <span style="color: #008000; text-decoration-color: #008000">'Tybalt'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">57</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">363.227</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9</span>, <span style="color: #008000; text-decoration-color: #008000">'Sully'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">282.221</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>, <span style="color: #008000; text-decoration-color: #008000">'Wrennie'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">41</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">122.309</span><span style="font-weight: bold">)</span>
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,378 INFO sqlalchemy.engine.Engine COMMIT
+</code></pre></div></div>
+
+<h2 id="deletandos-os-dados-nas-tabelas">DELETANDOS OS DADOS NAS TABELAS</h2>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># VAMOS DELETAR O REGISTRO COM ID = 4 referente a =&gt; (4, 'Hedy', 46, 440.927)
+</span><span class="n">conn</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">trans</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span>
+<span class="k">try</span><span class="p">:</span>
+    <span class="n">comando_sql</span> <span class="o">=</span> <span class="s">"""
+    DELETE FROM funcionarios WHERE id = 4; 
+    """</span>
+    <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">comando_sql</span><span class="p">)</span>
+<span class="k">except</span> <span class="n">SQLAlchemyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">e</span><span class="p">,</span><span class="s">"</span><span class="se">\n\n\n</span><span class="s">"</span><span class="p">)</span>
+    <span class="n">console</span><span class="p">.</span><span class="n">print_exception</span><span class="p">(</span><span class="n">show_locals</span><span class="o">=</span><span class="bp">True</span><span class="p">)</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,427 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2022-12-03 12:50:18,428 INFO sqlalchemy.engine.Engine 
+    DELETE FROM funcionarios WHERE id = 4; 
+    
+2022-12-03 12:50:18,429 INFO sqlalchemy.engine.Engine [raw sql] ()
+2022-12-03 12:50:18,431 INFO sqlalchemy.engine.Engine COMMIT
+</code></pre></div></div>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">conn</span> <span class="o">=</span> <span class="n">engine</span><span class="p">.</span><span class="n">connect</span><span class="p">()</span>
+<span class="n">trans</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">begin</span><span class="p">()</span>
+<span class="n">query</span> <span class="o">=</span> <span class="s">'SELECT * FROM funcionarios LIMIT 10;'</span> <span class="c1">#CONSULTA PARA SELECIONAR OS 10 PRIMEIROS FUNCIONÁRIOS CADASTRADOS NO NOSSO BANCO DE DADOS
+</span><span class="n">result</span> <span class="o">=</span> <span class="n">conn</span><span class="p">.</span><span class="n">execute</span><span class="p">(</span><span class="n">query</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">result</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">row</span><span class="p">)</span>
+<span class="n">trans</span><span class="p">.</span><span class="n">commit</span><span class="p">()</span>
+<span class="n">conn</span><span class="p">.</span><span class="n">close</span><span class="p">()</span>
+</code></pre></div></div>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,526 INFO sqlalchemy.engine.Engine BEGIN (implicit)
+2022-12-03 12:50:18,527 INFO sqlalchemy.engine.Engine SELECT * FROM funcionarios LIMIT 10;
+2022-12-03 12:50:18,528 INFO sqlalchemy.engine.Engine [raw sql] ()
+</code></pre></div></div>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">1</span>, <span style="color: #008000; text-decoration-color: #008000">'Hephzibah'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">38</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">306.261</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">2</span>, <span style="color: #008000; text-decoration-color: #008000">'Paxon'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">65</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">428.725</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">3</span>, <span style="color: #008000; text-decoration-color: #008000">'Rafael'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">48</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">50000</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">5</span>, <span style="color: #008000; text-decoration-color: #008000">'Elyse'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">39</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">480.426</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">6</span>, <span style="color: #008000; text-decoration-color: #008000">'Ira'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">21</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">186.163</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">7</span>, <span style="color: #008000; text-decoration-color: #008000">'Mattias'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">43</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">344.029</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">8</span>, <span style="color: #008000; text-decoration-color: #008000">'Tybalt'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">57</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">363.227</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">9</span>, <span style="color: #008000; text-decoration-color: #008000">'Sully'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">40</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">282.221</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">10</span>, <span style="color: #008000; text-decoration-color: #008000">'Wrennie'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">41</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">122.309</span><span style="font-weight: bold">)</span>
+</pre>
+
+<pre style="white-space:pre;overflow-x:auto;line-height:normal;font-family:Menlo,'DejaVu Sans Mono',consolas,'Courier New',monospace"><span style="font-weight: bold">(</span><span style="color: #008080; text-decoration-color: #008080; font-weight: bold">11</span>, <span style="color: #008000; text-decoration-color: #008000">'Anatol'</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">60</span>, <span style="color: #008080; text-decoration-color: #008080; font-weight: bold">176.018</span><span style="font-weight: bold">)</span>
+</pre>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>2022-12-03 12:50:18,545 INFO sqlalchemy.engine.Engine COMMIT
+</code></pre></div></div>
+
+<p>Como foi possível representar nos 2 últimos trechos de código nos escolhemos um registro da tabela funcionários que nesse caso foi o usuário que tinha o id = 4. Logo depois de realizar a exclusão desse registro nos realizamos um comando SELECT para trazer os 10 primeiros registros e já é possível visualizar que o número 4 não pertence mais a tabela. Nesse post eu mostrei de forma simples e direta como manipular uma base de dados usando linguagem PYTHON com SQL para manipular o banco de dados SQLITE3 que é um banco bastante simples geralmente usado para realização de provas de conceito (POCs) e também em ambientes de desenvolvimento para validar ideias.</p>
+
+<p>No próximo post eu vou ensinar como utilizar os recursos mais utilizados do ORM SQLACHEMY para realizar as mesmas atividades que foram demostradas nesse post para que você que está lendo esse post possa tirar ainda mais proveito da manipulação de bancos de dados com python.</p>
+:ET
