@@ -1,0 +1,44 @@
+I"�<p><img src="http://localhost:4000/assets/apache-cassandra.png" alt="apache cassandra" style="width: 100%" /></p>
+
+<p>Fala pessoal blz? No post de hoje vamos trocar uma ideia sobre <strong>Apache Cassandra</strong> e como modelar dados nesse banco de dados NOSQL que vem sendo bastante usada no universo do Big Data. E aí, bora aprender algo novo?</p>
+
+<h2 id="o-que-é-apache-cassandra">O que é Apache Cassandra?</h2>
+
+<p>Segundo o site oficial do Cassandra, ele é um banco de dados distribuído NoSQL de código aberto, confiável que garante escalabilidade e alta disponibilidade sem comprometer o desempenho. Escalabilidade linear e tolerância a falhas comprovada em hardware de commodity (computadores de baixo custo) ou infraestrutura de nuvem o tornam a plataforma perfeita para dados de missão crítica.</p>
+
+<p>Ainda segundo o site oficial do Apache Cassandra por design, os bancos de dados NoSQL são leves, de código aberto, não relacionais e amplamente distribuídos. Entre seus pontos fortes estão a escalabilidade horizontal, arquiteturas distribuídas e uma abordagem flexível para definição de esquema.</p>
+
+<p>Os bancos de dados NoSQL permitem organização e análise rápidas e de tipos de dados diferentes e de volume extremamente alto. Isso se tornou mais importante nos últimos anos, com a chegada do Big Data e a necessidade de dimensionar rapidamente os bancos de dados na nuvem. O Apache Cassandra está entre os bancos de dados NoSQL que abordaram as restrições de tecnologias de gerenciamento de dados anteriores, como bancos de dados SQL.</p>
+
+<p>Uma das vantagens do Apache Cassandra é sua capacidade de resiliencia, se você tiver um ponto de falha em algum nó do seu cluster os seus dados estaram replicados em outros nós garantindo um ambiente resiliente e de alta disponibilidade fornecendo a você mais segurança contra perda de dados.</p>
+
+<p>Outra caracteristica super bacana do Apache Cassandra é a escalabilidade horizontal que é semelhante a do Apache Hadoop. Imagine que se você precisar de mais espaço e mais poder de processamento você pode incluir mais máquinas no seu cluster de acordo com a necessidade da sua aplicação/software.</p>
+
+<h2 id="como-instalartestar-o-apache-cassandra">Como instalar/testar o Apache Cassandra</h2>
+
+<p>Se você quiser instalar o Apache Cassandra para testar na sua máquina use uma das opções a seguir:</p>
+<ul>
+  <li>opção 1: <a href="https://cassandra.apache.org/_/download.html">Site oficial</a>;</li>
+  <li>opção 2: <a href="https://hub.docker.com/_/cassandra">Usando docker</a>;</li>
+  <li>opção 3: Usando docker-compose -&gt;</li>
+</ul>
+
+<div class="language-yaml highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># docker-compose.yml</span>
+<span class="na">version</span><span class="pi">:</span> <span class="s1">'</span><span class="s">2'</span>
+
+<span class="na">services</span><span class="pi">:</span>
+  <span class="na">cassandra</span><span class="pi">:</span>
+    <span class="na">image</span><span class="pi">:</span> <span class="s">cassandra:4.0</span>
+    <span class="na">ports</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">9042:9042</span>
+    <span class="na">volumes</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">./apps/cassandra:/var/lib/cassandra</span>
+    <span class="na">environment</span><span class="pi">:</span>
+      <span class="pi">-</span> <span class="s">CASSANDRA_CLUSTER_NAME=cluster_rafael</span>
+
+</code></pre></div></div>
+
+<p>Para qualquer dúvida sobre as opções usando docker recomendo que estude sobre o assunto caso não tenha nenhum conhecimento.</p>
+
+<h2 id="em-construção">Em construção…</h2>
+:ET

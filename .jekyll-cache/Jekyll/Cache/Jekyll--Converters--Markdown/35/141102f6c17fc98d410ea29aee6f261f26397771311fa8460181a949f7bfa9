@@ -1,4 +1,4 @@
-I"R<div id="archives">
+I"p&<div id="archives">
 
   <div class="archive-group">
     
@@ -155,6 +155,10 @@
     <a name="big-data"></a>
     
     <article class="archive-item">
+      <h4><a href="/modelagem-de-dados-com-apache-cassandra">Modelagem de Dados com Apache Cassandra</a></h4>
+    </article>
+    
+    <article class="archive-item">
       <h4><a href="/introducao-a-arquitetura-hadoop">Introdução a Arquitetura Hadoop</a></h4>
     </article>
     
@@ -234,6 +238,76 @@
     
     <article class="archive-item">
       <h4><a href="/introducao-ao-orm-sqlalchemy-parte-1">Introdução a manipulação de banco de dados com a biblioteca ORM Sqlalchemy - Parte 1</a></h4>
+    </article>
+    
+  </div>
+
+  <div class="archive-group">
+    
+    <div id="#modelagem"></div>
+    <p></p>
+    
+    <h3 class="category-head">modelagem</h3>
+    <a name="modelagem"></a>
+    
+    <article class="archive-item">
+      <h4><a href="/modelagem-de-dados-com-apache-cassandra">Modelagem de Dados com Apache Cassandra</a></h4>
+    </article>
+    
+  </div>
+
+  <div class="archive-group">
+    
+    <div id="#dados"></div>
+    <p></p>
+    
+    <h3 class="category-head">dados</h3>
+    <a name="dados"></a>
+    
+    <article class="archive-item">
+      <h4><a href="/modelagem-de-dados-com-apache-cassandra">Modelagem de Dados com Apache Cassandra</a></h4>
+    </article>
+    
+  </div>
+
+  <div class="archive-group">
+    
+    <div id="#apache"></div>
+    <p></p>
+    
+    <h3 class="category-head">apache</h3>
+    <a name="apache"></a>
+    
+    <article class="archive-item">
+      <h4><a href="/modelagem-de-dados-com-apache-cassandra">Modelagem de Dados com Apache Cassandra</a></h4>
+    </article>
+    
+  </div>
+
+  <div class="archive-group">
+    
+    <div id="#cassandra"></div>
+    <p></p>
+    
+    <h3 class="category-head">cassandra</h3>
+    <a name="cassandra"></a>
+    
+    <article class="archive-item">
+      <h4><a href="/modelagem-de-dados-com-apache-cassandra">Modelagem de Dados com Apache Cassandra</a></h4>
+    </article>
+    
+  </div>
+
+  <div class="archive-group">
+    
+    <div id="#nosql"></div>
+    <p></p>
+    
+    <h3 class="category-head">nosql</h3>
+    <a name="nosql"></a>
+    
+    <article class="archive-item">
+      <h4><a href="/modelagem-de-dados-com-apache-cassandra">Modelagem de Dados com Apache Cassandra</a></h4>
     </article>
     
   </div>
