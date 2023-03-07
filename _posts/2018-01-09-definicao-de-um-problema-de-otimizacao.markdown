@@ -1,7 +1,7 @@
 ---
 layout: post
 title:  "O que é um problema de otimização?"
-date:   2018-09-01 17:33:03 -0300
+date:   2018-01-09 17:33:03 -0300
 categories: otimização
 ---
 

@@ -1,4 +1,4 @@
-I"p&<div id="archives">
+I"�)<div id="archives">
 
   <div class="archive-group">
     
@@ -47,6 +47,10 @@
     
     <h3 class="category-head">python</h3>
     <a name="python"></a>
+    
+    <article class="archive-item">
+      <h4><a href="/introducao-ao-orm-sqlalchemy-parte-2">Introdução a manipulação de banco de dados com a biblioteca ORM Sqlalchemy - Parte 2</a></h4>
+    </article>
     
     <article class="archive-item">
       <h4><a href="/introducao-ao-orm-sqlalchemy-parte-1">Introdução a manipulação de banco de dados com a biblioteca ORM Sqlalchemy - Parte 1</a></h4>
@@ -209,6 +213,10 @@
     <a name="sql"></a>
     
     <article class="archive-item">
+      <h4><a href="/introducao-ao-orm-sqlalchemy-parte-2">Introdução a manipulação de banco de dados com a biblioteca ORM Sqlalchemy - Parte 2</a></h4>
+    </article>
+    
+    <article class="archive-item">
       <h4><a href="/introducao-ao-orm-sqlalchemy-parte-1">Introdução a manipulação de banco de dados com a biblioteca ORM Sqlalchemy - Parte 1</a></h4>
     </article>
     
@@ -223,6 +231,10 @@
     <a name="orm"></a>
     
     <article class="archive-item">
+      <h4><a href="/introducao-ao-orm-sqlalchemy-parte-2">Introdução a manipulação de banco de dados com a biblioteca ORM Sqlalchemy - Parte 2</a></h4>
+    </article>
+    
+    <article class="archive-item">
       <h4><a href="/introducao-ao-orm-sqlalchemy-parte-1">Introdução a manipulação de banco de dados com a biblioteca ORM Sqlalchemy - Parte 1</a></h4>
     </article>
     
@@ -235,6 +247,10 @@
     
     <h3 class="category-head">sqlalchemy</h3>
     <a name="sqlalchemy"></a>
+    
+    <article class="archive-item">
+      <h4><a href="/introducao-ao-orm-sqlalchemy-parte-2">Introdução a manipulação de banco de dados com a biblioteca ORM Sqlalchemy - Parte 2</a></h4>
+    </article>
     
     <article class="archive-item">
       <h4><a href="/introducao-ao-orm-sqlalchemy-parte-1">Introdução a manipulação de banco de dados com a biblioteca ORM Sqlalchemy - Parte 1</a></h4>

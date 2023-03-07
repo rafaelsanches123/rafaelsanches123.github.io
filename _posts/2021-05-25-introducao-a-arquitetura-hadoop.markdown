@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introdução a Arquitetura Hadoop"
-date: 2021-06-06 17:00:03 -0300
+date: 2021-05-25 17:00:03 -0300
 categories: big-data data hadoop
 ---
 

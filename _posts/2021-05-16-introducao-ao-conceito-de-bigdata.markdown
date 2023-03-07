@@ -1,7 +1,7 @@
 ---
 layout: post
 title: "Introdução ao conceito de Big Data"
-date: 2021-05-15 17:00:03 -0300
+date: 2021-05-16 17:00:03 -0300
 categories: big-data data
 ---
 
