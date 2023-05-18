@@ -1,0 +1,132 @@
+I"y0<p><img src="https://rafaelsanches123.github.io/assets/face-detection-example.png" alt="face-detection-python" style="width: 100%" />
+<strong><em>Fonte</em></strong>: <em>https://pixabay.com/pt/photos/bela-mulher-face-mulher-jovem-2150881/</em></p>
+
+<p>Fala pessoal blz? No post de hoje eu vou ensinar vocês de forma simples como construir um algoritmo em python realizar a detecção de faces em imagens. E aí, bora aprender algo novo?</p>
+
+<h2 id="instalando-as-bibliotecas-a-serem-utilizadas-com-o-python">Instalando as bibliotecas a serem utilizadas com o python</h2>
+
+<p>Se você quiser utilizar um ambiente virtual para testar o nosso script eu recomendo que veja o artigo <a href="/criacao-de-um-ambiente-virtual-em-python">link para o artigo</a> para ver como utilizar um ambiente virtual fechado em projetos python caso você ainda não saiba fazer isso e queira utilizar esse recurso para manter seus projetos organizados e isolados. Se não, pode continuar a leitura.</p>
+
+<p>O primeiro passo é instalar a biblioteca <strong>opencv</strong>. Ela possui muitos recursos voltados para o processamento digital de imagens e visão computacional.</p>
+
+<p>Abra o seu terminal e digite o comando a seguir para instalar a biblioteca que precisamos utilizar no nosso script:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>pip <span class="nb">install </span>opencv-python
+</code></pre></div></div>
+<p>Para esse projeto vamos utilizar um método bastante famosos chamado <strong>Haar Cascade Classifiers</strong>. Esse método é uma abordagem eficaz de detecção de objetos que foi proposta por Paul Viola e Michael Jones em seu artigo: “<strong>Rapid Object Detection using a Boosted Cascade of Simple Features</strong>” publicado no ano de 2001. Recomendo a leitura do artigo caso você queira entender a fundo a matemática utilizada nesse método.</p>
+
+<p>Os <strong>Haar Cascade Classifiers</strong> nada mais são do que abordagens baseadas e aprendizado de máquina em que uma função baseada em cascata é treinada a partir de uma base de imagens positivas e negativas (i.e., dataset de treino e validação) e com base nesse treinamento essas funções cascata são utilizadas para detectar determinados objetos em imagens novas.</p>
+
+<p>Para entender como eles funcionam imagine que para cada objetivo (i.e., o que desejamos detectar) temos arquivos gigantes com extensão “.xml” que correspondem a um  caso de uso específico e nesse caso, podemos tomar como exemplo o nosso objetivo nesse post que é a detecção de faces.</p>
+
+<p>Para nosso post você vai precisar baixar o arquivo <strong>xml</strong> do classificador já treinado
+<a href="https://github.com/opencv/opencv/tree/master/data/haarcascades" target="_blank">(haarcascade_frontalface_default.xml)</a>.</p>
+
+<p>O nosso projeto vai seguir a seguinte estrutura de diretórios:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── face-detection-in-image.py
+├── imagens
+│   ├── modificada
+│   └── original
+│       └── imagem1-original-com-face.jpg
+├── modelo
+│   └── haarcascade_frontalface_default.xml
+</code></pre></div></div>
+
+<p>Como é possível observar precisamos criar o arquivo <strong>face-detection-in-image.py</strong> dentro da pasta que armazena os códigos do nosso projeto. Precisamos criar uma pasta para guardar nossas imagens utilizadas no projeto e para isso vamos criar a pasta <strong>imagens</strong> no mesmo diretório do arquivo <strong>face-detection-in-image.py</strong>. Dentro da pasta <strong>imagens</strong> crie outras duas pastas, uma chama <strong>modificada</strong> que não irá ter nenhum conteúdo no momento e uma segunda pasta chamada <strong>original</strong>. Dentro da pasta original você vai colocar o arquivo de imagem que você pretender usar para procurar faces. No caso desse post, vamos utilizar a imagem:</p>
+
+<p><img src="https://rafaelsanches123.github.io/assets/imagem1-original-com-face.jpg" alt="imagem-com-face" style="width: 100%" /></p>
+
+<p><strong><em>Figura 1</em></strong>: <em>Fonte: https://pixabay.com/pt/photos/bela-mulher-face-mulher-jovem-2150881/</em></p>
+
+<p>Ainda no mesmo diretório de <strong>imagens</strong> e dp arquivo <strong>face-detection-in-image.py</strong> crie uma pasta chamada modelo e dentro dela coloque o arquivo <a href="https://github.com/opencv/opencv/tree/master/data/haarcascades" target="_blank">(haarcascade_frontalface_default.xml)</a> que você baixou.</p>
+
+<p>Pronto, agora vamos criar nosso algoritmo para detectar o rosto na <strong>Figura 1</strong>.</p>
+
+<p>Vamos editar o arquivo <strong>face-detection-in-image.py</strong> com seu editor favorito, digite os comandos abaixo e salve o arquivo quando terminar de editar ele:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+</pre></td><td class="code"><pre><span class="c1"># Biblioteca do opencv que instalamos no terminal utilizando o gerenciador de pacotes pip
+</span><span class="kn">import</span> <span class="nn">cv2</span>
+<span class="c1"># Aqui carregamos nosso classificador cascata
+</span><span class="n">face_classifier</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">CascadeClassifier</span><span class="p">(</span><span class="s">'modelo/haarcascade_frontalface_default.xml'</span><span class="p">)</span>
+
+<span class="n">imagem_original</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="s">'imagens/original/imagem1-original-com-face.jpg'</span><span class="p">)</span>
+<span class="n">copia_da_imagem_original</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">imread</span><span class="p">(</span><span class="s">'imagens/original/imagem1-original-com-face.jpg'</span><span class="p">)</span>
+
+<span class="c1">#Para que o modelo funcione corretamente é necessário mudar a imagem realizando o processamento de imagem alterando ela para escala de cinza
+</span><span class="n">imagem_original_gray</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">cvtColor</span><span class="p">(</span><span class="n">imagem_original</span><span class="p">,</span> <span class="n">cv2</span><span class="p">.</span><span class="n">COLOR_BGR2GRAY</span><span class="p">)</span>
+
+<span class="c1">#Variável que armazena objeto(s) com as coordenadas da face encontrada na imagem
+</span><span class="n">faces</span> <span class="o">=</span> <span class="n">face_classifier</span><span class="p">.</span><span class="n">detectMultiScale</span><span class="p">(</span><span class="n">imagem_original_gray</span><span class="p">,</span> <span class="mf">1.0485258</span><span class="p">,</span> <span class="mi">6</span><span class="p">)</span>
+
+<span class="k">if</span> <span class="nb">len</span><span class="p">(</span><span class="n">faces</span><span class="p">)</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"Nenhuma face encontrada!"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+    <span class="k">for</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="n">w</span><span class="p">,</span><span class="n">h</span><span class="p">)</span> <span class="ow">in</span> <span class="n">faces</span><span class="p">:</span>
+        <span class="c1"># cv2.rectangle comando utilizado para inserir um retangulo nas coordenadas encontradas pelo modelo cascata
+</span>        <span class="n">face_detected</span> <span class="o">=</span> <span class="n">cv2</span><span class="p">.</span><span class="n">rectangle</span><span class="p">(</span><span class="n">imagem_original</span><span class="p">,</span> <span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">),</span> <span class="p">(</span><span class="n">x</span><span class="o">+</span><span class="n">w</span><span class="p">,</span><span class="n">y</span><span class="o">+</span><span class="n">h</span><span class="p">),</span> <span class="p">(</span><span class="mi">127</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">255</span><span class="p">),</span> <span class="mi">2</span><span class="p">)</span>
+
+    <span class="c1"># Salva a imagem modificada com a face/rosto encontrado na imagem na pasta modificada    
+</span>    <span class="n">cv2</span><span class="p">.</span><span class="n">imwrite</span><span class="p">(</span><span class="s">'imagens/modificada/imagem1-modificada-com-face.jpg'</span><span class="p">,</span> <span class="n">face_detected</span><span class="p">)</span>
+
+    <span class="c1">#Comando utilizado para exibir imagem
+</span>    <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">'Face Detectada'</span><span class="p">,</span> <span class="n">face_detected</span><span class="p">)</span>
+    <span class="n">cv2</span><span class="p">.</span><span class="n">imshow</span><span class="p">(</span><span class="s">"Imagem Original"</span><span class="p">,</span><span class="n">copia_da_imagem_original</span><span class="p">)</span>
+    <span class="c1">#Comando utilizado para permitir que as imagems apareçam e fiquem esperando na tela até que o usuário digite o comando "Esc" para fechar as imagens depois que forem visualizadas com calma
+</span>    <span class="n">cv2</span><span class="p">.</span><span class="n">waitKey</span><span class="p">(</span><span class="mi">0</span><span class="p">)</span>
+    <span class="c1">#Comando utilizado para destruir as imagens visualizadas e não manter elas na memória
+</span>    <span class="n">cv2</span><span class="p">.</span><span class="n">destroyAllWindows</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>No código acima, as linhas de código comentadas descrevem o que a linha abaixo dela irá realizar no nosso algoritmo e devido a isso o código já está auto explicativo e por isso basta que você leia os comentários para entender o que cada parte no código faz. Em caso de dúvidas deixe um comentário no fim do post.</p>
+
+<p>Depois que o arquivo <strong>face-detection-in-image.py</strong> estiver com os códigos acima, abra seu terminal na raiz do seu projeto (i.e., no mesmo nível do arquivo face-detection-in-image.py) e digite o seguinte comando:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python face-detection-in-image.py
+</code></pre></div></div>
+<p>Ou</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3 face-detection-in-image.py
+</code></pre></div></div>
+<p>No caso de você não estar dentro de um ambiente virtual python e também caso você tenha mais de uma versão do python instalada na sua máquina.</p>
+
+<p>Depois que rodar esse comando irá surgir na sua tela a imagem original e a imagem depois de passar pelo modelo cascata. Depois que visualizar as imagens aperte “ESC” para terminar o processo. Quando as imagens sumirem da sua tela o nosso algoritmo vai salvar a imagem nova com o rosto/face detectado(a) na pasta <strong>imagens/modificada</strong> com  o nome  <strong>imagem1-modificada-com-face.jpg</strong>.</p>
+
+<p>O resultado gerado será esse aqui se tudo ocorreu bem:</p>
+
+<p><img src="https://rafaelsanches123.github.io/assets/imagem1-modificada-com-face.jpg" alt="imagem-com-face" style="width: 100%" /></p>
+
+<p><strong><em>Figura 2</em></strong>: <em>Fonte: imagem gerada pelo autor</em></p>
+
+<p>Espero que tenha gostado do artigo caro(a) leitor(a)! Te vejo no próximo post. Para que nosso trabalho possa ajudar mais pessoas, compartilhe esse artigo com seus amigos nas mídias sociais.</p>
+:ET

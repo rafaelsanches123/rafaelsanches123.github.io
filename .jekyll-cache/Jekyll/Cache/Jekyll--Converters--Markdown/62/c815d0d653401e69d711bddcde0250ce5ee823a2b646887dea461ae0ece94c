@@ -1,0 +1,437 @@
+I"ɫ<p><img src="https://rafaelsanches123.github.io/assets/enxame-de-abelhas.jpg" alt="abelhas produtoras de mel" style="width: 100%" /></p>
+
+<h2 id="algoritmo-de-enxame-de-abelhas-ideia-princípal">Algoritmo de Enxame de abelhas ideia princípal</h2>
+
+<p>Inspirado pelo comportamento inteligente de forrageamento (i.e., busca por alimento) dos enxames de abelhas produtoras de mel, o algoritmo de colônia de abelhas (ABC)(do inglês, Artificial Bee Colony Algorithm) é uma meta-heurística baseada em população (KARABOGA et al. ,2014). O ABC foi proposto inicialmente por Karaboga (2005) para solucionar problemas de otimização contínua e posteriormente também foi adaptado para problemas de domínio discreto ( KARABOGA , 2005; KARABOGA; BASTURK , 2007, 2008; KARABOGA ,2009; KARABOGA; AKAY , 2009; KARABOGA et al. , 2014).</p>
+
+<p>Karaboga (2005) descreve em seu trabalho que o algoritmo ABC é composto por três tipos de abelhas, sendo elas: empregadas, espectadoras e a exploradora. A função da abelha empregada é a de explorar fontes de alimentos em sua vizinhança (i.e., busca local). A abelha que fica na colmeia esperando para tomar a decisão de qual fonte de alimento escolher para explorar é conhecida como espectadora (i.e., busca local). A abelha que sai a procura de novas fontes de alimentos de forma aleatória é a exploradora (i.e., busca global).</p>
+
+<p>A colmeia de abelhas do algoritmo ABC é composta por 50% de abelhas empregadas e espectadoras e 1 abelha exploradora. No processo de forrageamento do ABC inicialmente as abelhas empregadas são enviadas para as fontes de alimento para a coleta de néctar. Depois de recolher o alimento ela volta para a colmeia e compartilha as informações da localização dessa fonte de alimento para a abelha espectadora. Esse processo de comunicação entre essas abelhas é conhecido como dança do requebrado (do inglês, wiggle dance). Então, após uma fonte de alimento se esvaziar a abelha espectadora que era designada aquela fonte de alimento se torna uma abelha exploradora e sai para fora da colmeia em busca de novas fontes de alimento.</p>
+
+<p>Com base no contexto supracitado, Karaboga (2005) desenvolveu a ideia do algoritmo ABC. Para mais detalhes eu sugiro que você faça a leitura do artigo do profº Karaboga de 2005.</p>
+
+<p>Antes de iniciar os processos a serem apresentados a seguir, se você desejar, seria interessante o uso de um ambiente virtual fechado. Para isso você pode consultar esse <a href="/criacao-de-um-ambiente-virtual-em-python">link para o artigo</a> para ver como utilizar um ambiente virtual fechado em projetos python. Se não, pode continuar a leitura.</p>
+
+<h2 id="aplicando-os-conceitos-do-algoritmo-abc-no-problema-do-cv">Aplicando os conceitos do algoritmo ABC no problema do CV</h2>
+<p>O problema do Caixeiro Viajante (CV) representa a ideia de um CV que tem de visitar um conjunto de cidades sem repetir nenhuma delas de modo que ele retorne a cidade inicial por meio da menor distância possível.</p>
+
+<p>O primeiro passo para trabalhar com o problema do CV é realizar a leitura das coordenadas das cidades e gerar a tabela de distâncias referente a essas cidades.</p>
+
+<p>Antes de começar o passo a passo, é importante salientar que será utilizado no decorrer do artigo a linguagem de programação <strong>python</strong> na versão <strong>3</strong> e será necessário instalar algumas bibliotecas sendo elas a <strong>numpy</strong> e a <strong>matplotlib</strong>. Caso você não as tenha instaladas no seu computador a seguir é ilustrado um exemplo dos comandos necessários para instalar as bibliotecas mencionadas.</p>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>    Abra seu terminal e digite os comandos:
+    pip install numpy
+    pip install matplotlib
+</code></pre></div></div>
+
+<p>Depois de instalar as bibliotecas utilizadas faça o seguinte:</p>
+
+<ul>
+  <li>Abra seu editor de texto favorito e crie o seguinte arquivo rafael5.txt;</li>
+  <li>Em seguida salve o seguinte conteudo dentro do arquivo criado:</li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>1 37 52
+2 49 49
+3 52 64
+4 20 26
+5 40 30
+</code></pre></div></div>
+
+<ul>
+  <li>
+    <p>No bloco acima, a primeira coluna representa <strong>a cidade</strong>, a segunda coluna <strong>a coordenada x da cidade</strong> e a terceira coluna <strong>a coordenada y da cidade</strong>;</p>
+  </li>
+  <li>
+    <p>No meu caso, eu criei um diretório (i.e., uma pasta) chamado “tsp-instancias” e dentro dele eu coloquei o arquivo rafael5.txt;</p>
+  </li>
+  <li>
+    <p>No mesmo nível do diretório “tsp-instancias” crie um arquivo python chamado abc.py.</p>
+  </li>
+</ul>
+
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>├── abc.py
+└── tsp-instancias
+    └── rafael5.txt
+</code></pre></div></div>
+
+<p>No arquivo abc.py você irá inserir os códigos apresentados no decorrer do artigo para implementar o algoritmo ABC.</p>
+
+<p>Para realizar a leitura dos dados por meio de um arquivo externo (i.e., nosso arquivo rafael5.txt que tem os dados do problema do cv), utiliza-se a seguinte forma a baixo:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+</pre></td><td class="code"><pre>    <span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="n">np</span> <span class="c1">#biblioteca que facilita o armazenamento e o acesso a matrizes e vetores de forma otimizada além de proporcinar métodos que facilitam a manipulação dos dados
+</span>    <span class="kn">import</span> <span class="nn">math</span> <span class="c1"># fornece funcões matemáticas
+</span>    <span class="kn">import</span> <span class="nn">matplotlib.pyplot</span> <span class="k">as</span> <span class="n">plt</span> <span class="c1">#facilita e prove a geração de gráficos em python
+</span>
+    <span class="n">instancia</span>     <span class="o">=</span> <span class="s">'tsp-instancias/rafael5.txt'</span>
+    <span class="n">cidades</span>       <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">instancia</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">' '</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span>
+
+    <span class="n">coordenadas_x</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">instancia</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">' '</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+    <span class="n">coordenadas_y</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">genfromtxt</span><span class="p">(</span><span class="n">instancia</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s">' '</span><span class="p">,</span> <span class="n">usecols</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+
+    <span class="n">numero_cidades</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">cidades</span><span class="p">)</span>
+
+    <span class="n">fig</span><span class="p">,</span> <span class="n">ax</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
+
+    <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">txt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cidades</span><span class="p">):</span>
+        <span class="n">ax</span><span class="p">.</span><span class="n">annotate</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">txt</span><span class="p">),</span> <span class="p">(</span><span class="n">coordenadas_x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">coordenadas_y</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+        <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Coordenadas X'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Coordenadas Y'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Coordenadas das cidades utilizadas no CV'</span><span class="p">)</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">coordenadas_x</span><span class="p">,</span><span class="n">coordenadas_y</span><span class="p">,</span><span class="s">'ro'</span><span class="p">)</span>
+    <span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Para gerar a tabela de que representa a distância gasta entre as cidades utiliza-se a função a seguir:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+</pre></td><td class="code"><pre>    <span class="c1">#com os dados das coordenadas das cidades, aplicar a formula que calcula a distância (e.g., distância eucliana) entre as cidades para todas as cidades da cidade 1 até a cidade D!
+</span>    <span class="k">def</span> <span class="nf">distancia_euclidiana</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">):</span>
+        <span class="n">distancias</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">numero_cidades</span><span class="p">,</span><span class="n">numero_cidades</span><span class="p">])</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">x</span><span class="p">)):</span>
+            <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">y</span><span class="p">)):</span>
+                <span class="c1">#aplicando a distancia eucliana nas cidades i e j nas suas respectivas coordenadas x e y
+</span>                <span class="n">distancias</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="n">j</span><span class="p">]</span> <span class="o">=</span> <span class="n">math</span><span class="p">.</span><span class="n">sqrt</span><span class="p">(</span> <span class="n">math</span><span class="p">.</span><span class="nb">pow</span><span class="p">(</span> <span class="p">(</span><span class="n">x</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">x</span><span class="p">[</span><span class="n">j</span><span class="p">]</span><span class="o">+</span><span class="n">y</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">-</span><span class="n">y</span><span class="p">[</span><span class="n">j</span><span class="p">]),</span> <span class="mi">2</span><span class="p">)</span> <span class="p">)</span> <span class="c1">#calcula a distância da cidade i para a cidade j
+</span>        <span class="k">return</span> <span class="n">distancias</span>
+    <span class="c1">#aqui ficaram armazenadas as distâncias que o cv vai gastar de uma cidade para outra depois de aplicar a distância euclidiana
+</span>    <span class="n">distancias</span> <span class="o">=</span> <span class="n">distancia_euclidiana</span><span class="p">(</span><span class="n">coordenadas_x</span><span class="p">,</span><span class="n">coordenadas_y</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">distancias</span><span class="p">)</span> <span class="c1">#imprimindo na tela a matriz gerada com as distâncias da cidade 1 até a cidade D</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Com os dados básicos do problema do CV, agora já é possível começar a pensar no algoritmo ABC de fato para realizar a otimização do problema.</p>
+
+<h2 id="fluxograma-do-algoritmo-abc">Fluxograma do algoritmo ABC</h2>
+
+<p><img src="https://rafaelsanches123.github.io/assets/algoritmo-abc-fluxograma.png" alt="abelhas produtoras de mel" style="width: 100%" /></p>
+
+<h2 id="modelagem-da-solução-ie-representação-das-variáveis-de-decisão-do-problema-estudado">Modelagem da Solução (i.e., representação das variáveis de decisão do problema estudado)</h2>
+
+<p>A modelagem da solução é a forma com a qual seu algoritmo ABC representa as variáveis de decisão do problema de otimização em questão. No caso do CV a representação utilizada será a seguinte:</p>
+
+<p>Cada abelha terá como solução uma sequência de cidades e.g., (1, 2, 3, …, até N) sendo que N representa a quantidade de cidades do nosso problema/exemplo e nesse caso, N=5 de modo que elas não se repitam. O fato delas não se repetirem é considerado como uma restrição do problema em questão.</p>
+
+<h3 id="setar-os-parâmetros-do-abc">SETAR OS PARÂMETROS DO ABC</h3>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+</pre></td><td class="code"><pre><span class="c1">### SETAR PARÂMETROS INICIO ###
+#Configuração/Parametrização do algoritmo ABC
+</span><span class="n">tamanhoDaColonia</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># tamanho total da colônia de abelhas (empregadas e espectadoras)
+</span><span class="n">metadeDaColonia</span> <span class="o">=</span> <span class="n">tamanhoDaColonia</span><span class="o">/</span><span class="mi">2</span> <span class="c1">#referente ao tamanho da metade da colônia de abelhas
+</span><span class="n">numeroDeTentativas</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1"># número de tantivas que relacionadas a uma solução poder ser melhorada
+</span><span class="n">D</span> <span class="o">=</span> <span class="n">numero_cidades</span> <span class="c1">#dimensionalidade do problema em questão ou seja, quantidade de váriaveis de decisão
+</span><span class="n">numeroDeCiclosDeForrageamento</span> <span class="o">=</span> <span class="mi">50</span> <span class="c1">#número de iterações realizados pelas abelhas na colmeia ou ciclo de trabalho delas na busca por mel
+</span><span class="n">numeroDeExecucoes</span> <span class="o">=</span> <span class="mi">10</span> <span class="c1">#número de execuções realizadas pelo algoritmo ABC
+</span>
+<span class="n">colonia</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">metadeDaColonia</span><span class="p">,</span><span class="n">D</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="c1">#criação da colonia de abelhas onde cada linha representa uma abelha e as colunas os locus de mel referentes as variavéis de decisão do problema abordado pelo ABC
+</span><span class="n">tentativas</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">metadeDaColonia</span><span class="p">])</span> <span class="c1">#array que armazenara as tentativas das fontes de alimento evoluirem referente a cada abelha da colmeia
+</span><span class="n">fitnessDaColonia</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">metadeDaColonia</span><span class="p">])</span> <span class="c1">#array que armazenara a qualidade das fontes de alimento das abelhas da colmeia
+</span>
+
+<span class="n">melhorSolucao</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">D</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="c1">#melhor solução atual
+</span><span class="n">melhorFitness</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#valor de fitness da melhor solução atual
+</span>
+<span class="n">melhoresSolucoes</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">numeroDeExecucoes</span><span class="p">,</span><span class="n">D</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span> <span class="c1">#matriz com as melhores soluções encontradas em cada execução do ABC
+</span><span class="n">melhoresFitness</span>  <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">numeroDeExecucoes</span><span class="p">])</span> <span class="c1">#array referente as melhores soluções
+### SETAR PARÂMETROS FIM ###</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="função-de-aptidãofitness-utilizada-para-avaliar-as-soluções-do-abc-no-problema-do-cv">FUNÇÃO DE APTIDÃO/FITNESS UTILIZADA PARA AVALIAR AS SOLUÇÕES DO ABC NO PROBLEMA DO CV</h3>
+
+<p>No problema do CV a função de fitness avalia a sequência das cidades representada por cada solução gerenciadas por cada abelha.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="c1"># função de fitness utilizada para mensurar a qualidade das soluções
+</span><span class="k">def</span> <span class="nf">fitness</span><span class="p">(</span><span class="n">solucao</span><span class="p">,</span><span class="n">distancias</span><span class="p">):</span>
+    <span class="n">valorDoFitness</span> <span class="o">=</span> <span class="mi">0</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">solucao</span><span class="p">)</span><span class="o">-</span><span class="mi">1</span><span class="p">):</span>
+        <span class="n">valorDoFitness</span> <span class="o">+=</span> <span class="n">distancias</span><span class="p">[</span><span class="n">solucao</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">solucao</span><span class="p">[</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">valorDoFitness</span> <span class="o">+=</span> <span class="n">distancias</span><span class="p">[</span><span class="n">solucao</span><span class="p">[</span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="n">solucao</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="c1">#retornando da ultima cidade para a cidade inicial
+</span>    <span class="k">return</span> <span class="n">valorDoFitness</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="criação-da-população-inicial-de-abelhas-do-enxame-no-abc-para-o-problema-do-cv">CRIAÇÃO DA POPULAÇÃO INICIAL DE ABELHAS DO ENXAME NO ABC PARA O PROBLEMA DO CV</h3>
+
+<p>Assim que as soluções iniciais são geradas elas são avaliadas para que se possa saber a qualidade da fonte de alimentos de cada abelha.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+</pre></td><td class="code"><pre><span class="c1">#gerar população inicial de abelhas
+</span><span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">metadeDaColonia</span><span class="p">):</span>
+    <span class="n">colonia</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">D</span><span class="p">)</span> <span class="c1">#para cada abelha gerar um roteiro de cidades/variaveis de decisão
+</span>    <span class="n">fitnessDaColonia</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fitness</span><span class="p">(</span><span class="n">colonia</span><span class="p">[</span><span class="n">i</span><span class="p">],</span><span class="n">distancias</span><span class="p">)</span> <span class="c1">#calcular a aptidão/fitness de cada Abelha i</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="método-de-seleção-utilizado-no-abc">MÉTODO DE SELEÇÃO UTILIZADO NO ABC</h3>
+
+<p>Depois que todas as abelhas empregadas trabalham nas suas respectivas fontes de alimentos, um método de seleção é utilizado para selecionar uma abelha espectadora para melhorar cada solução de cada abelha empregada. Para isso, pode-se utilizar o método de Roleta Probabilística. Não existe apenas esse método e se você quiser pode pesquisar por outros e utilizá-los em seu lugar para ver o que acontece com o resultado gerado pelo ABC.</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+</pre></td><td class="code"><pre><span class="k">def</span> <span class="nf">selecaoPorRoleta</span><span class="p">(</span><span class="n">fitness</span><span class="p">):</span> <span class="c1">#Roleta probabilista refente as aptidoes/fitness da colonia de abelhas
+</span>    <span class="n">probs</span> <span class="o">=</span> <span class="n">fitness</span><span class="p">[:]</span><span class="o">/</span><span class="n">fitness</span><span class="p">.</span><span class="nb">sum</span><span class="p">()</span>
+    <span class="n">escolhida</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">uniform</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="n">probs</span><span class="p">.</span><span class="nb">sum</span><span class="p">(),</span><span class="mi">1</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">probs</span><span class="p">)):</span>
+        <span class="k">if</span> <span class="n">probs</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">&gt;</span> <span class="n">escolhida</span><span class="p">:</span>
+            <span class="k">return</span> <span class="n">i</span>
+    <span class="k">return</span> <span class="o">-</span><span class="mi">1</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<h3 id="a-troca-swap-é-apenas-um-método-que-altera-as-soluçõesfontes-de-alimentos-das-abelhas-do-abc">A TROCA SWAP É APENAS UM MÉTODO QUE ALTERA AS SOLUÇÕES/FONTES DE ALIMENTOS DAS ABELHAS DO ABC</h3>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+</pre></td><td class="code"><pre><span class="k">def</span> <span class="nf">trocaSwap</span><span class="p">(</span><span class="n">novaSolucao</span><span class="p">):</span>
+    <span class="n">posicaoDeTrocas</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span> <span class="c1">#gerando 2 posições aleatórias
+</span>    <span class="k">while</span> <span class="n">posicaoDeTrocas</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">==</span> <span class="n">posicaoDeTrocas</span><span class="p">[</span><span class="mi">1</span><span class="p">]:</span> <span class="c1">#garantindo que os números gerados são diferentes
+</span>        <span class="n">posicaoDeTrocas</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">randint</span><span class="p">(</span><span class="n">D</span><span class="p">,</span> <span class="n">size</span><span class="o">=</span><span class="p">(</span><span class="mi">2</span><span class="p">))</span>
+    <span class="n">aux</span> <span class="o">=</span> <span class="n">novaSolucao</span><span class="p">[</span><span class="n">posicaoDeTrocas</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span>
+    <span class="n">novaSolucao</span><span class="p">[</span><span class="n">posicaoDeTrocas</span><span class="p">[</span><span class="mi">0</span><span class="p">]]</span> <span class="o">=</span> <span class="n">novaSolucao</span><span class="p">[</span><span class="n">posicaoDeTrocas</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span>
+    <span class="n">novaSolucao</span><span class="p">[</span><span class="n">posicaoDeTrocas</span><span class="p">[</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="n">aux</span>
+    <span class="k">return</span> <span class="n">novaSolucao</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>A seguir é apresentado o fluxo do ABC do mesmo modo que no fluxograma supracitado nesse artigo:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+</pre></td><td class="code"><pre><span class="c1">#definir quem é a abelha com melhor fonte de alimento
+</span><span class="n">melhorSolucao</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">colonia</span><span class="p">[</span><span class="n">fitnessDaColonia</span><span class="p">.</span><span class="n">argmin</span><span class="p">()]</span>
+<span class="n">melhorFitness</span> <span class="o">=</span> <span class="n">fitnessDaColonia</span><span class="p">[</span><span class="n">fitnessDaColonia</span><span class="p">.</span><span class="n">argmin</span><span class="p">()]</span>
+
+<span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numeroDeExecucoes</span><span class="p">):</span>
+    <span class="c1">#print("Execucao numero: %d" % (r))
+</span>    <span class="k">for</span> <span class="n">iteracao</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numeroDeCiclosDeForrageamento</span><span class="p">):</span> <span class="c1">#criterio de parada é quantidade de ciclos de forrageamento
+</span>        <span class="c1">#print("Iteracao: %d" % (iteracao))
+</span>        <span class="c1">#iniciar fase das abelhas empregadas
+</span>        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">metadeDaColonia</span><span class="p">):</span>
+            <span class="c1">#gerar uma perturbação na solucao da abelha i e verificar se essa nova solução é melhor que a velha
+</span>            <span class="n">novaSolucao</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">D</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+            <span class="c1">#aplicando o método simples de troca swap
+</span>            <span class="n">novaSolucao</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">trocaSwap</span><span class="p">(</span><span class="n">colonia</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+            <span class="c1">#verificar se a nova solucao tem melhor aptidão que a velha solução/fonte de alimentos da abelha i
+</span>            <span class="k">if</span> <span class="n">fitness</span><span class="p">(</span><span class="n">novaSolucao</span><span class="p">,</span><span class="n">distancias</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">fitnessDaColonia</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">colonia</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">novaSolucao</span>
+                <span class="n">fitnessDaColonia</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fitness</span><span class="p">(</span><span class="n">novaSolucao</span><span class="p">,</span><span class="n">distancias</span><span class="p">)</span>
+                <span class="n">tentativas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># se a solução foi melhorada reseta o numero de tentativas dessa fonte de alimento
+</span>            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tentativas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># se a solução da abelha i não melhorou o array de tentativas na posição i deve ser incrementado representando que a solução i não pode ser melhorada
+</span>
+        <span class="c1">#iniciar fase das abelhas espectadoras
+</span>        <span class="k">for</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">metadeDaColonia</span><span class="p">):</span>   
+            <span class="n">abelhaEmpregadaEscolhida</span> <span class="o">=</span> <span class="n">selecaoPorRoleta</span><span class="p">(</span><span class="n">fitnessDaColonia</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">abelhaEmpregadaEscolhida</span> <span class="o">==</span> <span class="o">-</span><span class="mi">1</span><span class="p">:</span>
+                <span class="n">abelhaEmpregadaEscolhida</span> <span class="o">=</span> <span class="n">selecaoPorRoleta</span><span class="p">(</span><span class="n">fitnessDaColonia</span><span class="p">)</span>
+            <span class="c1">#gerar uma perturbação na solucao da abelha i e verificar se essa nova solução é melhor que a velha
+</span>            <span class="n">novaSolucao</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">zeros</span><span class="p">([</span><span class="n">D</span><span class="p">],</span> <span class="n">dtype</span><span class="o">=</span><span class="nb">int</span><span class="p">)</span>
+            <span class="c1">#aplicando o método simples de troca swap na abelha empregada escolhida pelo método de seleção adotado
+</span>            <span class="n">novaSolucao</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">trocaSwap</span><span class="p">(</span><span class="n">colonia</span><span class="p">[</span><span class="n">abelhaEmpregadaEscolhida</span><span class="p">])</span>
+            <span class="c1">#verificar se a nova solucao tem melhor aptidão que a velha solução/fonte de alimentos da abelha i
+</span>            <span class="k">if</span> <span class="n">fitness</span><span class="p">(</span><span class="n">novaSolucao</span><span class="p">,</span><span class="n">distancias</span><span class="p">)</span> <span class="o">&lt;</span> <span class="n">fitnessDaColonia</span><span class="p">[</span><span class="n">i</span><span class="p">]:</span>
+                <span class="n">colonia</span><span class="p">[</span><span class="n">i</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">novaSolucao</span>
+                <span class="n">fitnessDaColonia</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">fitness</span><span class="p">(</span><span class="n">novaSolucao</span><span class="p">,</span><span class="n">distancias</span><span class="p">)</span>
+                <span class="n">tentativas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1"># se a solução foi melhorada reseta o numero de tentativas dessa fonte de alimento
+</span>            <span class="k">else</span><span class="p">:</span>
+                <span class="n">tentativas</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span> <span class="c1"># se a solução da abelha i não melhorou o array de tentativas na posição i deve ser incrementado representando que a solução i não pode ser melhorada
+</span>
+        <span class="c1">#iniciar fase da abelha exploradora - só existe uma abelha exploradora na colmeia então ela so realiza uma ação no final de cada ciclo de forrageamento
+</span>        <span class="c1">#primeiro deve se salvar a melhor abelha do ciclo de forrageamento
+</span>        <span class="k">if</span> <span class="n">fitnessDaColonia</span><span class="p">[</span><span class="n">fitnessDaColonia</span><span class="p">.</span><span class="n">argmin</span><span class="p">()]</span> <span class="o">&lt;</span> <span class="n">melhorFitness</span><span class="p">:</span>
+            <span class="n">melhorSolucao</span><span class="p">[:]</span> <span class="o">=</span> <span class="n">colonia</span><span class="p">[</span><span class="n">fitnessDaColonia</span><span class="p">.</span><span class="n">argmin</span><span class="p">()]</span>
+            <span class="n">melhorFitness</span> <span class="o">=</span> <span class="n">fitnessDaColonia</span><span class="p">[</span><span class="n">fitnessDaColonia</span><span class="p">.</span><span class="n">argmin</span><span class="p">()]</span>
+        <span class="c1">#agora que a melhor solução da iteração foi salva verificamos se a solução de alguma abelha ultrapassou o numero limite de tentativas que elas tinham pra tentar evoluir
+</span>        <span class="k">if</span> <span class="n">tentativas</span><span class="p">[</span><span class="n">tentativas</span><span class="p">.</span><span class="n">argmax</span><span class="p">()]</span> <span class="o">&gt;=</span> <span class="n">numeroDeTentativas</span><span class="p">:</span>
+            <span class="c1">#a função da abelha exploradora é encontrar um nova fonte de alimento para a abelha que ultrapassou seu numero de tentativas na colonia
+</span>            <span class="n">colonia</span><span class="p">[</span><span class="n">tentativas</span><span class="p">.</span><span class="n">argmax</span><span class="p">()]</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">random</span><span class="p">.</span><span class="n">permutation</span><span class="p">(</span><span class="n">D</span><span class="p">)</span> <span class="c1">#gera a nova solução
+</span>            <span class="n">fitnessDaColonia</span><span class="p">[</span><span class="n">tentativas</span><span class="p">.</span><span class="n">argmax</span><span class="p">()]</span> <span class="o">=</span> <span class="n">fitness</span><span class="p">(</span><span class="n">colonia</span><span class="p">[</span><span class="n">tentativas</span><span class="p">.</span><span class="n">argmax</span><span class="p">()],</span><span class="n">distancias</span><span class="p">)</span> <span class="c1">#gera o fitness dessa nova solução
+</span>            <span class="n">tentativas</span><span class="p">[</span><span class="n">tentativas</span><span class="p">.</span><span class="n">argmax</span><span class="p">()]</span> <span class="o">=</span> <span class="mi">0</span> <span class="c1">#reseta o número de tentativas para a nova fonte de alimentos dessa abelha
+</span>
+        <span class="c1">#print("Melhor Solucao e Melhor Fitness Atual")
+</span>        <span class="c1">#print(melhorSolucao)
+</span>        <span class="c1">#print(melhorFitness)
+</span>
+    <span class="n">melhoresSolucoes</span><span class="p">[</span><span class="n">r</span><span class="p">,:]</span> <span class="o">=</span> <span class="n">melhorSolucao</span>
+    <span class="n">melhoresFitness</span><span class="p">[</span><span class="n">r</span><span class="p">]</span> <span class="o">=</span> <span class="n">melhorFitness</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Fim da Execução!"</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="n">numeroDeExecucoes</span><span class="p">):</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"execucao %d"</span> <span class="o">%</span> <span class="p">(</span><span class="n">i</span><span class="p">))</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">melhoresSolucoes</span><span class="p">[</span><span class="n">i</span><span class="p">,:])</span>
+    <span class="k">print</span><span class="p">(</span><span class="n">melhoresFitness</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+    <span class="k">print</span><span class="p">(</span><span class="s">"-----------------------------"</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p>Essa parte final serve para plotar em um gráfico o resultado gerado por meio do ABC:</p>
+
+<figure class="highlight"><pre><code class="language-python" data-lang="python"><table class="rouge-table"><tbody><tr><td class="gutter gl"><pre class="lineno">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+</pre></td><td class="code"><pre><span class="c1">#Plotando o resultado gerado pelo ABC
+</span><span class="n">fig2</span><span class="p">,</span> <span class="n">ax2</span> <span class="o">=</span> <span class="n">plt</span><span class="p">.</span><span class="n">subplots</span><span class="p">()</span>
+
+<span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">txt</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">cidades</span><span class="p">):</span>
+    <span class="n">ax2</span><span class="p">.</span><span class="n">annotate</span><span class="p">(</span><span class="nb">int</span><span class="p">(</span><span class="n">txt</span><span class="p">),</span> <span class="p">(</span><span class="n">coordenadas_x</span><span class="p">[</span><span class="n">i</span><span class="p">],</span> <span class="n">coordenadas_y</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+
+    <span class="n">plt</span><span class="p">.</span><span class="n">xlabel</span><span class="p">(</span><span class="s">'Coordenadas X'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">ylabel</span><span class="p">(</span><span class="s">'Coordenadas Y'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">title</span><span class="p">(</span><span class="s">'Instância com 5 cidades'</span><span class="p">)</span>
+
+<span class="n">melhorSolucao</span> <span class="o">=</span> <span class="n">np</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="n">melhorSolucao</span><span class="p">[:],</span><span class="n">melhorSolucao</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>    
+<span class="n">plt</span><span class="p">.</span><span class="n">plot</span><span class="p">(</span><span class="n">coordenadas_x</span><span class="p">[</span><span class="n">melhorSolucao</span><span class="p">[:]],</span><span class="n">coordenadas_y</span><span class="p">[</span><span class="n">melhorSolucao</span><span class="p">[:]],</span><span class="n">coordenadas_x</span><span class="p">[</span><span class="n">melhorSolucao</span><span class="p">[:</span><span class="o">+</span><span class="mi">1</span><span class="p">]],</span><span class="n">coordenadas_y</span><span class="p">[</span><span class="n">melhorSolucao</span><span class="p">[:</span><span class="o">+</span><span class="mi">1</span><span class="p">]],</span><span class="s">'ro'</span><span class="p">)</span>
+<span class="n">plt</span><span class="p">.</span><span class="n">show</span><span class="p">()</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Roteiro de cidades percorridas pelo CV = %s"</span> <span class="o">%</span> <span class="nb">str</span><span class="p">(</span><span class="n">melhorSolucao</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Distancia percorrida pelo CV = %f"</span> <span class="o">%</span> <span class="n">melhorFitness</span><span class="p">)</span>
+</pre></td></tr></tbody></table></code></pre></figure>
+
+<p><strong>Se tiver alguma dúvida pode deixar ela nos comentários que responderei assim que puder!</strong></p>
+:ET

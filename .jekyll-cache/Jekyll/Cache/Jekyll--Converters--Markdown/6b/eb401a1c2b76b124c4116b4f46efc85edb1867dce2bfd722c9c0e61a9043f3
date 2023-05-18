@@ -1,0 +1,101 @@
+I"�<p><img src="https://rafaelsanches123.github.io/assets/linguagem-python.png" alt="linguagem-python" style="width: 100%" /></p>
+
+<h2 id="funções">Funções</h2>
+
+<p>Funções são uma das ferramentas mais poderosas quando falamos de programação de computadores. As funções fornecem ao programador(a) o poder de <strong>reuzar um pedaço de código</strong> em <strong>mais de um local diferente</strong> do seu código/projeto. Saber usar funções é fundamental também para que você tenha um código mais limpo e organizado de modo que você consiga fazer a <strong>manutenção</strong> do mesmo de <strong>forma mais suave</strong> quando necessário.</p>
+
+<p>A primeira coisa que vem a minha cabeça quando eu escuto a o termo <strong>“função”</strong> é uma frase que uma professora que me deu aula na graduação falava para minha turma que era <strong>“Dividir para conquistar”</strong> e essa frase faz todo o sentido depois que você entendo como trabalhar com funções independente da linguagem de programação que você esteja utilizando.</p>
+
+<p>Como criar uma função no python? Como é a sua sintaxe?</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="k">def</span> <span class="nf">nome_da_funcao</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">,</span> <span class="n">param3</span><span class="p">):</span>
+  <span class="n">resultado</span> <span class="o">=</span> <span class="n">param1</span> <span class="o">+</span> <span class="n">param2</span> <span class="o">+</span> <span class="n">param3</span>
+  <span class="k">return</span> <span class="n">resultado</span>
+
+<span class="k">def</span> <span class="nf">nome_da_funcao</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">,</span> <span class="n">param3</span><span class="p">):</span>
+  <span class="n">resultado</span> <span class="o">=</span> <span class="n">param1</span> <span class="o">+</span> <span class="n">param2</span> <span class="o">+</span> <span class="n">param3</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"Resultado da Função: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">resultado</span><span class="p">))</span>
+
+<span class="k">def</span> <span class="nf">nome_da_funcao</span><span class="p">(</span><span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">,</span> <span class="n">param3</span><span class="p">):</span>
+  <span class="n">param1</span> <span class="o">=</span> <span class="n">param1</span> <span class="o">+</span> <span class="mi">5</span>
+  <span class="n">param2</span> <span class="o">=</span> <span class="n">param2</span> <span class="o">+</span> <span class="mi">3</span>
+  <span class="n">param3</span> <span class="o">=</span> <span class="n">param3</span> <span class="o">+</span> <span class="mi">7</span>
+  <span class="k">return</span> <span class="n">param1</span><span class="p">,</span> <span class="n">param2</span><span class="p">,</span> <span class="n">param3</span>
+
+</code></pre></div></div>
+<p>Pontos importantes:</p>
+<ul>
+  <li>Toda função em python começa com a palavra reservada <strong>def</strong>;</li>
+  <li><strong>def</strong> é sempre precedida do nome da função como por exemplo: <strong>nome_da_funcao</strong> sem caracteres especiais;</li>
+  <li><strong>nome_da_funcao</strong> por sua vez é precedida de <strong>(</strong> <strong>)</strong> onde, dentro dos parenteses serão passados os parâmetros para sua função. Esses parâmetros podem ser valores que você irá modificar para retornar pos alteração por exemplo;</li>
+  <li>Sua função pode retornar um valor único;</li>
+  <li>Sua função pode retornar multiplos valores/variáveis;</li>
+  <li>Sua função pode não retornar nada também.</li>
+</ul>
+
+<p>Bora lá devs, entender melhor sobre funções. A seguir vou lhes apresentar um caso muito simples de se utilizar funções. Vamos imaginar uma calculadora que tenha 4 funcionalidades: <strong>Somar</strong>, <strong>Subtrair</strong>, <strong>Multiplicar</strong> e <strong>Dividir</strong>.</p>
+
+<p>Abra o seu terminal e borá colocar a mão na massa:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>
+<span class="o">&gt;&gt;&gt;</span> def somar<span class="o">(</span>num1, num2<span class="o">)</span>:
+...   <span class="k">return </span>num1 + num2
+...
+<span class="o">&gt;&gt;&gt;</span> def subtrair<span class="o">(</span>num1, num2<span class="o">)</span>:
+...   <span class="k">return </span>num1 - num2
+...
+<span class="o">&gt;&gt;&gt;</span> def multiplicar<span class="o">(</span>num1, num2<span class="o">)</span>:
+...   <span class="k">return </span>num1 <span class="k">*</span> num2
+...
+<span class="o">&gt;&gt;&gt;</span> def dividir<span class="o">(</span>num1, num2<span class="o">)</span>:
+...   <span class="k">return </span>num1 / num2
+...
+<span class="o">&gt;&gt;&gt;</span> resultado <span class="o">=</span> somar<span class="o">(</span>10,5<span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> resultado
+15
+<span class="o">&gt;&gt;&gt;</span> resultado <span class="o">=</span> subtrair<span class="o">(</span>10,5<span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> resultado
+5
+<span class="o">&gt;&gt;&gt;</span> resultado <span class="o">=</span> multiplicar<span class="o">(</span>10,5<span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> resultado
+50
+<span class="o">&gt;&gt;&gt;</span> resultado <span class="o">=</span> dividir<span class="o">(</span>10,5<span class="o">)</span>
+<span class="o">&gt;&gt;&gt;</span> resultado
+2.0
+</code></pre></div></div>
+
+<p>Nos exemplos acima, foram criadas <strong>4 funções</strong> uma para somar 2 números, subtrair, multiplicar e dividir. Assim como apresentados os pontos importantes é interessante observar que nossa códificação segue exatamente o que foi descrito no começo e também é possível observar que trabalhar com funções é algo bastante simples em python.</p>
+
+<p>Depois de ver o exemplo acima, acredito que você meu caro(a) leitor(a) você está pronto para praticar e entender mais sobre funções.</p>
+
+<p>Exercícios para praticar o que aprendeu:</p>
+
+<ol>
+  <li>Crie um programa semelhante a uma calculadora:
+    <ul>
+      <li>Primeiro Solicite um número inteiro entre 1 e 4.</li>
+      <li>Se o usuário digitar 1 você deve solicitar 2 novos números para ele e realizar a ação de somar esses 2 novos números;</li>
+      <li>Se o usuário digitar 2 você deve solicitar 2 novos números para ele e realizar a ação de subtrair esses 2 novos números;</li>
+      <li>Se o usuário digitar 3 você deve solicitar 2 novos números para ele e realizar a ação de multiplicar esses 2 novos números;</li>
+      <li>Se o usuário digitar 4 você deve solicitar 2 novos números para ele e realizar a ação de dividir esses 2 novos números;</li>
+      <li>Para sair do laço de repetição solicite ao usuário que informe um número -1.</li>
+    </ul>
+  </li>
+  <li>
+    <p>Crie um programa que leia um número e imprima na tela do computador se ele é Par ou Ímpar.</p>
+  </li>
+  <li>
+    <p>Crie um programa que leia um número e imprima se esse número é palindromo ou não. Obs: um número palindromo é aquele que siginifica a mesma coisa de trás para frente ex: 121.</p>
+  </li>
+  <li>
+    <p>Crie um programa que receba uma lista de números e retorne o menor número da lista.</p>
+  </li>
+  <li>
+    <p>Crie um programa que receba uma lista de números e retorne o maior número da lista.</p>
+  </li>
+  <li>
+    <p>Crie um programa que receba uma lista de números e calcule a soma desses números da lista.</p>
+  </li>
+  <li>Crie um programa que leia uma lista e retorno a sua versão reversa.</li>
+</ol>
+:ET

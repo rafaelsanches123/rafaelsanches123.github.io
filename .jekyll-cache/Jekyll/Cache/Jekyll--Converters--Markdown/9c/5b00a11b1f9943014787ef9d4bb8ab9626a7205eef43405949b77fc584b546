@@ -1,0 +1,123 @@
+I"0<p><img src="https://rafaelsanches123.github.io/assets/arquitetura-hadoop.png" alt="arquitetura-hadoop" style="width: 100%" /></p>
+
+<p>Fala pessoal blz? No post de hoje vamos trocar uma ideia sobre a Arquitetura de Big Data <strong>Hadoop</strong>. E aí, bora aprender algo novo?</p>
+
+<h2 id="o-que-é-hadoop">O que é Hadoop?</h2>
+
+<p>O Hadoop é um ecossistema/estrutura de software open source criado para armazenar de forma massiva dados dos mais diversos tipos e executar aplicações distribuídas (i.e., tarefas ocorrendo ao mesmo tempo) em clusters (i.e., computadores conectados entre si) de hardwares comuns e de baixo custo.</p>
+
+<p>A ideia por traz do Hadoop é fornecer um ambiente <strong>escalável</strong> no qual, quando você vai necessitando de mais espaço e poder computacional você vai adicionando mais máquinas ao seu cluster Hadoop.</p>
+
+<p>E importante ressaltar que o Hadoop é <strong>tolerante a falhas</strong> e por causa disso ele <strong>replica os dados</strong> armazenados no seu sistema de arquivos para evitar que isso aconteça durante o uso de alguma aplicação sobre os dados utilizados.</p>
+
+<p>O Hadoop consiste desses <strong>3 componentes core</strong> para o seu funcionamento:</p>
+
+<ul>
+  <li><strong>Hadoop Distributed File System</strong> (<strong>HDFS</strong>) – É a camada de armazenamento do Hadoop.</li>
+  <li><strong>Map-Reduce</strong> – É a camada de processamento de dados do Hadoop.</li>
+  <li><strong>YARN</strong> – É a camada de gerenciamento de recursos do Hadoop.</li>
+</ul>
+
+<p>A seguir eu vou falar sobre as 3 camadas/componentes que eu penso quando escuto falar no Hadoop, acredito serem extramente importantes para o funcionamento desse ecossistema.</p>
+
+<h2 id="o-que-é-o-hdfs">O que é o HDFS?</h2>
+
+<p>Na <strong>camada de armazenamento</strong> temos o HDFS que é um sistema de arquivos distribuído, projetado para armazenar arquivos muito grandes, com padrão de acesso aos dados streaming (i.e., dados em streaming, são <strong>dados gerados continuamente</strong> por milhares de fontes de dados e.g., <strong>Internet das Coisas</strong>) e batch (i.e., em lote), utilizando clusters de servidores facilmente encontrados no mercado e de baixo ou médio custo.</p>
+
+<p>É importante ressaltar que o Hadoop não deve ser utilizado para aplicações que precisem de acesso rápido a um determinado registro e sim para aplicações nas quais é necessário ler uma quantidade massiva (i.e., muito grande) de dados.</p>
+
+<p>Quando utilizamos o Hadoop outra questão que deve ser analisada é que ele não deve ser utilizado para ler muitos arquivos pequenos, isso irá acarretar no mal uso de armazenamento e irá gerar um processamento mais lento tendo em vista o overhead de memória envolvido.</p>
+
+<p>O HDFS possui o <strong>conceito de blocos</strong>, assim como no sistema Unix, mas seus blocos normalmente têm tamanho de <strong>128MB</strong>.  Um arquivo muito grande pode ter blocos armazenados em mais de um local (i.e., sistema de tolerância a falhas). Com este conceito de blocos de tamanho fixo fica mais fácil calcular as necessidades de armazenamento para cada projeto que precise utilizar o seu cluster Hadoop. Essa representação de alocação de recurso no HDFS fica mais clara com o exemplo na Figura 1. Na Figura 1 é utilizado um arquivo de exemplo com a extensão .txt que tem o tamanho de 612 MB. Devido ao tamanho do arquivo ele é quebrado em 5 partes onde, 4 partes usam 128 MB e somente a ultima parte tem o tamanho 100 MB sendo o menor bloco. Isso ocorre devido ao formato e tamanho do armazenato configurados para o seu ambiente hadoop.</p>
+
+<p><img src="https://rafaelsanches123.github.io/assets/hadoop_hdfs.png" alt="arquitetura-hadoop" style="width: 100%" />
+<strong><em>Figura 1</em></strong>: <em>Exemplo de alocação de recursos no HFDS para um arquivo com tamanho de 612 MB - Imagem adaptada de: https://data-flair.training/blogs/data-block/</em></p>
+
+<p>O HDFS possui 2 tipos de nós sendo eles o <strong>Master</strong> (ou <strong>Namenode</strong>) e <strong>Worker</strong> (ou <strong>Datanode</strong>).  O Master armazena informações da distribuição de arquivos e os seus respectivos metadados. O Worker armazena os dados propriamente ditos.</p>
+
+<h2 id="mapreduce-e-outras-aplicações">MapReduce e Outras Aplicações</h2>
+
+<p>Na camada de processamento de dados temos o <strong>MapReduce</strong> que é um modelo de programação distribuída (i.e., paralela) proposto pelo Google para para facilitar o processamento de grandes volumes de dados (i.e., Big Data).</p>
+
+<p>O modelo de programação MapReduce consiste na construção de um programa formado por duas operações basicas sendo elas o <strong>Map</strong> e o <strong>Reduce</strong>. O processo de Map recebe um par <strong>chave</strong> e <strong>valor</strong> e gera também um conjunto intermediário de dados no formato chave e valor. O processo de reduce é executado para cada chave intermediária com todos os conjuntos de valores intermediários associados àquela chave combinados. De forma sucinta o processo de map é usado para encontrar algo, e o processo de reduce é utilizado para fazer a sumarização do resultado.</p>
+
+<p>Na Figura 2 é ilustrado o processo de <strong>Map</strong> e <strong>Reduce</strong> em um problema de contagem de letras. Nesse exemplo é realizada a contagem de quantas vezes alguma letra se repete dentro de um texto qualquer.</p>
+
+<p><img src="https://rafaelsanches123.github.io/assets/hadoop_mapreduce.png" alt="arquitetura-hadoop" style="width: 100%" />
+<strong><em>Figura 2</em></strong>: <em>Exemplo de execução do processo de MapReduce sobre um conjunto de dados texto - Imagem adaptada de: https://pt.itbrain.online/tutorial/map_reduce/map_reduce_quick_guide/</em></p>
+
+<p>Você sabia que o modelo de processamento <strong>MapReduce</strong> é indicado para problemas mais simples de Big Data. Ele processa os dados em memória secundário o que acaba sendo algo lento. Nesse caso o <strong>MapReduce</strong> é indicado para problemas analiticos onde, o tempo de resposta não precise ser imediato para tomada de decisão. O <strong>MapReduce</strong> é também indicado quando sua memória primaria é inferior ao tamanho do dataset que você precisa processar com seu <strong>Cluster Hadoop</strong>.</p>
+
+<p><strong>Ainda sobre MapReduce, irei fazer um outro post somente sobre isso com código para simplificar o conceito de forma mais clara e objetiva.</strong></p>
+
+<h2 id="o-que-é-o-yarn">O que é o YARN?</h2>
+
+<p>Na camada de gerenciamento de recursos temos o <strong>Yet Another Resource Negotiator</strong> (<strong>YARN</strong>). O princípio básico por trás do YARN é separar o gerenciamento de recursos e a função de planejamento/monitoramento de tarefas em daemons (i.e., em segundo plano/background) separados.</p>
+
+<p>Na Figura 3 ilustra-se o processo de envio de um job para o cluster hadoop e como o YARN realiza o gerenciamento desse job em relação ao nó master e workers disponiveis no cluster para processar o job que acaba de chegar. A seguir falaremos sobre os recursos gerenciados pelo YARN referentes ao processo ilustrado na Figura 3.</p>
+
+<p><img src="https://rafaelsanches123.github.io/assets/hadoop_yarn.png" alt="arquitetura-hadoop" style="width: 100%" />
+<strong><em>Figura 3</em></strong>: <em>Exemplo fluxo de execução realizado pelo gerenciador de recursos YARN - Imagem adaptada de: https://subscription.packtpub.com/book/big_data_and_business_intelligence/9781788999830/5/ch05lvl1sec42/understanding-yarn-architecture</em></p>
+
+<p>No YARN, há um <strong>gerenciador de recursos global</strong> (i.e., <strong>ResourceManager</strong>) e um <strong>gerenciador de aplicativos</strong> (i.e., <strong>ApplicationMaster</strong>) por aplicativo. Um aplicativo pode ser uma única tarefa ou uma DAG de tarefas (i.e., uma tarefa composta por sub-tarefas).</p>
+
+<p>Dentro da estrutura YARN, temos duas daemons sendo elas o <strong>ResourceManager</strong> e <strong>NodeManager</strong>. O ResourceManager gerenncia recursos entre todos os aplicativos concorrentes no sistema. A função do <strong>NodeManger</strong> é monitorar o uso de recursos por container e relatar o mesmo ao ResourceManger. Os recursos são como a CPU, memória, disco, rede e assim por diante.</p>
+
+<p>O ApplcationMaster negocia recursos com ResourceManager e trabalha com NodeManger para executar e monitorar cada tarefa.</p>
+
+<p>O ResourceManger tem dois componentes importantes sendo eles o <strong>Scheduler</strong> e <strong>ApplicationManager</strong>.</p>
+
+<blockquote>
+  <p>Scheduler</p>
+</blockquote>
+
+<p>O Scheduler é o responsável por alocar <strong>recursos</strong> para <strong>vários aplicativos</strong>. Este é um agendador puro, pois não realiza rastreamento de status para os aplicativos. Também não reagenda as tarefas que falham devido a erros de software ou hardware. O agendador aloca os recursos com base nos requisitos dos aplicativos.</p>
+
+<blockquote>
+  <p>ApplicationManager</p>
+</blockquote>
+
+<p>Funcões do ApplicationManager:</p>
+
+<ul>
+  <li>Aceita o envio de tarefas;</li>
+  <li>Negocia o primeiro container para a execução do ApplicationMaster. Um container incorpora elementos como a CPU, memória, disco e rede.</li>
+  <li>Reinicia o container ApplicationMaster em caso de falha.</li>
+</ul>
+
+<p>Funções do ApplicationMaster:</p>
+
+<ul>
+  <li>Negocia o container de recursos do Scheduler.</li>
+  <li>Rastreia o status do container de recursos.</li>
+  <li>Monitora o progresso dos aplicativos.</li>
+</ul>
+
+<p>Podemos escalar o YARN por meio de vários nós atrávez do recurso <strong>YARN Federation</strong>. Esse recurso nos permite vincular vários clusters YARN em um único cluster massivo. Isso permite o uso de clusters independentes, agrupados para uma tarefa muito grande (i.e., também conhecido como filas de processamento específicas).</p>
+
+<h2 id="quais-são-os-desafios-em-usar-o-hadoop">Quais são os desafios em usar o Hadoop?</h2>
+
+<blockquote>
+  <p>A programação de MapReduce não é uma boa solução para todos os problemas</p>
+</blockquote>
+
+<p>Ela é uma boa alternativa para tarefas simples e problemas que podem ser divididos entre unidades independentes, mas não é eficiente para tarefas de inteligência analítica iterativas e interativas. MapReduce foi desenvolvido focado para trabalhar com arquivos. Devido aos nós não se comunicarem diretamente, exceto através de operações de map e reduce, algoritmos iterativos precisam de diversas etapas de map e reduce para se completarem. Isso cria muitos arquivos entre as fases de MapReduce e não é eficiente para computação analítica avançada.</p>
+
+<blockquote>
+  <p>Há uma lacuna de talento amplamente notada referente aos profissionais de Big Data</p>
+</blockquote>
+
+<p>Em pleno ano de 2021 ainda pode ser difícil encontrar bons programadores iniciantes que tenham habilidades suficientes em Java para serem produtivos usando o modelo MapReduce. Esse é um dos motivos pelos quais os fornecedores de solução Hadoop estão buscando alternativas para incluir tecnologias like SQL (i.e., relacional) em Hadoop. É muito mais fácil encontrar programadores com habilidades em SQL do que em programação MapReduce (i.e., programação distribuída).</p>
+
+<p>Esse é um bom mercado para se encontrar trabalho pois ainda faltam profissionais capacitados.</p>
+
+<blockquote>
+  <p>Gestão e governança de dados completos do ínicio ao fim</p>
+</blockquote>
+
+<p>O Hadoop não possui ferramentas completas e fáceis de usar para o gerenciamento de dados, limpeza de dados, governança e gestão de metadados. Também faltam ferramentas para a qualidade e padronização de dados por ser um ambiente que trabalha com dados complexos em geral.</p>
+
+<p>Para mais detalhes e complementos sobre o Hadoop, você poder acessar o site do <a href="https://hadoop.apache.org" target="_blank">Apache Hadoop</a> e ler sobre os tópicos discutidos nesse post.</p>
+
+<p>Espero ter ajudado você caro leitor(a) a entender um pouco mais sobre o que é o Hadoop e como ele funciona, de forma simples, por mais complexo que ele seja. Se você curtiu esse post, curta e compartilhe com os amigos.</p>
+:ET

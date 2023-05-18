@@ -1,0 +1,745 @@
+I"�"<p><img src="https://rafaelsanches123.github.io/assets/linguagem-python.png" alt="linguagem-python" style="width: 100%" /></p>
+
+<h2 id="estruturas-de-dados">Estruturas de dados</h2>
+
+<p>Estruturas de dados consistem na organização de dados na memória de um computador ou em um dispositivo de armazenamento de modo que esses dados possam ser acessados de forma performática.</p>
+
+<p>Em python temos estruturas de dados por meio dos tipos de variáveis compostas <strong>Listas</strong>, <strong>Dicionários</strong>, <strong>Tuplas</strong> e <strong>Conjuntos</strong> que nos auxiliam de forma performática a armazenar dados e acessá-los da melhor forma possível. Vale ressaltar que isso ocorre de modo mais alto nível em comparação a linguagens como a <strong>c</strong> por exemplo que você desenvolve todo processo relacionado a essas estruturas de dados desde a conexão entre posições na memória por meio de ponteiros e a lógica por trás desses processos que precisam ser desenvolvidos.</p>
+
+<p>Na linguagem de programação Python:</p>
+<ul>
+  <li>O tipo Lista é uma estrutura de dados ordenada e mutável. Permite itens duplicados.</li>
+  <li>O tipo Tupla é uma estrutura de dados ordenada e imutável. Permite itens duplicados.</li>
+  <li>O tipo Conjunto é uma estrutura de dados não ordenada e não indexada. Não permite itens duplicados.</li>
+  <li>O tipo dicionário é uma estrutura de dados desordenada e mutável. Não permite itens duplicados.</li>
+</ul>
+
+<h3 id="tupla">Tupla:</h3>
+
+<p>A tupla é uma variável de tipo composto que permite que seja atribuído a ela mais de um tipo de variável simples/primitiva. Isso é básicamente uma lista que vai guardar variáveis porém, existe um ponto importante sobre tuplas, elas não permitem ser modificadas depois de serem criadas ou seja a <strong>Tupla</strong> é uma Lista <strong>imutável</strong>. Veja o exemplo a seguir:</p>
+
+<p>Código:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">nomes</span> <span class="o">=</span> <span class="p">(</span><span class="s">"Rafael"</span><span class="p">,</span> <span class="s">"Gabriel"</span><span class="p">,</span> <span class="s">"Pedro"</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">nomes</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nomes</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">nomes</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="k">print</span><span class="p">(</span><span class="nb">type</span><span class="p">(</span><span class="n">nomes</span><span class="p">))</span>
+
+<span class="n">nomes</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">=</span> <span class="s">"Leandro"</span>
+
+</code></pre></div></div>
+<p>Resultado:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Rafael
+Gabriel
+Pedro
+&lt;class <span class="s1">'tuple'</span><span class="o">&gt;</span>
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"main.py"</span>, line 9, <span class="k">in</span> &lt;module&gt;
+    nomes[0] <span class="o">=</span> <span class="s2">"Leandro"</span>
+TypeError: <span class="s1">'tuple'</span> object does not support item assignment
+<span class="o">&gt;&gt;&gt;</span>
+
+</code></pre></div></div>
+<p>No resultado ilustrado acima é possível visualizar a imutabilidade de uma tupla quando tentamos alterar ela.</p>
+
+<p>Uma tupla pode ser declada das seguintes formas a baixo:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># Tupla declarada sem o uso de parêntesis
+</span><span class="n">tupla_1</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span>
+<span class="c1"># Tupla declarada com o uso de parêntesis
+</span><span class="n">tupla_2</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">3</span><span class="p">)</span>
+
+<span class="c1"># Tupla com um único elemento
+</span><span class="n">tupla_3</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span>
+
+<span class="c1"># Tupla vazia
+</span><span class="n">tupla_4</span> <span class="o">=</span> <span class="p">()</span>
+</code></pre></div></div>
+
+<p>Durante meus anos de desenvolvimento eu particularmente não cheguei a precisar utilizar tupla nos softwares que já criei. Se você que está lendo esse post já teve que utilizar para algo comenta nos comentários onde você já utilizou!</p>
+
+<h3 id="lista">Lista:</h3>
+
+<p>As listas em Python são uma sequência ordenada de valores onde, cada valor na lista é identificado por um índice. Os valores que formam uma lista são chamados elementos ou itens. Listas são similares a strings, que são uma sequência de caracteres, no entanto, diferentemente de strings, os itens de uma lista podem ser de tipos diferentes e tamanhos.</p>
+
+<p>Veja um exemplo na imagem a seguir:</p>
+
+<p><img src="https://rafaelsanches123.github.io/assets/listas-em-python.png" alt="lista-em-python" style="width: 100%" /></p>
+
+<p><strong><em>Figura 1</em></strong>: <em>Exemplo do tipo de dados lista em python</em></p>
+
+<p>Na Figura acima é possível observar um exemplo de lista na qual ela tem tamanho 6. Vale lembrar que em python as listas começam na posição 0. Na lista de exemplo na imagem é possível observar que ela tem o número 29 do tipo inteiro na 1ª posição. Na 2ª posição temos o nome Rafael que nada mais é do que uma variável do tipo String. Na 3ª posição temos o número -9. Na 4ª posição temos a string cursos. Na 5ª posição temos uma lista de números inteiros e na última posição (i.e., 6ª) temos um tipo string contendo a palavra Teste.</p>
+
+<p>Uma coisa que geralmente deixa as pessoas confusas quando estão aprendendo alguma linguagem de programação é a posição dos elementos. Isso ocorre pelo fato de começarem pela posição 0 e não pela posição 1. Não se preocupe que com o tempo você se acostuma com isso e vai virar algo super comum para você.</p>
+
+<p>Bora ver alguns exemplos de como criar listas e algumas ações que podemos realizar sobre elas.</p>
+
+<p>Primeiro passo é criar uma lista:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Lista vazia
+</span><span class="n">lista1</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">#Lista da Figura 1
+</span><span class="n">lista2</span> <span class="o">=</span> <span class="p">[</span><span class="mi">29</span><span class="p">,</span><span class="s">"Rafael"</span><span class="p">,</span><span class="o">-</span><span class="mi">9</span><span class="p">,</span><span class="s">"cursos"</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">],</span><span class="s">"Teste"</span><span class="p">]</span>
+</code></pre></div></div>
+<p>Para descobrirmos a quantidade de elementos em uma lista pode usar a função <strong>len</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Tamanho de uma lista
+</span><span class="k">print</span><span class="p">(</span><span class="s">"O tamanho da lista1 é: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lista1</span><span class="p">)))</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"O tamanho da lista2 é: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">lista2</span><span class="p">)))</span>
+</code></pre></div></div>
+
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>O tamanho da lista1 é: 0
+O tamanho da lista2 é: 6
+</code></pre></div></div>
+<p>Para acessar os elementos de uma lista podemos realizar essa ação de dois modos, um deles seria acessando o elemento na posição desejada e o outro por meio de um laço de repetição.</p>
+
+<p>Exemplos utilizando laço de repetição:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#iterar sobre uma lista
+</span><span class="k">for</span> <span class="n">elemento</span> <span class="ow">in</span> <span class="n">lista2</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"Elemento: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">elemento</span><span class="p">))</span>
+</code></pre></div></div>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:
+Elemento: 29
+Elemento: Rafael
+Elemento: <span class="nt">-9</span>
+Elemento: cursos
+Elemento: <span class="o">[</span>1, 2, 3, 4, 5]
+Elemento: Teste
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#exibir posição e elemento daquela posição
+</span><span class="k">for</span> <span class="n">posicao</span><span class="p">,</span> <span class="n">elemento</span> <span class="ow">in</span> <span class="nb">enumerate</span><span class="p">(</span><span class="n">lista2</span><span class="p">):</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"Posição: {}, Elemento: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="n">posicao</span><span class="p">,</span> <span class="n">elemento</span><span class="p">))</span>
+</code></pre></div></div>
+
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Posição: 0, Elemento: 29
+Posição: 1, Elemento: Rafael
+Posição: 2, Elemento: <span class="nt">-9</span>
+Posição: 3, Elemento: cursos
+Posição: 4, Elemento: <span class="o">[</span>1, 2, 3, 4, 5]
+Posição: 5, Elemento: Teste
+</code></pre></div></div>
+<p>Veja agora alguns exemplos acessando diretamente a posição de uma lista:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="n">lista1</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"main.py"</span>, line 27, <span class="k">in</span> &lt;module&gt;
+    print<span class="o">(</span>lista1[0]<span class="o">)</span>
+IndexError: list index out of range
+</code></pre></div></div>
+<p>Para o exemplo acima a lista1 esta vazia logo, não é possível acessar nada nela e por isso ao tentarmos acessar uma posição qualquer nela ela gerou a exceção acima na saída do código. Lembre se que mesmo para uma lista que contenha elementos e não esteja vazia se você tentar acessar uma posição que não exista nessa lista a exceção acima também ocorrerá.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Posição 0
+</span><span class="k">print</span><span class="p">(</span><span class="n">lista2</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
+
+<span class="c1">#Posição 3
+</span><span class="k">print</span><span class="p">(</span><span class="n">lista2</span><span class="p">[</span><span class="mi">2</span><span class="p">])</span>
+
+<span class="c1">#Posição 5
+</span><span class="k">print</span><span class="p">(</span><span class="n">lista2</span><span class="p">[</span><span class="mi">4</span><span class="p">])</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>29
+<span class="nt">-9</span>
+<span class="o">[</span>1, 2, 3, 4, 5]
+</code></pre></div></div>
+
+<p>Se eu quiser verificar se um determinado elemento está na lista eu posso utilizar o operador <strong>in</strong>:</p>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="o">-</span><span class="mi">9</span> <span class="ow">in</span> <span class="n">lista2</span><span class="p">):</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"-9 está na lista2 !"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"-9 não está na lista2 !"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="nt">-9</span> está na lista2 <span class="o">!</span>
+</code></pre></div></div>
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">if</span><span class="p">(</span><span class="mi">30</span> <span class="ow">in</span> <span class="n">lista2</span><span class="p">):</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"30 está na lista2 !"</span><span class="p">)</span>
+<span class="k">else</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"30 não está na lista2 !"</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>30 não está na lista2 <span class="o">!</span>
+</code></pre></div></div>
+
+<p>Sabia que você também pode encontrar valores de mínimos, máximos e soma utilizando listas:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#lista composta somente por números
+</span><span class="n">lista3</span> <span class="o">=</span> <span class="p">[</span><span class="mi">10</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">3</span><span class="p">,</span> <span class="mi">18</span><span class="p">,</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">25</span><span class="p">]</span>
+
+<span class="c1">#mínimo
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Menor valor: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">min</span><span class="p">(</span><span class="n">lista3</span><span class="p">)))</span>
+
+<span class="c1">#máximo
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Maior valor: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">max</span><span class="p">(</span><span class="n">lista3</span><span class="p">)))</span>
+
+<span class="c1">#somatório
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Soma: {}"</span><span class="p">.</span><span class="nb">format</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">lista3</span><span class="p">)))</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Menor valor: 1
+Maior valor: 25
+Soma: 62
+</code></pre></div></div>
+
+<p>A ordenação de listas:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#ordem crescente
+</span><span class="k">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">lista3</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">False</span><span class="p">))</span>
+
+<span class="c1">#ordem decrescente
+</span><span class="k">print</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">lista3</span><span class="p">,</span> <span class="n">key</span><span class="o">=</span><span class="nb">int</span><span class="p">,</span> <span class="n">reverse</span><span class="o">=</span><span class="bp">True</span><span class="p">))</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span>1, 3, 5, 10, 18, 25]
+<span class="o">[</span>25, 18, 10, 5, 3, 1]
+</code></pre></div></div>
+
+<p>Operações com Listas:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Adicionando elementos de forma dinâmica a listas:
+</span>
+<span class="c1">#lista vazia
+</span><span class="n">lista_nomes</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">#adicionando nomes a lista vazia
+</span>
+<span class="c1">#adicionando elemento na última posição da lista
+</span><span class="n">lista_nomes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Rafael"</span><span class="p">)</span>
+
+<span class="c1">#adicionando elemento na última posição da lista
+</span><span class="n">lista_nomes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Francisco"</span><span class="p">)</span>
+
+<span class="c1">#adicionando elemento na última posição da lista
+</span><span class="n">lista_nomes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Viana"</span><span class="p">)</span>
+
+<span class="c1">#adicionando elemento na última posição da lista
+</span><span class="n">lista_nomes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Sanches"</span><span class="p">)</span>
+
+<span class="c1">#exibindo a lista
+</span><span class="k">print</span><span class="p">(</span><span class="n">lista_nomes</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span><span class="s1">'Rafael'</span>, <span class="s1">'Francisco'</span>, <span class="s1">'Viana'</span>, <span class="s1">'Sanches'</span><span class="o">]</span>
+</code></pre></div></div>
+
+<p>A função <strong>append</strong> sempre insere elementos no final da lista. Isso é bom por questões de desempenho. É mais rápido inserir elementos no final de uma lista porque não precisamos percorrer a lista procurando a posição onde o elemento deve ser inserido. Mas também é possível inserir elementos em posições específicas da lista, usando a função <strong>insert</strong>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">lista_nomes</span><span class="p">.</span><span class="n">insert</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="s">"Teste"</span><span class="p">)</span>
+
+<span class="c1">#exibindo a lista
+</span><span class="k">print</span><span class="p">(</span><span class="n">lista_nomes</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">[</span><span class="s1">'Rafael'</span>, <span class="s1">'Teste'</span>, <span class="s1">'Francisco'</span>, <span class="s1">'Viana'</span>, <span class="s1">'Sanches'</span><span class="o">]</span>
+</code></pre></div></div>
+
+<p>Removendo elementos de listas:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#lista vazia
+</span><span class="n">lista_nomes</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">#adicionando nomes a lista vazia
+</span>
+<span class="c1">#adicionando elemento na ultima posição da lista
+</span><span class="n">lista_nomes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Rafael"</span><span class="p">)</span>
+
+<span class="c1">#adicionando elemento na ultima posição da lista
+</span><span class="n">lista_nomes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Francisco"</span><span class="p">)</span>
+
+<span class="c1">#adicionando elemento na ultima posição da lista
+</span><span class="n">lista_nomes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Viana"</span><span class="p">)</span>
+
+<span class="c1">#adicionando elemento na ultima posição da lista
+</span><span class="n">lista_nomes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Sanches"</span><span class="p">)</span>
+
+<span class="c1">#exibindo a lista original
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Lista Original: "</span><span class="p">,</span><span class="n">lista_nomes</span><span class="p">)</span>
+
+<span class="n">lista_nomes</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="s">"Viana"</span><span class="p">)</span>
+
+<span class="c1">#exibindo a lista
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Lista Modificada: "</span><span class="p">,</span><span class="n">lista_nomes</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Lista Original:  <span class="o">[</span><span class="s1">'Rafael'</span>, <span class="s1">'Francisco'</span>, <span class="s1">'Viana'</span>, <span class="s1">'Sanches'</span><span class="o">]</span>
+Lista Modificada:  <span class="o">[</span><span class="s1">'Rafael'</span>, <span class="s1">'Francisco'</span>, <span class="s1">'Sanches'</span><span class="o">]</span>
+</code></pre></div></div>
+
+<p>Para remover um elemento em uma posição específica, usamos a função <strong>del</strong>. Observe a diferença em relação à função remove, que recebe como parâmetro o valor que desejamos remover.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#lista vazia
+</span><span class="n">lista_nomes</span> <span class="o">=</span> <span class="p">[]</span>
+
+<span class="c1">#adicionando nomes a lista vazia
+</span>
+<span class="c1">#adicionando elemento na ultima posição da lista
+</span><span class="n">lista_nomes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Rafael"</span><span class="p">)</span>
+
+<span class="c1">#adicionando elemento na ultima posição da lista
+</span><span class="n">lista_nomes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Francisco"</span><span class="p">)</span>
+
+<span class="c1">#adicionando elemento na ultima posição da lista
+</span><span class="n">lista_nomes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Viana"</span><span class="p">)</span>
+
+<span class="c1">#adicionando elemento na ultima posição da lista
+</span><span class="n">lista_nomes</span><span class="p">.</span><span class="n">append</span><span class="p">(</span><span class="s">"Sanches"</span><span class="p">)</span>
+
+<span class="c1">#exibindo a lista original
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Lista Original: "</span><span class="p">,</span><span class="n">lista_nomes</span><span class="p">)</span>
+
+<span class="k">del</span> <span class="n">lista_nomes</span><span class="p">[</span><span class="mi">3</span><span class="p">]</span>
+
+<span class="c1">#exibindo a lista
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Lista Modificada: "</span><span class="p">,</span><span class="n">lista_nomes</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Lista Original:  <span class="o">[</span><span class="s1">'Rafael'</span>, <span class="s1">'Francisco'</span>, <span class="s1">'Viana'</span>, <span class="s1">'Sanches'</span><span class="o">]</span>
+Lista Modificada:  <span class="o">[</span><span class="s1">'Rafael'</span>, <span class="s1">'Francisco'</span>, <span class="s1">'Viana'</span><span class="o">]</span>
+</code></pre></div></div>
+
+<p>Exitem ainda muitos outros métodos que podemos utilizar com listas e para poder conhece-los abra seu terminal e digite o comando <strong>help(list)</strong>. Segue um exemplo:</p>
+
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Python 3.8.5 <span class="o">(</span>default, Jan 27 2021, 15:41:15<span class="o">)</span>
+<span class="o">[</span>GCC 9.3.0] on linux
+Type <span class="s2">"help"</span>, <span class="s2">"copyright"</span>, <span class="s2">"credits"</span> or <span class="s2">"license"</span> <span class="k">for </span>more information.
+<span class="o">&gt;&gt;&gt;</span> <span class="nb">help</span><span class="o">(</span>list<span class="o">)</span>
+</code></pre></div></div>
+
+<h3 id="dicionário">Dicionário:</h3>
+
+<p>Os dicionários são estruturas que não possuem uma ordenação específica. Os dicionários são representados na forma de chave e valor. A chave é uma referência para o valor de um elemento do dicionário. Veja a seguir alguns exemplos de ações que você pode realizar com dicionários.</p>
+
+<p>Os dicionários são criados colocando os pares <strong>chave</strong> : <strong>valor</strong> entre chaves <strong>{</strong> <strong>}</strong> da seguinte forma:</p>
+
+<p>Criando um dicionário:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#dicionário vazio
+</span><span class="n">dicionario</span> <span class="o">=</span> <span class="p">{}</span>
+
+<span class="c1">#imprimindo o conteúdo do dicionário
+</span><span class="k">print</span><span class="p">(</span><span class="s">"Dicionário vazio: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">)</span>
+
+<span class="c1">#dicionário criado com chaves e valores
+</span><span class="n">dicionario</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Rafael'</span><span class="p">:</span> <span class="s">'PYTHON'</span><span class="p">,</span> <span class="s">'Renata'</span><span class="p">:</span> <span class="s">'SQL'</span><span class="p">,</span> <span class="s">'Joao'</span> <span class="p">:</span> <span class="s">'JAVA'</span><span class="p">,</span> <span class="s">'Bruno'</span><span class="p">:</span> <span class="s">'C++'</span><span class="p">,</span> <span class="s">'Ana'</span> <span class="p">:</span> <span class="s">'PHP'</span><span class="p">}</span>
+
+<span class="c1">#acessando itens de um dicionário
+</span><span class="k">print</span><span class="p">(</span><span class="n">dicionario</span><span class="p">[</span><span class="s">'Rafael'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dicionario</span><span class="p">[</span><span class="s">'Renata'</span><span class="p">])</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dicionario</span><span class="p">[</span><span class="s">'Ana'</span><span class="p">])</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Dicionario vazio:  <span class="o">{}</span>
+PYTHON
+SQL
+PHP
+</code></pre></div></div>
+
+<p>Para recuperar um valor no dicionário podemos usar o método <strong>get</strong> passando como argumento a chave do valor que queremos recuperar:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#dicionário criado com chave e valores
+</span><span class="n">dicionario</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Rafael'</span><span class="p">:</span> <span class="s">'PYTHON'</span><span class="p">,</span> <span class="s">'Renata'</span><span class="p">:</span> <span class="s">'SQL'</span><span class="p">,</span> <span class="s">'Joao'</span> <span class="p">:</span> <span class="s">'JAVA'</span><span class="p">,</span> <span class="s">'Bruno'</span><span class="p">:</span> <span class="s">'C++'</span><span class="p">,</span> <span class="s">'Ana'</span> <span class="p">:</span> <span class="s">'PHP'</span><span class="p">}</span>
+
+<span class="c1">#imprimindo o conteúdo das chaves Rafael, Renata e Ana usando o método get
+</span><span class="k">print</span><span class="p">(</span><span class="n">dicionario</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'Rafael'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dicionario</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'Renata'</span><span class="p">))</span>
+<span class="k">print</span><span class="p">(</span><span class="n">dicionario</span><span class="p">.</span><span class="n">get</span><span class="p">(</span><span class="s">'Ana'</span><span class="p">))</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>PYTHON
+SQL
+PHP
+</code></pre></div></div>
+
+<p>Iterando sobre os itens de um dicionário utilizando o laço de repetição <strong>for</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="n">dicionario</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Rafael'</span><span class="p">:</span> <span class="s">'PYTHON'</span><span class="p">,</span> <span class="s">'Renata'</span><span class="p">:</span> <span class="s">'SQL'</span><span class="p">,</span> <span class="s">'Joao'</span> <span class="p">:</span> <span class="s">'JAVA'</span><span class="p">,</span> <span class="s">'Bruno'</span><span class="p">:</span> <span class="s">'C++'</span><span class="p">,</span> <span class="s">'Ana'</span> <span class="p">:</span> <span class="s">'PHP'</span><span class="p">}</span>
+
+<span class="k">for</span> <span class="n">chave</span> <span class="ow">in</span> <span class="n">dicionario</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="n">chave</span><span class="p">,</span> <span class="s">'programa em:'</span><span class="p">,</span> <span class="n">dicionario</span><span class="p">[</span><span class="n">chave</span><span class="p">])</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Rafael programa em: PYTHON
+Renata programa em: SQL
+Joao programa em: JAVA
+Bruno programa em: C++
+Ana programa em: PHP
+</code></pre></div></div>
+
+<p>Para alterar uma valor em um dicionário use o nome do dicionário com a chave entre colchetes e associe um <strong>novo valor</strong> a <strong>chave</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#dicionário criado com chaves e valores
+</span><span class="n">dicionario</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Rafael'</span><span class="p">:</span> <span class="s">'PYTHON'</span><span class="p">,</span> <span class="s">'Renata'</span><span class="p">:</span> <span class="s">'SQL'</span><span class="p">,</span> <span class="s">'Joao'</span> <span class="p">:</span> <span class="s">'JAVA'</span><span class="p">,</span> <span class="s">'Bruno'</span><span class="p">:</span> <span class="s">'C++'</span><span class="p">,</span> <span class="s">'Ana'</span> <span class="p">:</span> <span class="s">'PHP'</span><span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Antes da alteração: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">)</span>
+
+<span class="n">dicionario</span><span class="p">[</span><span class="s">'Rafael'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'Ruby'</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Depois da alteração: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Antes da alteração:  <span class="o">{</span><span class="s1">'Rafael'</span>: <span class="s1">'PYTHON'</span>, <span class="s1">'Renata'</span>: <span class="s1">'SQL'</span>, <span class="s1">'Joao'</span>: <span class="s1">'JAVA'</span>, <span class="s1">'Bruno'</span>: <span class="s1">'C++'</span>, <span class="s1">'Ana'</span>: <span class="s1">'PHP'</span><span class="o">}</span>
+Depois da alteração:  <span class="o">{</span><span class="s1">'Rafael'</span>: <span class="s1">'Ruby'</span>, <span class="s1">'Renata'</span>: <span class="s1">'SQL'</span>, <span class="s1">'Joao'</span>: <span class="s1">'JAVA'</span>, <span class="s1">'Bruno'</span>: <span class="s1">'C++'</span>, <span class="s1">'Ana'</span>: <span class="s1">'PHP'</span><span class="o">}</span>
+</code></pre></div></div>
+
+<p>Para inserir um novo item em um dicionário basta declarar o dicionário colocando entre colchetes a <strong>nova chave</strong> e <strong>atribuindo um valor a ela</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#dicionário criado com chaves e valores
+</span><span class="n">dicionario</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Rafael'</span><span class="p">:</span> <span class="s">'PYTHON'</span><span class="p">,</span> <span class="s">'Renata'</span><span class="p">:</span> <span class="s">'SQL'</span><span class="p">,</span> <span class="s">'Joao'</span> <span class="p">:</span> <span class="s">'JAVA'</span><span class="p">,</span> <span class="s">'Bruno'</span><span class="p">:</span> <span class="s">'C++'</span><span class="p">,</span> <span class="s">'Ana'</span> <span class="p">:</span> <span class="s">'PHP'</span><span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Antes da alteração: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">)</span>
+
+<span class="n">dicionario</span><span class="p">[</span><span class="s">'Joelson'</span><span class="p">]</span> <span class="o">=</span> <span class="s">'C#'</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Depois da alteração: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Antes da alteração:  <span class="o">{</span><span class="s1">'Rafael'</span>: <span class="s1">'PYTHON'</span>, <span class="s1">'Renata'</span>: <span class="s1">'SQL'</span>, <span class="s1">'Joao'</span>: <span class="s1">'JAVA'</span>, <span class="s1">'Bruno'</span>: <span class="s1">'C++'</span>, <span class="s1">'Ana'</span>: <span class="s1">'PHP'</span><span class="o">}</span>
+Depois da alteração:  <span class="o">{</span><span class="s1">'Rafael'</span>: <span class="s1">'PYTHON'</span>, <span class="s1">'Renata'</span>: <span class="s1">'SQL'</span>, <span class="s1">'Joao'</span>: <span class="s1">'JAVA'</span>, <span class="s1">'Bruno'</span>: <span class="s1">'C++'</span>, <span class="s1">'Ana'</span>: <span class="s1">'PHP'</span>, <span class="s1">'Joelson'</span>: <span class="s1">'C#'</span><span class="o">}</span>
+</code></pre></div></div>
+
+<p>Inserindo itens novos ou alterando itens já existentes em um dicionário com o método <strong>update()</strong>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#dicionário criado com chaves e valores
+</span><span class="n">dicionario</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Rafael'</span><span class="p">:</span> <span class="s">'PYTHON'</span><span class="p">,</span> <span class="s">'Renata'</span><span class="p">:</span> <span class="s">'SQL'</span><span class="p">,</span> <span class="s">'Joao'</span> <span class="p">:</span> <span class="s">'JAVA'</span><span class="p">,</span> <span class="s">'Bruno'</span><span class="p">:</span> <span class="s">'C++'</span><span class="p">,</span> <span class="s">'Ana'</span> <span class="p">:</span> <span class="s">'PHP'</span><span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Antes da alteração: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">)</span>
+
+<span class="c1"># Chave não existe no dicionario. Nesse caso ocorre automaticamente uma inserção no dicionário ou seja, um novo conjunto de chave e valor é adicionado ao dicionário.
+</span><span class="n">dicionario</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">'Joelson'</span><span class="p">:</span><span class="s">'C#'</span><span class="p">})</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Depois da alteração: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">)</span>
+
+<span class="c1"># Chave já existe no dicionario. Nesse caso ocorre automaticamente uma atualização no dicionário ou seja, um novo valor é atribuído a uma chave que já está no dicionário.
+</span>
+<span class="n">dicionario</span><span class="p">.</span><span class="n">update</span><span class="p">({</span><span class="s">'Rafael'</span><span class="p">:</span><span class="s">'R'</span><span class="p">})</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Depois da alteração: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Antes da alteração:  <span class="o">{</span><span class="s1">'Rafael'</span>: <span class="s1">'PYTHON'</span>, <span class="s1">'Renata'</span>: <span class="s1">'SQL'</span>, <span class="s1">'Joao'</span>: <span class="s1">'JAVA'</span>, <span class="s1">'Bruno'</span>: <span class="s1">'C++'</span>, <span class="s1">'Ana'</span>: <span class="s1">'PHP'</span><span class="o">}</span>
+Depois da alteração:  <span class="o">{</span><span class="s1">'Rafael'</span>: <span class="s1">'PYTHON'</span>, <span class="s1">'Renata'</span>: <span class="s1">'SQL'</span>, <span class="s1">'Joao'</span>: <span class="s1">'JAVA'</span>, <span class="s1">'Bruno'</span>: <span class="s1">'C++'</span>, <span class="s1">'Ana'</span>: <span class="s1">'PHP'</span>, <span class="s1">'Joelson'</span>: <span class="s1">'C#'</span><span class="o">}</span>
+Depois da alteração:  <span class="o">{</span><span class="s1">'Rafael'</span>: <span class="s1">'R'</span>, <span class="s1">'Renata'</span>: <span class="s1">'SQL'</span>, <span class="s1">'Joao'</span>: <span class="s1">'JAVA'</span>, <span class="s1">'Bruno'</span>: <span class="s1">'C++'</span>, <span class="s1">'Ana'</span>: <span class="s1">'PHP'</span>, <span class="s1">'Joelson'</span>: <span class="s1">'C#'</span><span class="o">}</span>
+</code></pre></div></div>
+
+<p>Removendo um par chave e valor de um dicionário usando o comando <strong>del</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#dicionário criado com chaves e valores
+</span><span class="n">dicionario</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Rafael'</span><span class="p">:</span> <span class="s">'PYTHON'</span><span class="p">,</span> <span class="s">'Renata'</span><span class="p">:</span> <span class="s">'SQL'</span><span class="p">,</span> <span class="s">'Joao'</span> <span class="p">:</span> <span class="s">'JAVA'</span><span class="p">,</span> <span class="s">'Bruno'</span><span class="p">:</span> <span class="s">'C++'</span><span class="p">,</span> <span class="s">'Ana'</span> <span class="p">:</span> <span class="s">'PHP'</span><span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Antes da alteração: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">)</span>
+
+<span class="k">del</span> <span class="n">dicionario</span><span class="p">[</span><span class="s">'Bruno'</span><span class="p">]</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Depois da alteração: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Antes da alteração:  <span class="o">{</span><span class="s1">'Rafael'</span>: <span class="s1">'PYTHON'</span>, <span class="s1">'Renata'</span>: <span class="s1">'SQL'</span>, <span class="s1">'Joao'</span>: <span class="s1">'JAVA'</span>, <span class="s1">'Bruno'</span>: <span class="s1">'C++'</span>, <span class="s1">'Ana'</span>: <span class="s1">'PHP'</span><span class="o">}</span>
+Depois da alteração:  <span class="o">{</span><span class="s1">'Rafael'</span>: <span class="s1">'PYTHON'</span>, <span class="s1">'Renata'</span>: <span class="s1">'SQL'</span>, <span class="s1">'Joao'</span>: <span class="s1">'JAVA'</span>, <span class="s1">'Ana'</span>: <span class="s1">'PHP'</span><span class="o">}</span>
+</code></pre></div></div>
+
+<p>Removendo e obtendo um par chave, valor com o método <strong>pop()</strong>:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#dicionário criado com chaves e valores
+</span><span class="n">dicionario</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Rafael'</span><span class="p">:</span> <span class="s">'PYTHON'</span><span class="p">,</span> <span class="s">'Renata'</span><span class="p">:</span> <span class="s">'SQL'</span><span class="p">,</span> <span class="s">'Joao'</span> <span class="p">:</span> <span class="s">'JAVA'</span><span class="p">,</span> <span class="s">'Bruno'</span><span class="p">:</span> <span class="s">'C++'</span><span class="p">,</span> <span class="s">'Ana'</span> <span class="p">:</span> <span class="s">'PHP'</span><span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Antes da alteração: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">)</span>
+
+<span class="n">dicionario</span><span class="p">.</span><span class="n">pop</span><span class="p">(</span><span class="s">'Renata'</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Depois da alteração: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Antes da alteração:  <span class="o">{</span><span class="s1">'Rafael'</span>: <span class="s1">'PYTHON'</span>, <span class="s1">'Renata'</span>: <span class="s1">'SQL'</span>, <span class="s1">'Joao'</span>: <span class="s1">'JAVA'</span>, <span class="s1">'Bruno'</span>: <span class="s1">'C++'</span>, <span class="s1">'Ana'</span>: <span class="s1">'PHP'</span><span class="o">}</span>
+Depois da alteração:  <span class="o">{</span><span class="s1">'Rafael'</span>: <span class="s1">'PYTHON'</span>, <span class="s1">'Joao'</span>: <span class="s1">'JAVA'</span>, <span class="s1">'Bruno'</span>: <span class="s1">'C++'</span>, <span class="s1">'Ana'</span>: <span class="s1">'PHP'</span><span class="o">}</span>
+</code></pre></div></div>
+
+<p>Para poder entender o seu dicionário ou o dicionário que outra pessoa tenha criado, você pode usufruir de alguns métodos sendo eles:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Nome do método</th>
+      <th style="text-align: center">O que ele faz?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">keys()</td>
+      <td style="text-align: center">Ele retorna todas as chaves de um dicionário</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">values()</td>
+      <td style="text-align: center">Ele retorna todos os valores de um dicionário</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">items()</td>
+      <td style="text-align: center">Ele retorna todos os pares de chave e valor de um dicionário</td>
+    </tr>
+  </tbody>
+</table>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#dicionário criado com chaves e valores
+</span><span class="n">dicionario</span> <span class="o">=</span> <span class="p">{</span><span class="s">'Rafael'</span><span class="p">:</span> <span class="s">'PYTHON'</span><span class="p">,</span> <span class="s">'Renata'</span><span class="p">:</span> <span class="s">'SQL'</span><span class="p">,</span> <span class="s">'Joao'</span> <span class="p">:</span> <span class="s">'JAVA'</span><span class="p">,</span> <span class="s">'Bruno'</span><span class="p">:</span> <span class="s">'C++'</span><span class="p">,</span> <span class="s">'Ana'</span> <span class="p">:</span> <span class="s">'PHP'</span><span class="p">}</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Todas as chaves: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">.</span><span class="n">keys</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Todos os valores: "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">.</span><span class="n">values</span><span class="p">())</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Todos os pares de (chave, valor): "</span><span class="p">,</span><span class="n">dicionario</span><span class="p">.</span><span class="n">items</span><span class="p">())</span>
+
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Todas as chaves:  dict_keys<span class="o">([</span><span class="s1">'Rafael'</span>, <span class="s1">'Renata'</span>, <span class="s1">'Joao'</span>, <span class="s1">'Bruno'</span>, <span class="s1">'Ana'</span><span class="o">])</span>
+Todos os valores:  dict_values<span class="o">([</span><span class="s1">'PYTHON'</span>, <span class="s1">'SQL'</span>, <span class="s1">'JAVA'</span>, <span class="s1">'C++'</span>, <span class="s1">'PHP'</span><span class="o">])</span>
+Todos os pares de <span class="o">(</span>chave, valor<span class="o">)</span>:  dict_items<span class="o">([(</span><span class="s1">'Rafael'</span>, <span class="s1">'PYTHON'</span><span class="o">)</span>, <span class="o">(</span><span class="s1">'Renata'</span>, <span class="s1">'SQL'</span><span class="o">)</span>, <span class="o">(</span><span class="s1">'Joao'</span>, <span class="s1">'JAVA'</span><span class="o">)</span>, <span class="o">(</span><span class="s1">'Bruno'</span>, <span class="s1">'C++'</span><span class="o">)</span>, <span class="o">(</span><span class="s1">'Ana'</span>, <span class="s1">'PHP'</span><span class="o">)])</span>
+</code></pre></div></div>
+
+<p>Vale ressaltar que os comandos utilizados acima retornam para o método <strong>keys()</strong> uma lista com as chaves existentes no dicionário. Para o método <strong>values()</strong>, retorna-se uma lista com os valores do dicionário. O método <strong>items()</strong> ele é um pouco diferente pois ele retorna uma lista que seus elementos por sua vez possuem tuplas como valores onde o primeiro elemento de cada tupla representa a chave e o segundo elemento o valor relacionado a respectiva chave do primeiro elemento.</p>
+
+<h3 id="conjunto">Conjunto:</h3>
+
+<p>Os conjuntos são tipos de dados que tem algumas peculiaridades assim como as outras estruturas de dados já estudadas por aqui. Em Conjuntos os seus itens não são ordenados e também não podem ser alterados e não é permitido a ocorrência de valores duplicados.</p>
+
+<p>Os itens que são definidos em um conjunto podem aparecer em uma ordem diferente cada vez que você os usa e não podem ser referenciados por índice ou chave.</p>
+
+<p>Os conjuntos também são imutáveis, o que significa que não podemos alterar os seus itens após a  sua criação.</p>
+
+<p>Outro detalhe é que após criar um conjunto, você não pode alterar seus itens, mas pode adicionar novos itens.</p>
+
+<p>Os conjuntos não podem ter dois itens ou mais com o mesmo valor.</p>
+
+<p>Criando um conjunto:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+</span><span class="n">conjunto_A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">conjunto_A</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>1, 2, 3, 5, 75, 12, 45<span class="o">}</span>
+</code></pre></div></div>
+<p>Como foi possível observar no exemplo utilizado acima, o número <strong>12</strong> que possuía duplicidade dentro do conjunto foi automaticamente removido e apenas 1 ocorrência permaneceu depois de sua criação.</p>
+
+<p>Descobrindo o tamanho de um conjunto:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="k">print</span><span class="p">(</span><span class="s">'Tamanho do conjunto: '</span><span class="p">,</span><span class="nb">len</span><span class="p">(</span><span class="n">conjunto_A</span><span class="p">))</span>
+
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tamanho <span class="k">do </span>conjunto:  7
+</code></pre></div></div>
+<p>Para descobrir se o tipo de dados que você criou é um conjunto você pode usar:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1"># função type retorna o tipo de qualquer variável
+</span><span class="k">print</span><span class="p">(</span><span class="s">'Tipo: '</span><span class="p">,</span><span class="nb">type</span><span class="p">(</span><span class="n">conjunto_A</span><span class="p">))</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Tipo:  &lt;class <span class="s1">'set'</span><span class="o">&gt;</span>
+</code></pre></div></div>
+
+<p>Acessando itens no conjunto:</p>
+
+<p>Você não pode acessar itens em um conjunto referindo-se a um índice ou chave. Nesse caso você pode percorrer os itens do conjunto por meio de um laço de repetição <strong>for</strong>, ou você pode verificar se um item especifico está presente em um conjunto, usando a palavra-chave reservada <strong>in</strong>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+</span><span class="n">conjunto_A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">conjunto_A</span><span class="p">)</span>
+
+<span class="c1">#iterando sobre o conjunto e acessando seu itens
+</span><span class="k">for</span> <span class="n">item</span> <span class="ow">in</span> <span class="n">conjunto_A</span><span class="p">:</span>
+  <span class="k">print</span><span class="p">(</span><span class="s">"Item: "</span><span class="p">,</span><span class="n">item</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>1, 2, 3, 5, 75, 12, 45<span class="o">}</span>
+Item:  1
+Item:  2
+Item:  3
+Item:  5
+Item:  75
+Item:  12
+Item:  45
+</code></pre></div></div>
+
+<p>Verificando se um valor/item existe dentro do conjunto:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+</span><span class="n">conjunto_A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="n">conjunto_A</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="mi">7</span> <span class="ow">in</span> <span class="n">conjunto_A</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="mi">5</span> <span class="ow">in</span> <span class="n">conjunto_A</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="o">{</span>1, 2, 3, 5, 75, 12, 45<span class="o">}</span>
+False
+True
+</code></pre></div></div>
+
+<p>Adicionando itens ao conjunto depois de ele já estar criado:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+</span><span class="n">conjunto_A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto Original: "</span><span class="p">,</span><span class="n">conjunto_A</span><span class="p">)</span>
+
+<span class="c1">#utilize a função add() para adicionar novos itens ao conjunto depois de criado
+</span><span class="n">conjunto_A</span><span class="p">.</span><span class="n">add</span><span class="p">(</span><span class="mi">23</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto Modificado: "</span><span class="p">,</span><span class="n">conjunto_A</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Conjunto Original:  <span class="o">{</span>1, 2, 3, 5, 75, 12, 45<span class="o">}</span>
+Conjunto Modificado:  <span class="o">{</span>1, 2, 3, 5, 75, 12, 45, 23<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Para adicionar um conjunto a outro conjunto já criado faça:</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+</span><span class="n">conjunto_A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto A: "</span><span class="p">,</span><span class="n">conjunto_A</span><span class="p">)</span>
+
+<span class="n">conjunto_B</span> <span class="o">=</span> <span class="p">{</span><span class="mi">99</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">757</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">458</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto B: "</span><span class="p">,</span><span class="n">conjunto_B</span><span class="p">)</span>
+
+<span class="n">conjunto_A</span><span class="p">.</span><span class="n">update</span><span class="p">(</span><span class="n">conjunto_B</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="n">conjunto_A</span><span class="p">)</span>
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Conjunto A:  <span class="o">{</span>1, 2, 3, 5, 75, 12, 45<span class="o">}</span>
+Conjunto B:  <span class="o">{</span>99, 3, 5, 458, 12, 757, 123, 29<span class="o">}</span>
+<span class="o">{</span>1, 2, 3, 99, 5, 458, 75, 12, 45, 757, 123, 29<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Vale ressaltar que parâmetro da função update() não precisa ser necessariamente um Conjunto e ele pode ser qualquer estrutura de dados iterável (e.g., tuplas, listas, dicionários etc.).</p>
+
+<p>Para remover elementos de um conjunto você pode utilizar de quatro funções:</p>
+
+<p>As funções remove() e discard() você precisa passar para elas por parâmetro o item que você deseja remover. A função pop() diferente das anteriores sempre irá remover o último elemento do Conjunto (i.e., o elemento mais velho do conjunto ou em todo caso o primeiro que foi criado no conjunto) e ela não precisa de parâmetro.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+</span><span class="n">conjunto_A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto A: "</span><span class="p">,</span><span class="n">conjunto_A</span><span class="p">)</span>
+
+<span class="n">conjunto_B</span> <span class="o">=</span> <span class="p">{</span><span class="mi">99</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">757</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">458</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto B: "</span><span class="p">,</span><span class="n">conjunto_B</span><span class="p">)</span>
+
+<span class="n">conjunto_A</span><span class="p">.</span><span class="n">remove</span><span class="p">(</span><span class="mi">12</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto A novo: "</span><span class="p">,</span><span class="n">conjunto_A</span><span class="p">)</span>
+
+<span class="n">conjunto_B</span><span class="p">.</span><span class="n">discard</span><span class="p">(</span><span class="mi">29</span><span class="p">)</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto B novo: "</span><span class="p">,</span><span class="n">conjunto_B</span><span class="p">)</span>
+
+<span class="n">conjunto_A</span><span class="p">.</span><span class="n">pop</span><span class="p">()</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto A novo: "</span><span class="p">,</span><span class="n">conjunto_A</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Conjunto A:  <span class="o">{</span>1, 2, 3, 5, 75, 12, 45<span class="o">}</span>
+Conjunto B:  <span class="o">{</span>99, 3, 5, 458, 12, 757, 123, 29<span class="o">}</span>
+Conjunto A novo:  <span class="o">{</span>1, 2, 3, 5, 75, 45<span class="o">}</span>
+Conjunto B novo:  <span class="o">{</span>99, 3, 5, 458, 12, 757, 123<span class="o">}</span>
+Conjunto A novo:  <span class="o">{</span>2, 3, 5, 75, 45<span class="o">}</span>
+</code></pre></div></div>
+
+<p>Para limpar um conjunto você pode utilizar a função <strong>clear()</strong> e para deletar um conjunto completamente da memória do computador você pode utilizar a palavra reservada <strong>del</strong>.</p>
+
+<div class="language-python highlighter-rouge"><div class="highlight"><pre class="highlight"><code><span class="c1">#Conjunto criado com com alguns número do tipo Inteiro e que tem algumas repetições entre eles
+</span><span class="n">conjunto_A</span> <span class="o">=</span> <span class="p">{</span><span class="mi">1</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">2</span><span class="p">,</span> <span class="mi">75</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">45</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto A: "</span><span class="p">,</span><span class="n">conjunto_A</span><span class="p">)</span>
+
+<span class="n">conjunto_B</span> <span class="o">=</span> <span class="p">{</span><span class="mi">99</span><span class="p">,</span> <span class="mi">123</span><span class="p">,</span> <span class="mi">5</span><span class="p">,</span> <span class="mi">29</span><span class="p">,</span> <span class="mi">757</span><span class="p">,</span> <span class="mi">12</span><span class="p">,</span> <span class="mi">458</span><span class="p">,</span> <span class="mi">3</span><span class="p">}</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto B: "</span><span class="p">,</span><span class="n">conjunto_B</span><span class="p">)</span>
+
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto A: "</span><span class="p">,</span><span class="n">conjunto_A</span><span class="p">.</span><span class="n">clear</span><span class="p">())</span>
+
+<span class="k">del</span> <span class="n">conjunto_B</span>
+<span class="k">print</span><span class="p">(</span><span class="s">"Conjunto B: "</span><span class="p">,</span><span class="n">conjunto_B</span><span class="p">)</span>
+
+</code></pre></div></div>
+<p>Para o bloco de código acima teríamos a seguinte saída em nosso terminal:</p>
+<div class="language-bash highlighter-rouge"><div class="highlight"><pre class="highlight"><code>Conjunto A:  <span class="o">{</span>1, 2, 3, 5, 75, 12, 45<span class="o">}</span>
+Conjunto B:  <span class="o">{</span>99, 3, 5, 458, 12, 757, 123, 29<span class="o">}</span>
+Conjunto A:  None
+Traceback <span class="o">(</span>most recent call last<span class="o">)</span>:
+  File <span class="s2">"main.py"</span>, line 12, <span class="k">in</span> &lt;module&gt;
+    print<span class="o">(</span><span class="s2">"Conjunto B: "</span>,conjunto_B<span class="o">)</span>
+NameError: name <span class="s1">'conjunto_B'</span> is not defined
+</code></pre></div></div>
+
+<p>Exitem outras funções não mencionadas aqui que você pode encontrar na documentação da linguagem python assim como:</p>
+
+<table>
+  <thead>
+    <tr>
+      <th style="text-align: center">Nome do método/função</th>
+      <th style="text-align: center">O que ele faz?</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td style="text-align: center">difference()</td>
+      <td style="text-align: center">Retorna um conjunto contendo a diferença entre dois ou mais conjuntos</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">difference_update()</td>
+      <td style="text-align: center">Remove os itens neste conjunto que também estão incluídos em outro, especificado</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">intersection()</td>
+      <td style="text-align: center">Retorna um conjunto, que é a interseção de dois outros conjuntos</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">intersection_update()</td>
+      <td style="text-align: center">Remove os itens no conjunto que chama essa função e que não estão presentes em outros conjuntos especificados/utilizados</td>
+    </tr>
+    <tr>
+      <td style="text-align: center">union()</td>
+      <td style="text-align: center">Retorna um conjunto contendo a união dos conjuntos</td>
+    </tr>
+  </tbody>
+</table>
+
+<p>Exercícios para praticar o que aprendeu:</p>
+
+<ol>
+  <li>
+    <p>Crie um programa em python que solicite ao usuário do computador 5 nomes diferentes que comecem com a primeira letra diferentes e a sua tarefa será ordenar essa lista por ordem alfabética.</p>
+  </li>
+  <li>Crie um programa que simule um sistema de banco e para esse sistema você irá criar:</li>
+  <li>Crie um programa que forneça ao usuário do computador as seguintes opções: Cadastrar, Atualizar, Credito e a opção Debito.</li>
+  <li>Crie um programa que quando o usuário solicitar a opção Cadastrar ele precise informar: Nome, Sobrenome, CPF, Idade e Saldo.</li>
+  <li>Crie um programa que quando o usuário solicitar a opção Atualizar ele precise informar o seu CPF e a partir desse ponto as informações de Nome, Sobrenome, Idade possam ser atualizadas.</li>
+  <li>Crie um programa que quando o usuário solicitar a opção Credito seja solicitado a ele a quantia em reais que ele deseja armazenar na sua conta bancaria nesse mini sistema.</li>
+  <li>
+    <p>Crie um programa que quando o usuário solicitar a opção Debito seja solicitado a ele a quantia em reais que saíra da sua conta bancaria.</p>
+  </li>
+  <li>
+    <p>Em complemento ao sistema do exercício 2, crie um programa que adicione a lista de opções do sistema a opção de Remover. Essa opção irá solicitar o CPF do usuário que ira ser removido desse sistema e após a confirmação dessa ação esse cliente do banco não deverá mais estar no mini sistema cadastrado.</p>
+  </li>
+  <li>
+    <p>Em complemento ao sistema do exercício 2, crie um programa que adicione a lista de opções do sistema a opção de Listar. Essa opção irá listar na tela todos os clientes cadastrados nesse sistema apresentando todos os dados dos clientes.</p>
+  </li>
+  <li>
+    <p>Em complemento ao sistema do exercício 2, crie um programa que adicione a lista de opções do sistema a opção de Procurar. Essa opção irá solicitar o CPF do cliente e com esse dados você deverá retornar as informações desse cliente na tela.</p>
+  </li>
+  <li>
+    <p>Em complemento ao sistema do exercício 2, imagine que agora o gerente também quer utilizar esse sistema para verificar alguma informações importantes para ele como gestor. Crie um programa que adicione a lista de opções do sistema a opção de Maior Saldo. Ao acionar essa opção o sistema irá verificar e retornar na tela para o gerente o cliente que tenha o saldo mais alto entre seus clientes.</p>
+  </li>
+  <li>
+    <p>Seguindo a mesma linha do exercício 6, nesse exercício você deve adicionar a lista de opções do sistema a opção de Menor Saldo. E buscar e apresentar na tela o cliente com o menor saldo dentro do sistema.</p>
+  </li>
+  <li>
+    <p>Ainda tentando ajudar o gerente, agora ele precisa que você crie um programa que traga para ele o valor total de dinheiro guardado no banco. Nesse exercício você deve adicionar a lista de opções do sistema a opção de Saldo Total.</p>
+  </li>
+  <li>Crie um programa que adicione a lista de opções do sistema a opção de Ranking Saldo. Nesse exercício você precisa listar todos os clientes mas usando como critério de ordem de exibição dos dados do cliente com maior saldo para o com menor saldo.</li>
+</ol>
+
+<p>Se ficar com alguma dúvida ou precisar de ajuda fique a vontade para nos mandar uma mensagem.</p>
+:ET

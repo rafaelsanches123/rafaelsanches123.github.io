@@ -1,0 +1,56 @@
+I"�<p><img src="https://rafaelsanches123.github.io/assets/linguagem-python.png" alt="linguagem-python" style="width: 100%" /></p>
+
+<h2 id="instalando-e-configurando-o-python-no-seu-computador">Instalando e configurando o python no seu computador</h2>
+
+<h3 id="sistemas-operacionais-windows">Sistemas Operacionais Windows</h3>
+
+<p>Uma das formas mais simples de instalar o python, pode ser utilizando o ananconda que é um gerenciador de pacotes que já vem preparado com algumas bibliotecas do python ou somente o python de forma mais crú direto do site do python. Para usar o anaconda, basta acessar o site do <a href="https://docs.anaconda.com/anaconda/install/windows/">Anaconda</a>, baixar o arquivo executável de instalação referente ao seu sistema operacional windows (64bit ou 32bit) e clicar 2x no arquivo executável e ir clicando em próximo até finalizar o processo de instalação. Antes de finalizar o processo de instalação, se aparecer uma opção com checkbox para assinalar e conter a informação se você deseja vincular a sua instalação python a variavel <strong>PATH</strong> de ambiente do windows pode marcar essa opção pois, isso te permitirá utilizar o python dentro do CMD do windows.</p>
+
+<p>Se tiver alguma dúvida, apenas vá clicando em próximo sem se preocupar e sem medo de algo dar errado.</p>
+
+<p>O processo acima também é válido para instalação somente do python sem bibliotecas adicionais. Para isso basta acessar o site do <a href="https://www.python.org/downloads/windows/">Python</a> e fazer o mesmo processo supracitado.</p>
+
+<h3 id="sistemas-operacionais-linux">Sistemas Operacionais Linux</h3>
+
+<p>Ubuntu 17.10, Ubuntu 18.04 e versões acima  já vem com Python 3.6 por padrão. Para invocar o python no seu computador, basta abrir o terminal e digitar os comandos a seguir de acordo com a versão que deseja utilizar:</p>
+
+<p>Para utilizar o python na sua versão 2 digite no terminal:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python
+</code></pre></div></div>
+<p>Para utilizar o python na sua versão 3 que é a mais atual digite no terminal:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>python3
+</code></pre></div></div>
+
+<p>Ubuntu 16.10 and 17.04 não vem com o Python 3 por padrão mas, ele está no repositório universal do Ubuntu. Para instalá-lo abra seu terminal de linha de comando e digite o comando a seguir:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>sudo apt-get update
+sudo apt-get install python3.6
+</code></pre></div></div>
+
+<h3 id="sistemas-operacionais-macos">Sistemas Operacionais MacOS</h3>
+
+<p>No MacOs a primeira coisa a se fazer é instalar o gerenciador de pacotes do MacOs o <strong>HomeBrew</strong>. Para isso acesse o site com todos os passos para necessários <a href="https://brew.sh/">HomeBrew</a>. Depois de instalar o HomeBrew, basta abrir um terminal e digitar o comando a seguir:</p>
+<div class="language-plaintext highlighter-rouge"><div class="highlight"><pre class="highlight"><code>brew install python3
+</code></pre></div></div>
+
+<h3 id="python-pelo-navegador-do-seu-computador-tablet-ou-smartphone">Python pelo navegador do seu computador, tablet ou smartphone</h3>
+
+<p>Se você não quiser instalar o python na sua máquina por meio dos métodos acima por ter algum medo, você poder usar alguns dos sites a seguir para rodar o python no seu navegador e poder fazer esse curso introdutório:</p>
+
+<ul>
+  <li><a href="https://repl.it/languages/python3">Repl.it</a></li>
+  <li><a href="https://ideone.com/">IDEONE</a></li>
+</ul>
+
+<p>Se você conhece mais algum outro site que não listei acima, menciona ele nos comentários que eu adiciono ele na lista acima.</p>
+
+<p>Bora lá então se você for utilizar algum dos listados acima para fazer esse curso, eu recomendaria o <a href="https://repl.it/languages/python3">Repl.it</a> eu acho ele melhor e mais fácil de utilizar.</p>
+
+<p>A seguir, temos uma imagem do <a href="https://repl.it/languages/python3">Repl.it</a> e alguns apontamentos de como utilizar ele para esse curso:</p>
+
+<p><img src="https://rafaelsanches123.github.io/assets/repl-it-languages-python3.png" alt="python-web-repl.it" style="width: 100%" />
+<strong><em>Figura 1</em></strong>: <em>Exemplo de ambiente web alternativo para programar em python</em></p>
+
+<p>A própria imagem acima fala por si só não é mesmo? Na parte esquerda do site, você cria os seus scripts com a extensão <strong>.py</strong>. No meio do site, fica a região na qual representa um editor de textos para python e ele vai colorir seus códigos e ajudar você a visualizar melhor seus comandos python. Na parte a direita do site, fica o <strong>terminal</strong> e é nele que vai aparecer o resultado do que codificarmos. Você pode escrever seus códigos no editor no bloco central do site e depois que escrever seu código você deve executar ele e para isso você dever clicar no botão <strong>Run</strong> que fica logo acima do nosso editor. Após clicar nele seu código será interpretado e o resultado irá aparecer no seu terminal.</p>
+
+<p>Outra alternativa também é escrever seus códigos diretamente do terminal. Mas ai fica a seu critério essa escolha.</p>
+:ET
