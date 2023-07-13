@@ -7,7 +7,7 @@ categories: git versionamento github bitbucket gitlab
 
 ![git-versionamento-de-arquivos]({{ site.url }}/assets/git.png){:style="width: 100%" }
 
-Fala pessoal blz? Nesse post, vou ensinar para vocês um pouco sobre uma tecnologia super simples e muito poderoza utilizada para __versionar__ nossos arquivos de código na hora de desenvolver qualaquer projeto seja ele pessoal ou não. Quer saber mais? Se a respostar for sim, continue comigo que eu vou te ajudar nisso!
+Fala pessoal blz? Nesse post, vou ensinar para vocês um pouco sobre uma tecnologia super simples e muito poderoza utilizada para __versionar__ nossos arquivos de código na hora de desenvolver qualquer projeto seja ele pessoal ou não. Quer saber mais? Se a respostar for sim, continue comigo que eu vou te ajudar nisso!
 
 ## Git
 
