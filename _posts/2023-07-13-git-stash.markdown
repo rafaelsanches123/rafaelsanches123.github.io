@@ -1,0 +1,33 @@
+---
+layout: post
+title:  "Git Stash"
+date:   2023-07-13 10:00:00 -0300
+categories: git versionamento github bitbucket gitlab git-stash
+---
+
+![git-versionamento-de-arquivos]({{ site.url }}/assets/git.png){:style="width: 100%" }
+
+Fala pessoal blz? Nesse post, vou ensinar para vocês um pouco sobre uma feature muito bacana que existe no Git que já me salvou de vários problemas. Quer saber mais? Se a respostar for sim, continue comigo nessa leitura!
+
+## Git Stash
+
+O comando __git stash__ é usado para __salvar temporariamente__ as __alterações não comprometidas__ em __uma área de trabalho__. Ele é útil quando você precisa alternar para outra branch ou __fazer atualizações__ no repositório sem querer __perder as alterações em andamento__.
+
+Aqui estão algumas situações comuns em que o comando __git stash__ pode ser útil:
+
+1. Alternar para outra branch: Se você está trabalhando em uma branch e precisa mudar para outra sem fazer commit das alterações, pode usar __git stash__ para salvar as mudanças atuais antes de mudar de branch. Depois de trocar para a outra branch, você pode aplicar as alterações salvas novamente usando __git stash apply__.
+
+2. Atualizar o repositório: Antes de realizar um __git pull__ ou __git fetch__ para obter as atualizações mais recentes do repositório, você pode usar __git stash__ para salvar as alterações locais. Isso __evita conflitos__ com as __alterações não comprometidas__. Depois de atualizar o repositório, você pode __aplicar__ as __alterações__ salvas usando __git stash apply__.
+
+Resolver conflitos: Se você encontrar conflitos durante uma mesclagem (merge) ou rebasing, pode usar __git stash__ para salvar as alterações atuais antes de resolver os conflitos manualmente. Após resolver os conflitos, você pode aplicar as alterações salvas usando __git stash apply__.
+
+Aqui estão alguns comandos relacionados ao __git stash__:
+
+* __git stash save "mensagem"__: Salva as alterações atuais em uma área de trabalho temporária, com uma mensagem opcional para identificá-la.
+* __git stash list__: Lista todas as alterações salvas na área de trabalho temporária.
+* __git stash apply__: Aplica a alteração mais recente da área de trabalho temporária, mantendo-a salva para futuras aplicações.
+* __git stash pop__: Aplica e remove a alteração mais recente da área de trabalho temporária.
+* __git stash drop__: Remove uma alteração específica da área de trabalho temporária.
+
+Essas são algumas das funcionalidades básicas do comando __git stash__. Ele é bastante útil para lidar com alterações não comprometidas temporariamente e preservá-las durante tarefas de alternância de branch, atualização do repositório e resolução de conflitos.
+

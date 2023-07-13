@@ -28,7 +28,7 @@ O __Git__ é um __sistema de controle de versão distribuído__ que permite __ra
     * Essas informações serão usadas para identificar seus commits.
 3.  Crie um novo repositório:
 
-    * Navegue até o diretório onde você deseja inicializar um repositório Git. Isso pode ser um projeto existente ou um novo diretório que você criar.
+    * Navegue até o diretório onde você deseja inicializar um repositório Git. Isso pode ser um projeto existente ou um novo diretório que você deseja criar.
     * Execute o seguinte comando para criar um novo repositório Git:
     ```bash
         git init
@@ -80,3 +80,5 @@ O __Git__ é um __sistema de controle de versão distribuído__ que permite __ra
     ```
     * Isso obtém as alterações do branch master do repositório remoto e mescla-as no seu branch local.
     * Esses são os passos básicos para começar a usar o Git. No entanto, o Git oferece muitos outros recursos e comandos para branchs, mesclagens, resolução de conflitos e colaboração com outros desenvolvedores. Eu incentivo você a explorar a documentação e tutoriais do Git para aprofundar seu conhecimento sobre suas capacidades.
+
+    Se quise aprender um pouco mais de uma olhada nesse novo [link para o artigo]({% post_url 2023-07-13-git-stash %}) no blog referente ao comando __git stash__ que vai te ajudar bastante a resolver problemas do dia a dia referentes ao trabalho colaborativo em projetos de software.
