@@ -7,7 +7,7 @@ categories: git versionamento github bitbucket gitlab git-stash
 
 ![git-versionamento-de-arquivos]({{ site.url }}/assets/git.png){:style="width: 100%" }
 
-Fala pessoal blz? Nesse post, vou ensinar para vocês um pouco sobre uma feature muito bacana que existe no Git que já me salvou de vários problemas. Quer saber mais? Se a respostar for sim, continue comigo nessa leitura!
+Fala pessoal blz? Nesse post, vou ensinar para vocês um pouco sobre uma ferramenta muito bacana para versionar nossos códigos e que já me salvou de vários problemas. Quer saber mais? Se a respostar for sim, continue comigo nessa leitura!
 
 Vamos começar com uma visão geral do __Git__ e, em seguida, abordaremos os conceitos de __branches__ e o __fluxo de funcionamento__ do __Git__.
 
