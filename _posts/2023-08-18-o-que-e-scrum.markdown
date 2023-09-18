@@ -19,6 +19,9 @@ O Scrum é uma abordagem de gerenciamento de projetos que enfatiza a flexibilida
 
 O Scrum funciona através de iterações chamadas de "sprints". Cada sprint é um período fixo de tempo, geralmente entre 1 a 4 semanas, durante o qual uma equipe trabalha para entregar um incremento de produto funcional. Vamos explorar os principais componentes e etapas do Scrum:
 
+![Fluxo do Scrum]({{ site.url }}/assets/fluxo-scrum.png){:style="width: 100%" }
+Figura 1 - Representação do fluxo de trabalho usando Scrum
+
 ### Papéis:
 
 __Scrum Master__: É o facilitador do processo Scrum. Ele ajuda a equipe a entender e adotar as práticas do Scrum, remove obstáculos e promove uma cultura de melhoria contínua.
