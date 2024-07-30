@@ -1,0 +1,85 @@
+---
+layout: post
+title:  "ETL x ELT"
+date:   2024-07-30 00:00:00 -0400
+categories: data data-analytics data-lake dw analytics etl elt
+---
+
+![ETLXELT]({{ site.url }}/assets/etlxelt.jpg){:style="width: 100%" }
+
+Fala pessoal blz? Nesse post vou ensinar para vocês o que é ETL e ELT.
+
+Quer saber mais? Se a respostar for sim, continue comigo nessa leitura!
+
+# O que é ETL e ELT em Dados?
+
+__ETL (Extract, Transform, Load)__ e __ELT (Extract, Load, Transform)__ são dois processos usados para integrar dados de várias fontes em um repositório central, como um Data Warehouse. Ambos são cruciais para a preparação e organização dos dados para análise, mas diferem na ordem das etapas e na forma como as transformações são realizadas.
+
+__ETL (Extract, Transform, Load)__
+__ETL__ é um processo tradicional que envolve três etapas principais:
+
+* __Extract (Extração)__: Coleta de dados de diversas fontes, como bancos de dados, sistemas de ERP, CRM, arquivos planos, APIs, etc.
+
+* __Transform (Transformação)__: Limpeza, formatação e transformação dos dados extraídos para atender aos requisitos do Data Warehouse. Isso pode incluir a agregação de dados, normalização, desnormalização, cálculo de métricas, e a aplicação de regras de negócios.
+
+* __Load (Carregamento)__: Os dados transformados são carregados no Data Warehouse ou outro repositório de dados centralizado.
+
+# Vantagens do ETL
+
+* __Transformação Pré-carregamento__: Os dados são transformados antes de serem carregados no Data Warehouse, garantindo que apenas dados limpos e formatados sejam armazenados.
+
+* __Qualidade dos Dados__: Facilita a aplicação de regras de qualidade de dados durante o processo de transformação.
+
+* __Controle__: Oferece maior controle sobre o processo de transformação, permitindo a aplicação de regras complexas de transformação e limpeza.
+
+# Desvantagens do ETL
+
+* __Tempo__: Pode ser um processo demorado, pois a transformação de grandes volumes de dados pode ser lenta.
+
+* __Custo__: Pode ser mais caro, pois requer ferramentas ETL especializadas e recursos computacionais para a transformação dos dados antes do carregamento.
+
+# ELT (Extract, Load, Transform)
+
+__ELT__ é uma abordagem moderna que aproveita a capacidade de processamento de sistemas de armazenamento de dados, como bancos de dados em nuvem e Data Lakes. Envolve as seguintes etapas:
+
+* __Extract (Extração)__: Coleta de dados de diversas fontes, similar ao ETL.
+
+* __Load (Carregamento)__: Os dados extraídos são carregados diretamente no sistema de armazenamento de dados, como um Data Lake ou um banco de dados em nuvem.
+
+* __Transform (Transformação)__: As transformações de dados são realizadas dentro do sistema de armazenamento de dados usando seu poder de processamento.
+
+# Vantagens do ELT
+
+* __Velocidade de Carregamento__: Os dados são carregados rapidamente no repositório de dados, permitindo um acesso mais rápido aos dados brutos.
+
+* __Escalabilidade__: Aproveita a escalabilidade e o poder de processamento dos sistemas de armazenamento modernos, especialmente aqueles baseados em nuvem.
+
+* __Flexibilidade__: Permite transformações ad hoc e iterativas, facilitando a análise exploratória e a aplicação de transformações conforme necessário.
+
+# Desvantagens do ELT
+
+* __Qualidade dos Dados__: Pode ser mais desafiador garantir a qualidade dos dados, já que os dados brutos são carregados diretamente.
+
+* __Complexidade__: Requer um bom entendimento das capacidades de processamento do sistema de armazenamento para realizar transformações eficazes.
+
+* __Dependência do Armazenamento__: Depende da capacidade do sistema de armazenamento de dados para realizar transformações eficientes, o que pode ser limitado em alguns cenários.
+
+# Comparação Entre ETL e ELT
+
+|      Aspecto     |                        ETL                        |                           ELT                           |
+|:----------------:|:-------------------------------------------------:|:-------------------------------------------------------:|
+| Ordem das Etapas | Extrair -> Transformar -> Carregar                | Extrair -> Carregar -> Transformar                      |
+| Transformação    | Antes do carregamento                             | Após o carregamento                                     |
+| Uso de Recursos  | Requer ferramentas e recursos ETL dedicados       | Usa o poder de processamento do armazenamento           |
+| Velocidade       | Pode ser mais lento devido às transformações      | Carregamento rápido, transformação pode ser mais rápida |
+| Qualidade        | Alta, com controle rigoroso de qualidade de dados | Pode ser desafiador manter a qualidade                  |
+| Flexibilidade    | Menos flexível para mudanças ad hoc               | Alta flexibilidade para análises ad hoc                 |
+
+
+# Quando Usar ETL ou ELT?
+
+* __ETL__: É adequado para ambientes onde a qualidade dos dados é crítica e as transformações complexas precisam ser aplicadas antes do carregamento. É comum em sistemas legados e on-premises.
+
+* __ELT__: É ideal para ambientes baseados em nuvem e Data Lakes, onde a velocidade de carregamento e a capacidade de realizar transformações ad hoc são importantes. Aproveita a escalabilidade dos sistemas de armazenamento modernos.
+
+Ambas as abordagens têm seus méritos e são escolhidas com base nas necessidades específicas do projeto, infraestrutura disponível e objetivos de negócios.
