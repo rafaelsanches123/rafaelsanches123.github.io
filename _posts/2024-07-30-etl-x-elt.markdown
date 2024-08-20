@@ -2,7 +2,7 @@
 layout: post
 title:  "ETL x ELT"
 date:   2024-07-30 00:00:00 -0400
-categories: data data-analytics data-lake dw analytics etl elt
+categories: data data-analytics data-architecture arquitetura-de-dados data-lake dw analytics etl elt
 ---
 
 ![ETLXELT]({{ site.url }}/assets/etlxelt.jpg){:style="width: 100%" }

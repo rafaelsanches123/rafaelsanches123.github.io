@@ -2,10 +2,10 @@
 layout: post
 title:  "O que é Data WareHouse o famoso DW?"
 date:   2024-07-30 00:00:00 -0300
-categories: data data-analytics dw data-warehouse analytics
+categories: data data-analytics data-architecture arquitetura-de-dados dw data-warehouse analytics
 ---
 
-![DataWareHouseDW]({{ site.url }}/assets/dw.jpg){:style="width: 100%" }
+![DataWareHouseDW]({{ site.url }}/assets/dw.png){:style="width: 100%" }
 
 Fala pessoal blz? Nesse post vou ensinar para vocês o que é o famoso __Data WareHouse__ o __DW__. Antes de começar esse post recomendo a leitura [Diferença entre dado operacional e analítico]({%  link _posts/2024-07-01-diferenca-entre-dado-operacional-e-analitico.markdown %}) pois ela vai te dar o embasamento sobre o tipo de dado utilizado em um DW.
 
@@ -13,7 +13,7 @@ Quer saber mais? Se a respostar for sim, continue comigo nessa leitura!
 
 # O que é um Data WareHouse?
 
-Um __Data Warehouse__ é um sistema centralizado de armazenamento de dados projetado para facilitar a análise e o relatório de grandes volumes de dados, agregados de diferentes fontes. Ele organiza e consolida dados para fornecer uma visão consistente e abrangente do desempenho da organização, permitindo a tomada de decisões informadas com base em análises históricas e preditivas.
+Um __Data Warehouse__ é um sistema de gerenciamento de banco de dados analítico projetado para facilitar a análise e o relatório de grandes volumes de dados, agregados de diferentes fontes. Ele organiza e consolida dados para fornecer uma visão consistente e abrangente do desempenho da organização, permitindo a tomada de decisões informadas com base em análises históricas e preditivas.
 
 # Características de um Data Warehouse
 
