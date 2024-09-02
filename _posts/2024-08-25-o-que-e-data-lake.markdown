@@ -1,11 +1,11 @@
 ---
 layout: post
 title:  "O que é Data Lake?"
-date:   2024-08-03 00:00:00 -0300
+date:   2024-08-25 00:00:00 -0300
 categories: data data-analytics data-architecture arquitetura-de-dados data-lake analytics
 ---
 
-![DataLake]({{ site.url }}/assets/data-lake.jpg){:style="width: 100%" }
+![DataLake]({{ site.url }}/assets/data-lake.png){:style="width: 100%" }
 
 Fala pessoal blz? Nesse post vou ensinar para vocês o que é data lake e como essa arquitetura de dados pode ajudar no seu dia a dia.
 
@@ -38,7 +38,7 @@ Data Lake é uma arquitetura de dados que permite armazenar grandes volumes de d
 
     * __Catalogação de Dados__: Usa catálogos de metadados (como AWS Glue, Apache Hive Metastore) para gerenciar e indexar os dados armazenados, facilitando a descoberta e o gerenciamento dos dados.
 
-    * __Data Governance__: Implementa políticas de governança, segurança e compliance (como GDPR) para proteger e gerenciar o acesso aos dados.
+    * __Data Governance__: Implementa políticas de governança, segurança e compliance (como LGDP) para proteger e gerenciar o acesso aos dados.
 
 # Comparação com Data Warehouses
 
