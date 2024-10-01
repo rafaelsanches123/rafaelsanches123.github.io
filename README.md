@@ -13,3 +13,6 @@ Compartilhar os artigos nas midias sociais:
 
 Executar o Jekyll localmente para testes e com atualização automatica das mudanças no código refletidas no browser:
 * bundle exec jekyll serve --livereload
+
+jekyll 4.3.4
+* bundle exec jekyll serve --open-url --livereload
