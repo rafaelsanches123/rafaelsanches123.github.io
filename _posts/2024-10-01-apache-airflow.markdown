@@ -185,7 +185,7 @@ A seguir, vou mostrar um passo a passo para configurar o Airflow com Docker Comp
 
 Com essa configuração, você terá o Airflow rodando localmente com o Docker Compose, o que facilita bastante o desenvolvimento e a execução de pipelines de dados. Caso precise de uma configuração mais avançada (por exemplo, utilizando o **CeleryExecutor** para executar tarefas em paralelo), é possível modificar o arquivo `docker-compose.yaml` conforme necessário.
 
-## Dica para o caso de ocorrer algum erro de permissão
+# Dica para o caso de ocorrer algum erro de permissão
 
 Durante os passos anteriores se obtiver o seguinte erro "PermissionError: [Errno 13] Permission denied: '/opt/airflow/logs/scheduler'":
 
@@ -252,5 +252,30 @@ volumes:
 ### Conclusão
 
 A correção principal é garantir que o contêiner do Docker tenha permissão para acessar as pastas locais, como `logs`, `dags` e `plugins`. Após ajustar as permissões e reiniciar os serviços, o erro deve ser resolvido. Se precisar de mais alguma orientação ou tiver outros erros, posso ajudar a solucionar.
+
+# Caso você não consiga realizar o login no Airflo
+O login e senha padrão do **Apache Airflow** ao acessar a interface web pela primeira vez (especialmente quando configurado com o Docker Compose) costumam ser:
+
+- **Usuário**: `airflow`
+- **Senha**: `airflow`
+
+### Caso você queira criar um novo usuário administrador
+Se as credenciais padrão não funcionarem ou você quiser criar um novo usuário com permissões de administrador, você pode rodar o seguinte comando para criar um usuário:
+
+1. Execute o comando dentro do contêiner `webserver` para criar um novo usuário administrador:
+
+   ```bash
+   docker-compose run --rm webserver airflow users create \
+     --username meu_usuario \
+     --firstname meu_nome \
+     --lastname meu_sobrenome \
+     --role Admin \
+     --email meu_email@example.com \
+     --password minha_senha
+   ```
+
+   Esse comando irá criar um novo usuário com o nome de usuário, senha e email que você definir. 
+
+Após isso, você poderá usar as novas credenciais para acessar o Airflow na interface web.
 
 No próximo post vou ensinar como criar a sua primeira Dag!
