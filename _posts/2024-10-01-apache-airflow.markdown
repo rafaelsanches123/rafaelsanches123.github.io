@@ -7,7 +7,7 @@ categories: data data-engineering data-pipeline pipeline apache airflow apache-a
 
 ![Tubulação de Canos]({{ site.url }}/assets/airflow-tubulacao.jpg){:style="width: 100%" }
 
-Fala pessoal blz? Nesse post vou apresentar para vocês uma ferramenta incrível que você não pode deixar de conhecer se você trabalho com dados. Se você está migrando para a área de dados, se já é um profissional da área de dados ou se simplesmente gosta de aprender algo novo.
+Fala pessoal blz? Nesse post vou apresentar para vocês uma ferramenta incrível que você não pode deixar de conhecer se você trabalha com dados. Se você está migrando para a área de dados, se já é um profissional da área de dados ou se simplesmente gosta de aprender algo novo.
 
 Quer saber mais? Se a respostar for sim, continue comigo nessa leitura!
 
@@ -253,7 +253,7 @@ volumes:
 
 A correção principal é garantir que o contêiner do Docker tenha permissão para acessar as pastas locais, como `logs`, `dags` e `plugins`. Após ajustar as permissões e reiniciar os serviços, o erro deve ser resolvido. Se precisar de mais alguma orientação ou tiver outros erros, posso ajudar a solucionar.
 
-# Caso você não consiga realizar o login no Airflo
+# Caso você não consiga realizar o login no Airflow
 O login e senha padrão do **Apache Airflow** ao acessar a interface web pela primeira vez (especialmente quando configurado com o Docker Compose) costumam ser:
 
 - **Usuário**: `airflow`
