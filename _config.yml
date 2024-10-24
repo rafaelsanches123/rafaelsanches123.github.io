@@ -16,8 +16,8 @@
 title: < Tudo Programado Blog />
 email: rafaelsanches123@gmail.com
 description: >- # this means to ignore newlines until "baseurl:"
-  Esse blog foi desenvolvido com o intuito de que eu pudesse compartilhar um pouco do meu conhecimento sobre a área de informática com todos.
-  Eu irei compartilhar informação sobre diversos tópicos da computação mas, com foco em especial em assuntos referentes a Inteligência Artificial.
+  Bem-vindo ao Tudo Programado Blog!
+  Aqui você encontrará uma coleção de artigos e insights sobre Inteligência Artificial, Desenvolvimento de Software e Ciência de Dados em suas diversas subáreas. Meu objetivo é compartilhar conhecimento técnico e prático, cobrindo temas que vão desde Algoritmos de Machine Learning até práticas de DevOps e Engenharia de Dados. Além disso, abordo conceitos de gestão de projetos e metodologias ágeis, oferecendo uma visão completa sobre como liderar equipes e entregar projetos com eficiência. Acompanhe e se inspire para elevar suas habilidades e conhecimentos!
 baseurl: "" # the subpath of your site, e.g. /blog
 url: "https://rafaelsanches123.github.io" # the base hostname & protocol for your site, e.g. http://example.com
 twitter_username: RafaelFVSanches
