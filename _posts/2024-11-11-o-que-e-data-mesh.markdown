@@ -5,7 +5,7 @@ date:   2024-11-11 00:00:01 -0300
 categories: data data-analytics datamesh data-architecture arquitetura-de-dados data-mesh mesh analytics
 ---
 
-![Data Mesh]({{ site.url }}/assets/data-mesh.png){:style="width: 100%" }
+![Data Mesh]({{ site.url }}/assets/arquitetura-data-mesh.png){:style="width: 100%" }
 
 Fala pessoal blz? Com o volume de dados crescendo de forma exponencial, muitas empresas enfrentam desafios para gerenciar, acessar e utilizar essas informações de maneira eficaz. Tradicionalmente, a centralização do armazenamento e da gestão de dados parece ser o caminho lógico, mas essa abordagem começa a mostrar limitações, especialmente em organizações grandes e complexas. É aqui que o conceito de Data Mesh surge como uma alternativa promissora. Mas o que é Data Mesh? E como essa abordagem distribui a responsabilidade de dados entre as equipes, permitindo maior escalabilidade e agilidade? Neste post, vamos explorar o que é o Data Mesh, seus quatro pilares fundamentais e como ele pode transformar a maneira como as empresas lidam com dados.
 
