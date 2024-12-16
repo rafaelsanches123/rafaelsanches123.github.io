@@ -58,6 +58,41 @@ A instalação do Docker no Linux pode variar um pouco dependendo da distribuiç
 ```bash
     sudo apt update
 ```
+
+    Caso você tenha esse erro:
+
+    ```bash
+    Reading package lists... Done
+    E: The repository 'https://download.docker.com/linux/ubuntu wilma Release' does not have a Release file.
+    N: Updating from such a repository can't be done securely, and is therefore disabled by default.
+    N: See apt-secure(8) manpage for repository creation and user configuration details.
+    ```
+
+    O erro ocorre porque o codinome da sua versão do Linux Mint (provavelmente `wilma` para o Mint 22) não é oficialmente suportado pelo repositório do Docker. Mas como o Linux Mint é baseado no Ubuntu, você pode usar o codinome correspondente da versão do Ubuntu. O Mint 22 é baseado no **Ubuntu 22.04 (Jammy Jellyfish)**.
+
+    Aqui está como corrigir:
+
+    * **Edite o arquivo de repositório do Docker**
+    Abra o arquivo com um editor de texto:
+    ```bash
+    sudo nano /etc/apt/sources.list.d/docker.list
+    ```
+
+    Substitua o `$(lsb_release -cs)` ou `wilma` por `jammy`:
+    ```bash
+    deb [arch=$(dpkg --print-architecture) signed-by=/usr/share/keyrings/docker-archive-keyring.gpg] https://download.docker.com/linux/ubuntu jammy stable
+    ```
+
+    Salve o arquivo e feche o editor (`Ctrl+O`, `Enter`, depois `Ctrl+X` no Nano).
+
+    * **Atualize os pacotes novamente**
+    Execute o comando para atualizar a lista de pacotes:
+    ```bash
+    sudo apt update
+    ```
+
+    Caso não tenha o erro acima pode seguir com o passo a passo:
+
 7.  Instale a versão mais recente do Docker:
 ```bash
     sudo apt-get install docker-ce docker-ce-cli containerd.io
@@ -81,3 +116,7 @@ Após instalar o Docker, você pode configurar algumas opções adicionais, como
 2.  Encerre a sessão atual e faça login novamente para que as alterações tenham efeito.
 
 Agora você instalou e configurou o Docker em seu sistema! Você pode testar a instalação executando o comando __docker --version__ no __terminal__ para verificar a versão do Docker instalada. Para começar a usar o Docker, confira a documentação oficial ou tutoriais adicionais para criar, executar e gerenciar contêineres.
+
+Caso você prefira tem esse passo a passo no YouTube: [Instalando e configurando o docker no linux](https://youtu.be/gkK7c_BJdBY?si=tWfUgJfy1eU5In5f){:target="_blank"}. Aproveite para nos seguir lá, curtir o vídeo, se inscrever no canal e compartilhar o vídeo com seus amigos!
+
+<iframe width="560" height="315" src="https://www.youtube.com/embed/gkK7c_BJdBY?si=OZQGxkYgVkKN97kc" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

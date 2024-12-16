@@ -11,6 +11,9 @@ Para geração automatica do sitemap.xml:
 Compartilhar os artigos nas midias sociais:
 * https://superdevresources.com/share-buttons-jekyll/
 
+Instalar as bibliotecas para executar o jekyll
+* bundle install
+
 Executar o Jekyll localmente para testes e com atualização automatica das mudanças no código refletidas no browser:
 * bundle exec jekyll serve --livereload
 
