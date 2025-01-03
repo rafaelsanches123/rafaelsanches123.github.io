@@ -94,3 +94,6 @@ Se você instalou o Docker Compose via binário oficial (método 2), atualize-o 
 
 
 Eu te recomendaria seguir o passo 1 pois é o método mais simples de instalar o docker compose!
+
+Caso você prefira tem esse passo a passo no YouTube: [Como Instalar e Configurar Docker Compose no Linux | Guia Completo](https://youtu.be/Rq5YPPytqpw?si=sVvdpwLwIVhFqTpg){:target="_blank"}. Aproveite para nos seguir lá, curtir o vídeo, se inscrever no canal e compartilhar o vídeo com seus amigos!
+<iframe width="560" height="315" src="https://www.youtube.com/embed/Rq5YPPytqpw?si=sVvdpwLwIVhFqTpg" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>

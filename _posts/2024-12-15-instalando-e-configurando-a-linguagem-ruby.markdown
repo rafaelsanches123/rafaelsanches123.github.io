@@ -121,6 +121,32 @@ Confirme se o Ruby foi instalado corretamente:
 ruby -v
 ```
 
+### **8. Abrir um terminal interativo com Ruby**
+Para abrir um terminal interativo e testar e aprender Ruby execute o seguinte comando no terminal:  
+```bash
+irb
+```
+O resultado depois de executar o comando acima será algo assim:
+
+```bash
+3.3.6 :001 
+```
+
+Aqui para testar o ruby você pode executar o commando puts que permite imprimir alguma informação na sua tela:
+```bash
+3.3.6 :001 > puts "Hello World!"
+Hello World!
+ => nil 
+3.3.6 :002 > 
+```
+
+No caso de desejar executar algum script via terminal basta realizar o seguinte comando trocando o nome meu_script.rb pelo seu script:
+
+```bash
+ruby meu_script.rb
+```
+após executar o comando acima o resultado do seu script deve aparecer no terminal caso você tenha algum comando que imprima algo na tela.
+
 ---
 
 ### **Dicas extras: **
@@ -148,4 +174,11 @@ após salvar a alteração e sair do nano feche o terminal e abra novamente e ve
 ruby -v
 ```
 
-após executar esse comando a versão instalada na sua máquina devera ser exibida no terminal. Agora você já pode começar a estudar e utilizar ruby na sua jornada de pessoa desenvolvedora Ruby.
+após executar esse comando a versão instalada na sua máquina deverá ser exibida no terminal. Agora você já pode começar a estudar e utilizar ruby na sua jornada de pessoa desenvolvedora Ruby.
+
+Para testar o Ruby no terminal iterativo você pode abrir seu terminal e digitar o comando:
+
+```bash
+irb
+```
+Após executar o comando acima você estará pronto para rodar seus comandos Ruby direto do terminal.
