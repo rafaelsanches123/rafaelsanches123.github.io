@@ -174,11 +174,9 @@ após salvar a alteração e sair do nano feche o terminal e abra novamente e ve
 ruby -v
 ```
 
-após executar esse comando a versão instalada na sua máquina deverá ser exibida no terminal. Agora você já pode começar a estudar e utilizar ruby na sua jornada de pessoa desenvolvedora Ruby.
-
-Para testar o Ruby no terminal iterativo você pode abrir seu terminal e digitar o comando:
+para testar o Ruby no terminal iterativo você pode abrir seu terminal e digitar o comando:
 
 ```bash
 irb
 ```
-Após executar o comando acima você estará pronto para rodar seus comandos Ruby direto do terminal.
+Após executar o comando acima você estará pronto para rodar seus comandos Ruby direto do terminal em qualquer diretório na sua máquina.
