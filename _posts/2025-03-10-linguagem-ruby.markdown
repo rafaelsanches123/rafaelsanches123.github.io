@@ -106,7 +106,7 @@ Ruby continua sendo uma linguagem amada por muitos desenvolvedores, especialment
 **"Agora que você já conhece a história do Ruby até os dias de hoje, é hora de dar o próximo passo! Abaixo, você encontrará nosso curso de Ruby, uma sequência de posts cuidadosamente elaborada para te guiar nessa jornada rumo à especialização. Com muito carinho e dedicação, preparamos esse conteúdo para te ajudar a se tornar um profissional diferenciado e um verdadeiro especialista na linguagem Ruby. Vamos juntos?"**  
 
 - [Instalando a linguagem Ruby]({%  link _posts/2024-12-15-instalando-e-configurando-a-linguagem-ruby.markdown %}); 
-- Variáveis e Tipos de Dados;
+- [Variáveis e Tipos de Dados]({% link _posts/2025-03-11-curso-de-ruby-variaveis-e-tipos-de-dados.markdown %});
 - Saída e Entrada de Dados;
 - Estruturas Condicionais;
 - Estruturas de Repetição;
