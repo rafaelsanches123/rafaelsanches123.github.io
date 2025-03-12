@@ -180,3 +180,7 @@ para testar o Ruby no terminal iterativo você pode abrir seu terminal e digitar
 irb
 ```
 Após executar o comando acima você estará pronto para rodar seus comandos Ruby direto do terminal em qualquer diretório na sua máquina.
+
+Agora que você já tem o Ruby na sua máquina instalado bora aprender mais sobre ele e iniciar sua jornada como **dev especialista em Ruby**?
+
+**[Clique aqui para começar sua jornada!!!]({%  link _posts/2025-03-10-linguagem-ruby.markdown %})**

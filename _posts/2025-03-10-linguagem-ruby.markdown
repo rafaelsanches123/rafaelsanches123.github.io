@@ -1,6 +1,6 @@
 ---
 layout: post
-title:  "Aprendendo Ruby"
+title:  "Linguagem Ruby"
 date:   2025-03-10 15:55:02 -0300
 categories: ruby
 ---
