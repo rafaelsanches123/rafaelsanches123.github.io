@@ -199,4 +199,4 @@ Agora, pratique resolvendo estes desafios:
 
 **Se quiser, tente resolver e envie nos comentários suas respostas para analisarmos juntos!** 🚀
 
-**Próxima aula em construção!!! - Saída e Entrada de Dados**
+**Próxima aula - [Saída e Entrada de Dados]({% link  _posts/2025-03-13-curso-de-ruby-saida-e-entrada-de-dados.markdown %});**
