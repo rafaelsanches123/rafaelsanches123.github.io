@@ -154,4 +154,4 @@ Agora é sua vez! 💪
 **Se quiser, tente resolver e envie nos comentários seus códigos e suas respostas para analisarmos juntos!** 🚀
 
 
-**Próxima aula em construção!!! - Estruturas de Repetição (loops)**
+**Próxima aula - [Estruturas de Repetição (loops)]({% link  _posts/2025-03-15-curso-de-ruby-estruturas-de-repeticao.markdown %});**
