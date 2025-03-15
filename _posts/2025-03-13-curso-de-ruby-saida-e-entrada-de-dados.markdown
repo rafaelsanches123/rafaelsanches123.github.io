@@ -93,4 +93,4 @@ Agora é sua vez! 💪
 
 **Se quiser, tente resolver e envie nos comentários seus códigos e suas respostas para analisarmos juntos!** 🚀
 
-**Próxima aula - [Estruturas Condicionais]({% link  _posts/2025-03-15-curso-de-ruby-estruturas-condicionais.markdown %});**
+**Próxima aula - [Estruturas Condicionais]({% link  _posts/2025-03-15-curso-de-ruby-estruturas-condicionais.markdown %})**

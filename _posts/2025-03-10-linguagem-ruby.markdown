@@ -108,8 +108,8 @@ Ruby continua sendo uma linguagem amada por muitos desenvolvedores, especialment
 - [Instalando a linguagem Ruby]({%  link _posts/2024-12-15-instalando-e-configurando-a-linguagem-ruby.markdown %}); 
 - [Variáveis e Tipos de Dados]({% link _posts/2025-03-11-curso-de-ruby-variaveis-e-tipos-de-dados.markdown %});
 - [Saída e Entrada de Dados]({% link  _posts/2025-03-13-curso-de-ruby-saida-e-entrada-de-dados.markdown %});
-- Estruturas Condicionais;
-- Estruturas de Repetição;
+- [Estruturas Condicionais]({% link  _posts/2025-03-15-curso-de-ruby-estruturas-condicionais.markdown %});
+- [Estruturas de Repetição (loops)]({% link  _posts/2025-03-15-curso-de-ruby-estruturas-de-repeticao.markdown %});
 - Métodos (Funções);
 - Manipulação de Strings e Arrays;
 - Classes e Objetos (POO em Ruby);
