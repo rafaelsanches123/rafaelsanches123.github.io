@@ -91,7 +91,6 @@ Agora é sua vez! 💪
 2️⃣ Solicite um **número**, converta para **inteiro**, multiplique por 3 e mostre o resultado.  
 3️⃣ Peça para o usuário digitar um **número decimal** e exiba o dobro dele.  
 
-**Se quiser, tente resolver e envie nos comentários suas respostas para analisarmos juntos!** 🚀
+**Se quiser, tente resolver e envie nos comentários seus códigos e suas respostas para analisarmos juntos!** 🚀
 
-
-**Próxima aula em construção!!! - Estruturas Condicionais**
+**Próxima aula - [Estruturas Condicionais]({% link  _posts/2025-03-15-curso-de-ruby-estruturas-condicionais.markdown %});**

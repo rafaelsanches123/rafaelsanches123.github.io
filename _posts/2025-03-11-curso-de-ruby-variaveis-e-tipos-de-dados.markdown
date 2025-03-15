@@ -197,6 +197,6 @@ Agora, pratique resolvendo estes desafios:
 2️⃣ Crie uma variável e atribua a ela um número em formato de string e depois converta-o para inteiro. Multiplique por 2 e exiba o resultado.  
 3️⃣ Crie um `Hash` para armazenar **nome, idade e cidade** de uma pessoa e exiba as informações.
 
-**Se quiser, tente resolver e envie nos comentários suas respostas para analisarmos juntos!** 🚀
+**Se quiser, tente resolver e envie nos comentários seus códigos e suas respostas para analisarmos juntos!** 🚀
 
 **Próxima aula - [Saída e Entrada de Dados]({% link  _posts/2025-03-13-curso-de-ruby-saida-e-entrada-de-dados.markdown %});**
