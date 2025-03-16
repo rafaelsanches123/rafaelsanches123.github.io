@@ -110,9 +110,9 @@ Ruby continua sendo uma linguagem amada por muitos desenvolvedores, especialment
 - [Saída e Entrada de Dados]({% link  _posts/2025-03-13-curso-de-ruby-saida-e-entrada-de-dados.markdown %});
 - [Estruturas Condicionais]({% link  _posts/2025-03-15-curso-de-ruby-estruturas-condicionais.markdown %});
 - [Estruturas de Repetição (loops)]({% link  _posts/2025-03-15-curso-de-ruby-estruturas-de-repeticao.markdown %});
-- Métodos (Funções);
-- Manipulação de Strings e Arrays;
-- Classes e Objetos (POO em Ruby);
+- [Métodos (Funções)]({% link _posts/2025-03-16-curso-de-ruby-metodos-e-funcoes.markdown %});
+- Manipulação de Strings;
 - Tratamento de Erros (Exception Handling);
 - Manipulação de Arquivos;
+- Classes e Objetos (POO em Ruby);
 - Desafio do Jogo das Luzes.
