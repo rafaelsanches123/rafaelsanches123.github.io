@@ -214,4 +214,4 @@ Agora é sua vez! 💪
 
 **Se quiser, tente resolver e envie nos comentários seus códigos e suas respostas para analisarmos juntos!** 🚀
 
-**Próxima aula em construção!!! - Classes e Objetos (POO em Ruby)**
+**Próxima aula - [Programação Orientada a Objetos em Ruby]({% link _posts/2025-03-17-curso-de-ruby-orientacao-a-objetos.markdown %})**

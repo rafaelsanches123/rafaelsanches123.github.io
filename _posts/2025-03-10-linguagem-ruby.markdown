@@ -114,5 +114,5 @@ Ruby continua sendo uma linguagem amada por muitos desenvolvedores, especialment
 - [Manipulação de Strings]({% link _posts/2025-03-16-curso-de-ruby-manipulacao-de-strings.markdown %});
 - [Manipulação de Arquivos]({% link _posts/2025-03-17-curso-de-ruby-manipulacao-de-arquivos.markdown %});
 - [Tratamento de Exceções]({% link _posts/2025-03-17-curso-de-ruby-tratamento-de-excecoes.markdown %});
-- Classes e Objetos (POO em Ruby);
-- Desafio do Jogo das Luzes.
+- [Programação Orientada a Objetos em Ruby]({% link _posts/2025-03-17-curso-de-ruby-orientacao-a-objetos.markdown %});
+- [Desafio do Jogo das Luzes]({% link _posts/2025-03-17-jogo-das-luzes.markdown %}).
