@@ -169,4 +169,4 @@ Agora é sua vez! 💪
 
 **Se quiser, tente resolver e envie nos comentários seus códigos e suas respostas para analisarmos juntos!** 🚀
 
-**Próxima aula em construção!!! - Tratamento de Exceções**
+**Próxima aula - [Manipulação de Arquivos]({% link _posts/2025-03-17-curso-de-ruby-manipulacao-de-arquivos.markdown %})**
