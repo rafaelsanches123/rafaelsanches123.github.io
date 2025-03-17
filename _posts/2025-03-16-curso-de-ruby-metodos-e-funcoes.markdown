@@ -144,4 +144,4 @@ Agora é sua vez! 💪
 
 **Se quiser, tente resolver e envie nos comentários seus códigos e suas respostas para analisarmos juntos!** 🚀
 
-**Próxima aula em construção!!! - Manipulação de Strings**
+**Próxima aula - [Manipulação de Strings]({% link _posts/2025-03-16-curso-de-ruby-manipulacao-de-strings.markdown %})**
