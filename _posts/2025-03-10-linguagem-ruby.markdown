@@ -112,6 +112,7 @@ Ruby continua sendo uma linguagem amada por muitos desenvolvedores, especialment
 - [Estruturas de Repetição (loops)]({% link  _posts/2025-03-15-curso-de-ruby-estruturas-de-repeticao.markdown %});
 - [Métodos (Funções)]({% link _posts/2025-03-16-curso-de-ruby-metodos-e-funcoes.markdown %});
 - [Manipulação de Strings]({% link _posts/2025-03-16-curso-de-ruby-manipulacao-de-strings.markdown %});
+- [Estruturas de Dados]({% link _posts/2025-03-16-curso-de-ruby-estruturas-de-dados.markdown %})**
 - [Manipulação de Arquivos]({% link _posts/2025-03-17-curso-de-ruby-manipulacao-de-arquivos.markdown %});
 - [Tratamento de Exceções]({% link _posts/2025-03-17-curso-de-ruby-tratamento-de-excecoes.markdown %});
 - [Programação Orientada a Objetos em Ruby]({% link _posts/2025-03-17-curso-de-ruby-orientacao-a-objetos.markdown %});

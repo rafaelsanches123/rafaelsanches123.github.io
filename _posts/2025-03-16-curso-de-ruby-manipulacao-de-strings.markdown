@@ -88,74 +88,6 @@ substring = "l"
 "olá".include?(substring)  # => true
 ```
 
----
-
-# **Manipulação de Arrays**
-Os **arrays** em Ruby são listas dinâmicas que podem armazenar qualquer tipo de dado.
-
-## **Criando Arrays**
-```ruby
-numeros = [1, 2, 3, 4, 5]
-nomes = ["Ana", "João", "Carlos"]
-```
-
-Podemos acessar elementos pelo **índice (começando em 0)**:
-```ruby
-puts nomes[0] # "Ana"
-puts nomes[-1] # "Carlos" (último elemento)
-```
-
----
-
-## **Métodos Úteis para Arrays**
-###  **Adicionando Elementos**
-```ruby
-numeros << 6         # Adiciona 6 ao final
-numeros.push(7)      # Outra forma de adicionar ao final
-numeros.unshift(0)   # Adiciona 0 no início
-```
- **Resultado:** `[0, 1, 2, 3, 4, 5, 6, 7]`
-
----
-
-###  **Removendo Elementos**
-```ruby
-numeros.pop      # Remove o último elemento
-numeros.shift    # Remove o primeiro elemento
-numeros.delete(3) # Remove todas as ocorrências do número 3
-```
-
----
-
-###  **Iterando sobre Arrays**
-Podemos percorrer um array com `.each`:
-```ruby
-numeros = [1, 2, 3, 4, 5]
-
-numeros.each do |num|
-  puts "Número: #{num}"
-end
-```
- **Saída:**
-```
-Número: 1
-Número: 2
-Número: 3
-Número: 4
-Número: 5
-```
-
----
-
-###  **Filtrando e Modificando Arrays**
-```ruby
-pares = numeros.select { |num| num.even? } # Apenas os números pares
-puts pares.inspect # [2, 4]
-
-dobrados = numeros.map { |num| num * 2 } # Multiplica cada número por 2
-puts dobrados.inspect # [2, 4, 6, 8, 10]
-```
-
 Para conhecer outros métodos não ensinados nesse post sobre manipulação de strings você pode consultar [Documentação Oficial sobre Strings do Ruby](https://docs.ruby-lang.org/en/3.4/String.html)
 
 ---
@@ -163,10 +95,27 @@ Para conhecer outros métodos não ensinados nesse post sobre manipulação de s
 #  **Exercícios**
 Agora é sua vez! 💪  
 
-1️⃣ Crie um programa que peça ao usuário para digitar uma **frase** e depois exiba a mesma frase, mas com **todas as letras maiúsculas**.  
-2️⃣ Dado um array de números `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`, exiba apenas os **números pares**.  
-3️⃣ Dado um array de palavras `["ruby", "é", "muito", "legal"]`, transforme todas as palavras em **maiúsculas** e junte-as em uma única string separada por espaço.  
+1. **Concatenação e Interpolação**
+**Tarefa:**
+    1.  Declare duas variáveis: `primeiro_nome` com o valor "João" e `ultimo_nome` com o valor "Silva".
+    2.  Use o operador de concatenação (`+`) para criar uma variável chamada `nome_completo` que contenha o nome completo (lembre-se de adicionar um espaço entre o primeiro e o último nome). Imprima `nome_completo`.
+    3.  Declare uma variável `idade` com o valor 30.
+    4.  Use a interpolação de strings (com `#{}`) para criar uma frase que diga: "Meu nome completo é [valor de nome_completo] e eu tenho [valor de idade] anos." Imprima essa frase.
+
+2. **Conversão de Caso e Comprimento**
+**Tarefa:**
+    1.  Declare uma variável chamada `frase_exemplo` com a seguinte frase: "ruby é uma linguagem poderosa".
+    2.  Use um método de string para converter toda a `frase_exemplo` para letras maiúsculas. Imprima o resultado.
+    3.  Use outro método de string para converter toda a `frase_exemplo` para letras minúsculas. Imprima o resultado (deverá ser a frase original).
+    4.  Use um método para encontrar o número de caracteres (incluindo espaços) na `frase_exemplo`. Imprima o comprimento da frase.
+
+3. **Substring e Divisão**
+**Tarefa:**
+    1.  Declare uma variável chamada `texto` com a seguinte string: "maçã,banana,laranja,uva".
+    2.  Use um método para verificar se a string `texto` contém a substring "banana". Imprima o resultado (deverá ser `true`).
+    3.  Use um método para encontrar o índice da primeira ocorrência da substring "laranja" na string `texto`. Imprima o índice.
+    4.  Use um método para dividir a string `texto` em um array de substrings, usando a vírgula (`,`) como delimitador. Imprima o array resultante.
 
 **Se quiser, tente resolver e envie nos comentários seus códigos e suas respostas para analisarmos juntos!** 🚀
 
-**Próxima aula - [Manipulação de Arquivos]({% link _posts/2025-03-17-curso-de-ruby-manipulacao-de-arquivos.markdown %})**
+**Próxima aula - [Estruturas de Dados]({% link _posts/2025-03-16-curso-de-ruby-estruturas-de-dados.markdown %})**
