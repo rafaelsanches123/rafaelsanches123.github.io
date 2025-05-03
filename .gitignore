@@ -4,5 +4,6 @@ _site
 .jekyll-cache
 jekyll-cache
 jekyll-cache/
+.jekyll-cache/
 .bundle/
 vendor/
