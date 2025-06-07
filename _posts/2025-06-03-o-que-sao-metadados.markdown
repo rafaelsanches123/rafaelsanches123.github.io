@@ -1,9 +1,9 @@
- 
+--- 
 layout: post
 title:  "O que são Metadados? Entenda seu papel essencial na Gestão e Governança de Dados"
 date:   2025-06-07 08:00:00 -0300
 categories: Qualidade Dados Engenharia Arquitetura Governança Metadados
- 
+---
 
 ![Metadados]({{ site.url }}/assets/metadados.png){:style="width: 100%" }
 
