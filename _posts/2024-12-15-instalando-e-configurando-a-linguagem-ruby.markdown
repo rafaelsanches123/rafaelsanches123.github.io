@@ -166,7 +166,7 @@ sudo nano ~/.bashrc
 ```
 Com o nano aberto vá até o final do arquivo aberto nele e adicione o comando a baixo.
 ```bash
-[[ -s "$HOME/.rvm/scripts/rvm"]] && source "$HOME/.rvm/scripts/rvm"
+[[ -s "$HOME/.rvm/scripts/rvm" ]] && source "$HOME/.rvm/scripts/rvm"
 ```
 
 após salvar a alteração e sair do nano feche o terminal e abra novamente e verifique se o ruby será encontrado rodando o comando a seguir:
