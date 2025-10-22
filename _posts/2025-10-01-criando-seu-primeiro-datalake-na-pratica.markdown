@@ -52,7 +52,7 @@ version: '3.8'
 
 services:
   minio:
-    image: minio/minio:latest
+    image: minio/minio:RELEASE.2025-02-03T21-03-04Z-cpuv1
     container_name: minio
     ports:
       - "9000:9000"
@@ -71,6 +71,7 @@ services:
 * `volumes`: mapeia os dados para o host local.
 * `9000`: porta da API S3.
 * `9001`: console web para gerenciar buckets e arquivos.
+* A versão RELEASE.2025-02-03T21-03-04Z-cpuv1 da imagem docker do minio é necessária para ter acesso aos mesmos recursos apresentados no decorrer desse post. Não use a versão mais recente/atual se não você não terá mais acesso ao recuros disponíveis nessa versão utilizada nessa aplicação prática de data lake.
 
 ## Colocando a infraestrutura do seu Data Lake para funcionar
 
