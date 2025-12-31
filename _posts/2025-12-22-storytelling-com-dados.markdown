@@ -35,29 +35,20 @@ Números sozinhos raramente motivam a ação. Uma história bem contada com dado
 
 1. Conheça sua audiência
 Antes de abrir o Excel ou o Power BI, pergunte-se:
-
 * Para quem estou falando? (Diretores? Operacional? Clientes?)
-
 * O que eles já sabem sobre o assunto?
-
 * Qual decisão eu quero que eles tomem ao final da apresentação?
 
 2. Escolha o gráfico certo
 Nem todo dado cabe em um gráfico de pizza (aliás, evite-os na maioria das vezes!).
-
 * Gráficos de Linhas: Excelentes para mostrar tendências ao longo do tempo.
-
 * Gráficos de Barras: Ideais para comparar categorias.
-
 * Gráficos de Dispersão: Ótimos para mostrar correlação entre variáveis.
 
 3. Elimine a "sujeira" visual
 O excesso de elementos em um slide ou dashboard gera distração. Para uma comunicação limpa:
-
 * Remova bordas e linhas de grade desnecessárias.
-
 * Evite o uso excessivo de cores (use-as apenas para destacar o ponto principal).
-
 * Simplifique rótulos e eixos.
 
 4. Use Atributos Pré-atencionais
